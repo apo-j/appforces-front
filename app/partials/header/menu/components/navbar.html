@@ -1,0 +1,8 @@
+<li ng-repeat="item in items" ng-if="item.items.length > 0" class="dropdown dropdown-submenu">
+    <a ng-href="{{item.url}}" data-toggle="dropdown"  class="dropdown-toggle">{{item.name}}</a>
+    <ul af-navbar-item items="item.items" template-url="templateUrl" ng-if="item.items.length > 0" class="dropdown-menu"></ul>
+</li>
+
+<li ng-repeat="item in items" ng-if="item.items.length <= 0">
+    <a ng-href="{{item.url}}">{{item.name}}</a>
+</li>

@@ -1,0 +1,3 @@
+1: Page types :
+    1) Special pages: sign in : 100, sign up : 101, 404 : 102, 500 : 103, unauthorise : 401
+    2) All other pages : type 0
