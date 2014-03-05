@@ -34,10 +34,12 @@ angular.module('services').factory('afHeaderFetcher', ['$resource','afConfig','$
 
 angular.module('services').factory('afSidebar', ['$resource','afConfig',
     function($resource, afConfig){
-        //send appid too get get the header
-        //appid get be fetched from Configuration object
-
         return $resource('api/sidebars/:appId/:pageId/:position.json', {appId: afConfig.AppConfig.appId});
+    }]);
+
+angular.module('services').factory('afComponent', ['$resource','afConfig',
+    function($resource, afConfig){
+        return $resource('api/components/:appId/:componentId.json', {appId: afConfig.AppConfig.appId});
     }]);
 
 //
