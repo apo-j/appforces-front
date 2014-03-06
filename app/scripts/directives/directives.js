@@ -8,11 +8,9 @@ angular.module('directives').directive( 'afHeader',
     ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils) {
         return {
             restrict: 'AE',
-            scope:{
-                currentPage:'='
-            },
-            controller: ['$scope', 'afHeader', function($scope, afHeader){
-                $scope.header = afHeader.get({pageId: $scope.currentPage.id}).$promise;
+            scope: false,
+            controller: ['$scope', 'afHeader','afPage', function($scope, afHeader, afPage){
+                $scope.header = afHeader.get({pageId: afPage.currentPageData().id}).$promise;
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
@@ -96,11 +94,10 @@ angular.module('directives').directive('afSidebar',
         return {
             restrict: 'AE',
             scope:{
-                position:'=',
-                currentPage:'='
+                position:'='
             },
-            controller: ['$scope', 'afSidebar', function($scope, afSidebar){
-                $scope.sidebar = afSidebar.get({pageId: $scope.currentPage.id, position: $scope.position}).$promise;
+            controller: ['$scope', 'afPage', 'afSidebar', function($scope, afPage, afSidebar){
+                $scope.sidebar = afSidebar.get({pageId: afPage.currentPageData().id, position: $scope.position}).$promise;
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {

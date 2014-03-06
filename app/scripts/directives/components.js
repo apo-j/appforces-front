@@ -11,10 +11,11 @@ angular.module('directives.components').directive('afGeneralComponent',
             scope:{
               afdata:"="
             },
-            controller: ['$scope','afComponent','$q', function($scope, afComponent, $q){
+            controller: ['$scope','afComponent','$q','afPage', function($scope, afComponent, $q, afPage){
                 var deferred = $q.defer();
+
                 if(!$scope.afdata.isLoaded){
-                    afComponent.get({componentId: $scope.afdata.id}, function(data){
+                    afComponent.get({pageId: afPage.currentPageData().id, componentId: $scope.afdata.id}, function(data){
                         deferred.resolve(data);
                     },
                     function(reason){
@@ -52,7 +53,7 @@ angular.module('directives.components').directive('afDatepicker',
                 },
                 compile:function(tElement, tAttr) {
                     return function(scope , iElement, iAttrs) {
-                        $http.get(afUtils.templateUrl.component('datepicker'), {cache: $templateCache}).success(function(tplContent){
+                        $http.get(afUtils.templateUrl.components('datepicker', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 iElement.html(clone);
                             });
@@ -71,7 +72,7 @@ angular.module('directives.components').directive('afAccordion',
             },
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.component('accordion'), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.components('accordion', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.html(clone);
                         });
@@ -90,7 +91,25 @@ angular.module('directives.components').directive('afCarrousel',
             },
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.component('carrousel'), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.components('carrousel', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.html(clone);
+                        });
+                    });
+                }
+            }
+        }
+    }]);
+angular.module('directives.components').directive('afList',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+        return {
+            restrict: "AE",
+            scope:{
+                afdata:"="
+            },
+            compile:function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.component('list'), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.html(clone);
                         });

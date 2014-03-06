@@ -1,1 +1,0 @@
-<div>Datepicker</div>

@@ -9,29 +9,6 @@ angular.module('services').factory('afHeader', ['$resource','afConfig',
         return $resource('api/headers/:appId/:pageId.json', {appId: afConfig.AppConfig.appId});
     }]);
 
-angular.module('services').factory('afHeaderFetcher', ['$resource','afConfig','$q','$timeout',
-    function($resource, afConfig, $q, $timeout){
-        var _r = $resource('api/headers/:appId/:pageId.json', {appId: afConfig.AppConfig.appId});
-
-        var getHeader = function(pageId){
-            var deferred = $q.defer();
-           /* _r.get({pageId: pageId}, function(data){
-                deferred.resolve(data);
-            }, function(reason){});*/
-
-            $timeout(function() {
-                deferred.resolve(["Hello", "world"]);
-            }, 2000);
-
-            return deferred.promise;
-        };
-
-        return {
-            getMessages: getHeader
-        };
-
-    }]);
-
 angular.module('services').factory('afSidebar', ['$resource','afConfig',
     function($resource, afConfig){
         return $resource('api/sidebars/:appId/:pageId/:position.json', {appId: afConfig.AppConfig.appId});
@@ -39,10 +16,10 @@ angular.module('services').factory('afSidebar', ['$resource','afConfig',
 
 angular.module('services').factory('afComponent', ['$resource','afConfig',
     function($resource, afConfig){
-        return $resource('api/components/:appId/:componentId.json', {appId: afConfig.AppConfig.appId});
+        return $resource('api/components/:appId/:pageId/:componentId.json', {appId: afConfig.AppConfig.appId});
     }]);
 
-//
+
 /*angular.module('services').provider('afNavigationState',
     function(){
         var self = this;
@@ -69,6 +46,8 @@ angular.module('services').factory('afComponent', ['$resource','afConfig',
 angular.module('services').factory('afPage',['afConfig','$resource','$cacheFactory','afUtils','$location',
     function(afConfig, $resource, $cacheFactory, afUtils, $location){
         var self = {};
+        var _currentPageData = {};
+
         self.cache = $cacheFactory('lrucache', {
             capacity: 100
         });
@@ -82,6 +61,14 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
                 return $location.path().toLowerCase() ===  (page.url || '/').toLowerCase();
             });
         };
+
+        self.setCurrentPageData = function(data){
+             _currentPageData = data;
+        }
+
+        self.currentPageData = function(){
+            return _currentPageData;
+        }
 
         self.pageData = function(){
             return $resource('api/pages/:appId/:pageId.json');//, {get:{cache: self.cache}});
