@@ -30,7 +30,7 @@ angular.module('directives.components').directive('afGeneralComponent',
                 var regex_directive = /#\{directive\}/g;
                 return function(scope , iElement, iAttrs) {
                     scope.afdata.data.then(function(data){
-                        var tpls = "<div #{directive} afdata='afdata'></div>";
+                        var tpls = "<input #{directive} ng-model='afdata.data'/>";//"<div #{directive} afdata='afdata'></div>";
                         var componentName = afComponents[scope.afdata.type];
                         if(componentName){
                             tpls = tpls.replace(regex_directive, 'af-' + componentName);
@@ -47,17 +47,62 @@ angular.module('directives.components').directive('afGeneralComponent',
 angular.module('directives.components').directive('afDatepicker',
         ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
             return {
+				require: "ngModel",
                 restrict: "AE",
                 scope:{
                   afdata:"="
                 },
                 compile:function(tElement, tAttr) {
-                    return function(scope , iElement, iAttrs) {
-                        $http.get(afUtils.templateUrl.components('datepicker', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
-                            $compile(tplContent)(scope, function(clone, scope){
-                                iElement.html(clone);
-                            });
-                        });
+                    return function(scope , iElement, iAttrs, ngModelCtrl) {
+                        ngModelCtrl.$formatters.push(function(date) {
+							if ( angular.isDefined(date) && date !== null){
+								if(!angular.isDate(date)) {
+									date = new Date(date);
+								}
+								//throw new Error('ng-Model value must be a Date object');
+							}
+							return date;
+						});
+						
+						var updateModel = function () {
+							scope.$apply(function () {
+								var date = iElement.datepicker("getDate");
+								iElement.datepicker("setDate", iElement.val());
+								ngModelCtrl.$setViewValue(date);
+							});
+						};
+						
+						var onSelectHandler = function(userHandler) {
+							if ( userHandler ) {
+								return function(value, picker) {
+									updateModel();
+									return userHandler(value, picker);
+								};
+							} else {
+								return updateModel;
+							}
+						};
+						
+						var setUpDatePicker = function () {
+							var options = scope.$eval(iAttrs.datePicker) || {};
+							options.onSelect = onSelectHandler(options.onSelect);
+							iElement.bind('change', updateModel);
+							iElement.datepicker('destroy');
+							iElement.datepicker(options);
+							ngModelCtrl.$render();
+						};
+						
+						ngModelCtrl.$render = function () {
+							iElement.datepicker("setDate", ngModelCtrl.$viewValue);
+						};
+						
+						scope.$watch(iAttrs.datePicker, setUpDatePicker, true);					
+						
+						// $http.get(afUtils.templateUrl.components('datepicker', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                            // $compile(tplContent)(scope, function(clone, scope){
+                                // iElement.html(clone);
+                            // });
+                        // });
                     }
                 }
             }
