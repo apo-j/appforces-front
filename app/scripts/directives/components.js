@@ -29,6 +29,10 @@ angular.module('directives.components').directive('afGeneralComponent',
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
                     scope.afdata.data.then(function(data){
+						scope.afdata.data = data;
+                        return scope.afdata.data;
+					})
+					.then(function(data){
                         var componentName = afComponents[scope.afdata.type];
                         if(componentName){
 							$http.get(afUtils.templateUrl.components(componentName, scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
@@ -95,12 +99,6 @@ angular.module('directives.components').directive('afDatepicker',
 						};
 						
 						scope.$watch(iAttrs.datePicker, setUpDatePicker, true);					
-						
-						// $http.get(afUtils.templateurl.components('datepicker', scope.afdata.templateurl), {cache: $templatecache}).success(function(tplcontent){
-                            // $compile(tplcontent)(scope, function(clone, scope){
-                                // ielement.html(clone);
-                            // });
-                        // });
                     }
                 }
             }
