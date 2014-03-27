@@ -5,7 +5,7 @@
 angular.module('directives.components', []);
 
 angular.module('directives.components').directive('afGeneralComponent',
-    ['$compile', 'afUtils','afComponents', function($compile,afUtils, afComponents){
+    ['$http', '$templateCache', '$compile', 'afUtils','afComponents', function($http, $templateCache, $compile,afUtils, afComponents){
         return {
             restrict: "AE",
             scope:{
@@ -27,16 +27,15 @@ angular.module('directives.components').directive('afGeneralComponent',
                 $scope.afdata.data = deferred.promise;
             }],
             compile:function(tElement, tAttr) {
-                var regex_directive = /#\{directive\}/g;
                 return function(scope , iElement, iAttrs) {
                     scope.afdata.data.then(function(data){
-                        var tpls = "<input #{directive} ng-model='afdata.data'/>";//"<div #{directive} afdata='afdata'></div>";
                         var componentName = afComponents[scope.afdata.type];
                         if(componentName){
-                            tpls = tpls.replace(regex_directive, 'af-' + componentName);
-                            $compile(tpls)(scope, function(clone, scope){
-                                iElement.html(clone);
-                            });
+							$http.get(afUtils.templateUrl.components(componentName, scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+								$compile(tplContent)(scope, function(clone, scope){
+									iElement.html(clone);
+								});
+							});
                         }
                     });
                 }
@@ -59,7 +58,6 @@ angular.module('directives.components').directive('afDatepicker',
 								if(!angular.isDate(date)) {
 									date = new Date(date);
 								}
-								//throw new Error('ng-Model value must be a Date object');
 							}
 							return date;
 						});
@@ -98,9 +96,9 @@ angular.module('directives.components').directive('afDatepicker',
 						
 						scope.$watch(iAttrs.datePicker, setUpDatePicker, true);					
 						
-						// $http.get(afUtils.templateUrl.components('datepicker', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
-                            // $compile(tplContent)(scope, function(clone, scope){
-                                // iElement.html(clone);
+						// $http.get(afUtils.templateurl.components('datepicker', scope.afdata.templateurl), {cache: $templatecache}).success(function(tplcontent){
+                            // $compile(tplcontent)(scope, function(clone, scope){
+                                // ielement.html(clone);
                             // });
                         // });
                     }
