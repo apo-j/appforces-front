@@ -20,7 +20,8 @@ angular.module('directives').directive( 'afHeader',
                     }).then(function(data){
                         $http.get(afUtils.templateUrl.header(data.templateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
-                                iElement.html(clone);
+                                $(iElement).replaceWith(clone);
+                                //iElement.html(clone);
                             });
                         });
                     });

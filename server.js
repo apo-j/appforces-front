@@ -89,7 +89,8 @@ function apiProxy() {
     return function(req, res, next) {
         if(req.url.match(/^\/api\//)) {
             console.log('Proxying...');
-            if(req.isAuthenticated() || req.url.match(/^\/api\/config\//)){
+            proxy.web(req, res, {target: 'http://localhost:9000'});
+            /*if(req.isAuthenticated() || req.url.match(/^\/api\/config\//)){
                 proxy.web(req, res, {target: 'http://localhost:9000'});
             }
             else{
@@ -100,7 +101,7 @@ function apiProxy() {
                 }else{
                     res.send(401);
                 }
-            }
+            }*/
         } else {
             next();
         }
@@ -122,8 +123,8 @@ app.configure(function() {
     app.use(flash());
     // Initialize Passport!  Also use passport.session() middleware, to support
     // persistent login sessions (recommended).
-    app.use(passport.initialize());
-    app.use(passport.session());
+    //app.use(passport.initialize());
+    //app.use(passport.session());
     //app.use(express.favicon()); // favicon will be set dynamicly in the index page by js
     //app.use(express.json());
     //app.use(express.urlencoded());
