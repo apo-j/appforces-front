@@ -11,9 +11,20 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/bower_components/jquery/jquery.min.js',
+	  'app/vendor/Namespace.js',
+      'app/bower_components/jquery/dist/jquery.min.js',
+	  'app/vendor/jqueryui/js/jquery-ui-1.10.4.custom.js',
+	  'app/bower_components/underscore/underscore.js',
+	  'app/scripts/common/global.js',
+	  'app/scripts/common/config.js',
+	  'app/scripts/common/utils.js',
+	  'app/scripts/common/enums.js',
+	  'app/scripts/common/events.js',
+	  'app/scripts/common/components.js',
+
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
+	  'app/scripts/common/http-auth-interceptor.js',
       'app/bower_components/angular-resource/angular-resource.js',
       'app/bower_components/angular-cookies/angular-cookies.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
@@ -21,8 +32,9 @@ module.exports = function(config) {
         'app/bower_components/angular-bootstrap/ui-bootstrap.min.js',
         'app/vendor/*.js',
         'app/scripts/common/global.js',
-        'app/scripts/*.js',
-
+		'app/scripts/bootstrap.js',
+        'app/scripts/app.js',
+	 
       'app/scripts/**/*.js',
      // 'test/mock/**/*.js',
       'test/spec/**/*.js'
