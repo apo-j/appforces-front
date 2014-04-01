@@ -43,7 +43,7 @@ angular.module("appForce", [
        //controller:"NavigationCtrl"
     });
 
-    $routeProvider .otherwise({
+    $routeProvider.otherwise({
         redirectTo: '404'
     });
   }])

@@ -1,0 +1,88 @@
+@import "variables";
+
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page headers */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+#main{
+  margin-top: 60px;
+}
+
+#menu{
+  &.container {
+    padding-left:17px;
+    padding-right: 30px !important;
+    >.navbar-collapse{
+      padding-left:0;
+      padding-right:0;
+    }
+  }
+  #navbar{
+    position:relative;
+    >li{
+      >a{
+        font-weight: bold;
+        color:#fff;
+        &:hover{
+          background-color: #808080;
+        }
+      }
+      >.sub-menu{
+        z-index: 99;
+        position:absolute;
+        width:800px;
+        padding-left:0;
+        >li{
+          background-color: #fff;
+          width:250px;
+          height:auto;
+          float:left;
+          border: 1px solid #000;
+          border-left:0;
+          &:first-child{
+            border-left:1px solid #000;
+          }
+        }
+      }
+    }
+  }
+}

@@ -98,7 +98,7 @@ angular.module('directives.components').directive('afDatepicker',
 							iElement.datepicker("setDate", ngModelCtrl.$viewValue);
 						};
 						
-						scope.$watch(iAttrs.afDatepicker, setUpDatePicker, true);					
+						scope.$watch(iAttrs.afDatepicker, setUpDatePicker, true);
                     }
                 }
             }
