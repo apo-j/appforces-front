@@ -41,7 +41,8 @@ angular.module('directives').directive( 'afHeaderTop',
                 return function(scope , iElement, iAttrs) {
                     $http.get(afUtils.templateUrl.headerTop(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
-                            iElement.html(clone);
+                            $(iElement).replaceWith(clone);
+                            //iElement.html(clone);
                         });
                     });
                 }
@@ -60,7 +61,8 @@ angular.module('directives').directive( 'afMenu',
                 return function(scope , iElement, iAttrs) {
                     $http.get(afUtils.templateUrl.headerMenu(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
-                            iElement.html(clone);
+                            $(iElement).replaceWith(clone);
+                            //iElement.html(clone);
                         });
                     });
                 }

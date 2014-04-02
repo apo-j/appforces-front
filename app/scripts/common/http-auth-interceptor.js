@@ -61,12 +61,20 @@
                   return $q.reject(rejection);
               },
 
-
-
               // optional method
               'response': function(response) {
-                  // do something on success
-                  return response || $q.when(response);
+                  if(response.data.status){
+                      switch(response.data.status){
+                          case 200:
+                              return response || $q.when(response);
+                          case 404:
+                              return $q.reject('Resource not found');
+                          default:
+                              return $q.reject('Resource not found');
+                      }
+                  }else{
+                      return response || $q.when(response);
+                  }
               },
 
               // optional method
