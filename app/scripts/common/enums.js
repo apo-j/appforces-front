@@ -10,12 +10,12 @@ var Enums = (function(enums){
     };
 
     self.pageType = {
-		100: 'sign_in',
-		101: 'sign_up',
-		102: '404',
-		103: '500',
-		104: '401',
-		0: 'ordinary'
+		pSignin: '100',
+        pSignup: '101',
+		p404: '102',
+		p500: '103',
+		p401: '104',
+		p0: 'ordinary'
 	};
 
     return self;

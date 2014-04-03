@@ -43,16 +43,21 @@ angular.module('services').factory('afComponent', ['$resource','afConfig',
     });*/
 
 //page
-angular.module('services').factory('afPage',['afConfig','$resource','$cacheFactory','afUtils','$location',
-    function(afConfig, $resource, $cacheFactory, afUtils, $location){
+angular.module('services').factory('afPage',['afConfig','$resource','$cacheFactory','afUtils','$location','afEnums',
+    function(afConfig, $resource, $cacheFactory, afUtils, $location, afEnums){
         var self = {};
         var _currentPage = null;
         var _indexPage = null;
+        var _signinPage = null;
+        var _signupPage = null;
+        var _404Page = null;
+        var _500Page = null;
+        var _401Page = null;
 
         self.cache = $cacheFactory('lrucache', {
             capacity: 100
         });
-        self.indexPage = function(){
+        self.pageIndex = function(){
             if(!_indexPage){
                 _indexPage = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
                     return item.isIndexPage || false;
@@ -60,6 +65,56 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
             }
 
             return _indexPage;
+        };
+
+        self.pageSignin = function(){
+            if(!_signinPage){
+                _signinPage = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
+                    return item.type === afEnums.pageType['pSignin'];
+                });
+            }
+
+            return _signinPage;
+        };
+		
+		self.pageSignup = function(){
+            if(!_signupPage){
+                _signupPage = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
+                    return item.type === afEnums.pageType['pSignup'];
+                });
+            }
+
+            return _signupPage;
+        };
+		
+		self.page404 = function(){
+            if(!_404Page){
+                _404Page = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
+                    return item.type === afEnums.pageType['p404'];
+                });
+            }
+
+            return _404Page;
+        };
+		
+		self.page401 = function(){
+            if(!_401Page){
+                _401Page = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
+                    return item.type === afEnums.pageType['p401'];
+                });
+            }
+
+            return _401Page;
+        };
+		
+		self.page500 = function(){
+            if(!_500Page){
+                _500Page = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
+                    return item.type === afEnums.pageType['p500'];
+                });
+            }
+
+            return _500Page;
         };
 
         self.setCurrentPage = function(){
