@@ -5,3 +5,6 @@ Version 1:
 Version 2:
 1: custom 404 page
 2: add sub users of a specific site
+
+
+NB: 404 must be available, if not, a default one should be offered

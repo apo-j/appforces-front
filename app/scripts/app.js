@@ -27,7 +27,7 @@ angular.module("appForce", [
        var _page = afConfig.AppConfig.pages[i];
        $routeProvider.when(_page['url'], {
                 templateUrl: 'views/' + _page['layoutUrl'] + '.html',
-                controller:'NavigationCtrl',
+                controller: _page['ctrl'] || 'NavigationCtrl',
                 resolve:{
                     page: ['afPage', function(afPage){
                             var _p = afPage.currentPage();
@@ -38,10 +38,9 @@ angular.module("appForce", [
                 }
             });
     };
-    $routeProvider.when('/404', {
+   /* $routeProvider.when('/404', {
        templateUrl: '404.html'
-       //controller:"NavigationCtrl"
-    });
+    });*/
 
     $routeProvider.otherwise({
         redirectTo: '404'

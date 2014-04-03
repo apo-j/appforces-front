@@ -68,9 +68,9 @@
                           case 200:
                               return response || $q.when(response);
                           case 404:
-                              return $q.reject('Resource not found');
+                              return $q.reject('Resource not found with : 404');
                           default:
-                              return $q.reject('Resource not found');
+                              return $q.reject('Resource not found with : ' + response.data.status);
                       }
                   }else{
                       return response || $q.when(response);

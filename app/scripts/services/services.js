@@ -47,14 +47,19 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
     function(afConfig, $resource, $cacheFactory, afUtils, $location){
         var self = {};
         var _currentPageData = {};
+        var _indexPage = null;
 
         self.cache = $cacheFactory('lrucache', {
             capacity: 100
         });
         self.indexPage = function(){
-            return afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
-                return item.isIndexPage || false;
-            });
+            if(!_indexPage){
+                _indexPage = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
+                    return item.isIndexPage || false;
+                });
+            }
+
+            return _indexPage;
         };
         self.currentPage = function(){
             return afUtils.Collection.find(afConfig.AppConfig.pages, function(page){
@@ -75,7 +80,7 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
         }
 
         self.pageTitle = function(){
-            return (self.currentPage()? self.currentPage().title : null) || afConfig.AppConfig.appName || afConfig.AppName;
+            return (self.currentPageData()? self.currentPageData().title : null) || afConfig.AppConfig.appName || afConfig.AppName;
         };
 
         return self;

@@ -9,5 +9,14 @@ var Enums = (function(enums){
         Image: 2
     };
 
+    self.pageType = {
+		100: 'sign_in',
+		101: 'sign_up',
+		102: '404',
+		103: '500',
+		104: '401',
+		0: 'ordinary'
+	};
+
     return self;
 }(Appforces.Enums || {}))
