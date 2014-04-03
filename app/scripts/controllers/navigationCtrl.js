@@ -4,8 +4,7 @@
 'use strict';
 
 angular.module('controllers')
-    .controller('NavigationCtrl', ['$scope', 'afPage'/*,'page'*/,
-        function ($scope, afPage/*, page*/) {
-            //afPage.setCurrentPageData(page);
-            afPage.setCurrentPage();
+    .controller('NavigationCtrl', ['$scope', 'afPage',
+        function ($scope, afPage) {
+
         }]);

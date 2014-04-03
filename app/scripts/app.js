@@ -31,10 +31,11 @@ angular.module("appForce", [
                 resolve:{
                     page: ['afPage', function(afPage){
                         afPage.setCurrentPage();
-                            /*var _p = afPage.currentPage();
-                            if(_p){
-                                return afPage.pageData().get({appId: afConfig.AppConfig.appId, pageId: _p.id}).$promise;
-                            }*/
+                       //TODO verify if this page needs authentication before open it
+                       /* var _p = afPage.currentPage();
+                        if(_p){
+                             return afPage.pageData().get({appId: afConfig.AppConfig.appId, pageId: _p.id}).$promise;
+                        }*/
                     }]
                 }
             });

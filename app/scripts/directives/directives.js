@@ -10,7 +10,7 @@ angular.module('directives').directive( 'afHeader',
             restrict: 'AE',
             scope: false,
             controller: ['$scope', 'afHeader','afPage', function($scope, afHeader, afPage){
-                $scope.header = afHeader.get({pageId: afPage.currentPageData().id}).$promise;
+                $scope.header = afHeader.get({pageId: afPage.currentPage().id}).$promise;
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
@@ -100,7 +100,7 @@ angular.module('directives').directive('afSidebar',
                 position:'='
             },
             controller: ['$scope', 'afPage', 'afSidebar', function($scope, afPage, afSidebar){
-                $scope.sidebar = afSidebar.get({pageId: afPage.currentPageData().id, position: $scope.position}).$promise;
+                $scope.sidebar = afSidebar.get({pageId: afPage.currentPage().id, position: $scope.position}).$promise;
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
