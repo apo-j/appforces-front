@@ -46,7 +46,7 @@ angular.module('services').factory('afComponent', ['$resource','afConfig',
 angular.module('services').factory('afPage',['afConfig','$resource','$cacheFactory','afUtils','$location',
     function(afConfig, $resource, $cacheFactory, afUtils, $location){
         var self = {};
-        var _currentPageData = {};
+        var _currentPage = null;
         var _indexPage = null;
 
         self.cache = $cacheFactory('lrucache', {
@@ -61,32 +61,34 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 
             return _indexPage;
         };
-        self.currentPage = function(){
-            return afUtils.Collection.find(afConfig.AppConfig.pages, function(page){
+
+        self.setCurrentPage = function(){
+            var match = afUtils.Collection.find(afConfig.AppConfig.pages, function(page){
                 return $location.path().toLowerCase() ===  (page.url || '/').toLowerCase();
             });
+
+            if(match){
+                _currentPage = match;
+            }
         };
 
-        self.setCurrentPageData = function(data){
-             _currentPageData = data;
-        }
+        self.currentPage = function(){
+            return _currentPage;
+        };
 
-        self.currentPageData = function(){
-            return _currentPageData;
-        }
-
-        self.pageData = function(){
+        /*self.pageData = function(){
             return $resource('api/pages/:appId/:pageId.json');//, {get:{cache: self.cache}});
-        }
+        }*/
 
         self.pageTitle = function(){
-            return (self.currentPageData()? self.currentPageData().title : null) || afConfig.AppConfig.appName || afConfig.AppName;
+            return (self.currentPage()? self.currentPage().title : null) || afConfig.AppConfig.appName || afConfig.AppName;
         };
 
         return self;
     }]);
 
 //configuration
+//TODO delete
 angular.module('services').provider('afNavigationStateManager',
     [function(){
         var self = this;

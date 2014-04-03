@@ -30,10 +30,11 @@ angular.module("appForce", [
                 controller: _page['ctrl'] || 'NavigationCtrl',
                 resolve:{
                     page: ['afPage', function(afPage){
-                            var _p = afPage.currentPage();
+                        afPage.setCurrentPage();
+                            /*var _p = afPage.currentPage();
                             if(_p){
                                 return afPage.pageData().get({appId: afConfig.AppConfig.appId, pageId: _p.id}).$promise;
-                            }
+                            }*/
                     }]
                 }
             });
