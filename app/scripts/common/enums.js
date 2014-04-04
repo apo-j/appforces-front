@@ -5,8 +5,8 @@ var Enums = (function(enums){
     var self = enums;
 
     self.elementTypeEnums = {
-        Text: 1,
-        Image: 2
+        text: 1,
+        image: 2
     };
 
     self.pageType = {

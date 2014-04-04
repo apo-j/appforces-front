@@ -31,6 +31,9 @@ var Utils = (function(utils){
         headerMenu:function(name){
             return '/partials/header/menu/' + name + '.html';
         },
+        headerNavbar:function(name){
+            return '/partials/header/menu/' + name + '.html';
+        },
         headerMenuComponents:function(name){
             return '/partials/header/menu/components/' + name + '.html';
         },

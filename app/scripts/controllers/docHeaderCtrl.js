@@ -8,10 +8,10 @@ angular.module('controllers')
         function ($scope, afPage, afConfig) {
             //global settings
             $scope.styleSheet = afConfig.AppConfig.styleId;
-            //set page title
-            $scope.afPage = afPage;
-            $scope.pageTitle = afPage.pageTitle();
 
+            //set page title
+            //$scope.pageTitle = afPage.pageTitle();
+            $scope.afPage = afPage;
             $scope.$watch('afPage.pageTitle()', function(newValue){
                 $scope.pageTitle = newValue;
             });

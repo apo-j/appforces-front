@@ -14,7 +14,10 @@ var Configuration = (function(configuration){
     //configuration.Environment = "DEVELOPMENT";//PRODUCTION
     self.AppConfigUrl = "/api/config/";
     self.AppConfig = {};
-
+    self.DefaultPageUrl = {
+        Psignin:"/signin",
+        P404:"/404"
+    }
 
     return self;
 }(Appforces.Configuration || {}))

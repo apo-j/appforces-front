@@ -85,6 +85,9 @@
                       $rootScope.$broadcast(afEvents.REQUIRE_LOGIN, rejection);
                       return deferred.promise;
                   }
+				  //TODO traitement 500 should be placed here
+				  
+				  
                   // otherwise, default behaviour
                   return $q.reject(rejection);
               }

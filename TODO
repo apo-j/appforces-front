@@ -1,10 +1,13 @@
 Version 1:
 1: Set every page name in every page                                                :ok
 2: Authentication and authorization
+3: 500 error
+4: 401 error
+5: 404 error                                                                        :OK
 
 Version 2:
-1: custom 404 page
+1: custom 404 page                                                                  :OK
 2: add sub users of a specific site
 
 
-NB: 404 must be available, if not, a default one should be offered
+NB: 404, 401, 500 pages must be available, if not, a default one should be offered

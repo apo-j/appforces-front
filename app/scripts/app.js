@@ -22,9 +22,15 @@ angular.module("appForce", [
   .constant('afEnums', Enums)
   .constant('afEvents', Events)
   .constant('afComponents', Components)
-  .config(['$routeProvider','afConfig', function ($routeProvider, afConfig) {
+  .config(['$routeProvider','afConfig','afEnums', function ($routeProvider, afConfig, afEnums) {
+	var _p404Url = afConfig.DefaultPageUrl.P404;
     for(var i = 0, j = afConfig.AppConfig.pages.length; i < j; i++){
        var _page = afConfig.AppConfig.pages[i];
+	   
+	   if(_page.type == afEnums.pageType.p404){
+			_p404Url = _page.url;
+	   }
+	   
        $routeProvider.when(_page['url'], {
                 templateUrl: 'views/' + _page['layoutUrl'] + '.html',
                 controller: _page['ctrl'] || 'NavigationCtrl',
@@ -40,18 +46,16 @@ angular.module("appForce", [
                 }
             });
     };
-   /* $routeProvider.when('/404', {
-       templateUrl: '404.html'
-    });*/
 
     $routeProvider.otherwise({
-        redirectTo: '404'
+        redirectTo: _p404Url
     });
   }])
-    .run(['$rootScope','$location','afPage','afEvents', function($rootScope,$location, afPage, afEvents){
+    .run(['$rootScope','$location','afPage','afEvents','afConfig', function($rootScope,$location, afPage, afEvents, afConfig){
+        //Register global events Listeners
         $rootScope.$on(afEvents.REQUIRE_LOGIN, function() {
             $rootScope.prevState = $rootScope.prevState || (afPage.currentPage()? afPage.currentPage().url : '/');
-            $location.path('/signin');
+            $location.path(afPage.pageSignin() || afConfig.DefaultPageUrl.Psignin);
         });
         $rootScope.$on(afEvents.LOGIN_CONFIRMED, function() {
             if($rootScope.prevState){
