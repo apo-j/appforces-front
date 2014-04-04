@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('directives', []);
-
+//header
 angular.module('directives').directive( 'afHeader',
     ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils) {
         return {
@@ -21,7 +21,6 @@ angular.module('directives').directive( 'afHeader',
                         $http.get(afUtils.templateUrl.header(data.templateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 $(iElement).replaceWith(clone);
-                                //iElement.html(clone);
                             });
                         });
                     });
@@ -42,7 +41,6 @@ angular.module('directives').directive( 'afHeaderTop',
                     $http.get(afUtils.templateUrl.headerTop(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             $(iElement).replaceWith(clone);
-                            //iElement.html(clone);
                         });
                     });
                 }
@@ -62,7 +60,6 @@ angular.module('directives').directive( 'afMenu',
                     $http.get(afUtils.templateUrl.headerMenu(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             $(iElement).replaceWith(clone);
-                            //iElement.html(clone);
                         });
                     });
                 }
