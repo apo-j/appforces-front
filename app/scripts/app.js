@@ -23,14 +23,24 @@ angular.module("appForce", [
   .constant('afEvents', Events)
   .constant('afComponents', Components)
   .config(['$routeProvider','afConfig','afEnums', function ($routeProvider, afConfig, afEnums) {
-	var _p404Url = afConfig.DefaultPageUrl.P404;
+    //set the default 404 page
+    //this would be overridden if
+    //a custom 404 page has been defined
+    $routeProvider.when('/404', {
+        templateUrl: 'views/404.html'
+    });
+
+     //set the default 500 page
+     //this would be overridden if
+     //a custom 500 page has been defined
+     $routeProvider.when('/500', {
+         templateUrl: 'views/500.html'
+     });
+
+
     for(var i = 0, j = afConfig.AppConfig.pages.length; i < j; i++){
        var _page = afConfig.AppConfig.pages[i];
-	   
-	   if(_page.type == afEnums.pageType.p404){
-			_p404Url = _page.url;
-	   }
-	   
+
        $routeProvider.when(_page['url'], {
                 templateUrl: 'views/' + _page['layoutUrl'] + '.html',
                 controller: _page['ctrl'] || 'NavigationCtrl',
@@ -48,7 +58,7 @@ angular.module("appForce", [
     };
 
     $routeProvider.otherwise({
-        redirectTo: _p404Url
+        redirectTo: afConfig.DefaultPageUrl.P404
     });
   }])
     .run(['$rootScope','$location','afPage','afEvents','afConfig', function($rootScope,$location, afPage, afEvents, afConfig){
