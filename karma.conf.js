@@ -29,19 +29,20 @@ module.exports = function(config) {
       'app/bower_components/angular-cookies/angular-cookies.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
-        'app/bower_components/angular-bootstrap/ui-bootstrap.min.js',
-        'app/vendor/*.js',
-        'app/scripts/common/global.js',
-		'app/scripts/bootstrap.js',
-        'app/scripts/app.js',
-	 
+      'app/bower_components/angular-bootstrap/ui-bootstrap.min.js',
+      'app/vendor/*.js',
+      'app/scripts/common/global.js',
+	  'test/mock/config/bootstrap.js',
+      'app/scripts/app.js',	
       'app/scripts/**/*.js',
-     // 'test/mock/**/*.js',
+      'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
 
     // list of files / patterns to exclude
-    exclude: [],
+    exclude: [
+		'app/scripts/bootstrap.js',//replace by bootstrap.js in test/mock/config/
+	],
 
     // web server port
     port: 8080,
