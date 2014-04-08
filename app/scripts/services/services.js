@@ -19,11 +19,11 @@ angular.module('services').factory('afComponent', ['$resource','afConfig',
         return $resource('api/components/:appId/:pageId/:componentId.json', {appId: afConfig.AppConfig.appId});
     }]);
 
-angular.module('services').factory('afNavigation', ['$resource','afEnums','$location','$rootScope',
-    function($resource, afEnums, $location, $rootScope){
+angular.module('services').factory('afNavigation', ['$resource','afEnums','$location','$rootScope','afEvents',
+    function($resource, afEnums, $location, $rootScope, afEvents){
         
 		return {
-			navigate:function(src){
+			navigateTo:function(src){
 				var _defaultSrcOptions = {
 					target: '_blank',
 					href:''
@@ -43,7 +43,7 @@ angular.module('services').factory('afNavigation', ['$resource','afEnums','$loca
 						_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.jump, '');
 						
 				}else{
-					$rootScope.emit('NavigationError', src.href);
+					$rootScope.$emit(afEvents.NAV_ERR, src);
 				}
 			}
 		};

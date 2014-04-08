@@ -61,7 +61,7 @@ angular.module("appForce", [
         redirectTo: afConfig.DefaultPageUrl.P404
     });
   }])
-    .run(['$rootScope','$location','afPage','afEvents','afConfig', function($rootScope,$location, afPage, afEvents, afConfig){
+    .run(['$rootScope','$location','afPage','afEvents','afConfig','$log', function($rootScope,$location, afPage, afEvents, afConfig, $log){
         //Register global events Listeners
         $rootScope.$on(afEvents.REQUIRE_LOGIN, function() {
             $rootScope.prevState = $rootScope.prevState || (afPage.currentPage()? afPage.currentPage().url : '/');
@@ -73,6 +73,9 @@ angular.module("appForce", [
                 $rootScope.prevState = null;
                 $location.path(url);
             }
-
+        });
+        //Register the events listeners of errors
+        $rootScope.$on(afEvents.NAV_ERR, function(event, data) {
+            $log.error(angular.toJson(angular.extend(event, data),true));
         });
     }]);
