@@ -38,7 +38,7 @@ var Utils = (function(utils){
             return '/partials/header/menu/components/' + name + '.html';
         },
         components:function(type, templateUrl){
-          return '/partials/components/#{type}/#{url}.html'.replace(/#\{type\}/, type).replace(/#\{url\}/, templateUrl);
+            return '/partials/components/#{type}/#{url}.html'.replace(/#\{type\}/, type).replace(/#\{url\}/, templateUrl);
         },
         component:function(name){
             return '/partials/components/' + name + '.html';

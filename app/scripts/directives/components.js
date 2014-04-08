@@ -169,7 +169,7 @@ angular.module('directives.components').directive('afListItem',
             },
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.component('list'), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.components('listItem', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.html(clone);
                         });

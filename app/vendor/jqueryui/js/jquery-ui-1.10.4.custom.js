@@ -4070,10 +4070,10 @@ $.widget("ui.sortable", $.ui.mouse, {
 		this.containerCache = {};
 		this.element.addClass("ui-sortable");
 
-		//Get the list-item
+		//Get the listItem
 		this.refresh();
 
-		//Let's determine if the list-item are being displayed horizontally
+		//Let's determine if the listItem are being displayed horizontally
 		this.floating = this.items.length ? o.axis === "x" || isFloating(this.items[0].item) : false;
 
 		//Let's determine the parent's offset
@@ -4123,10 +4123,10 @@ $.widget("ui.sortable", $.ui.mouse, {
 			return false;
 		}
 
-		//We have to refresh the list-item data once first
+		//We have to refresh the listItem data once first
 		this._refreshItems(event);
 
-		//Find out if the clicked node (or one of its parents) is a actual item in this.list-item
+		//Find out if the clicked node (or one of its parents) is a actual item in this.listItem
 		$(event.target).parents().each(function() {
 			if($.data(this, that.widgetName + "-item") === that) {
 				currentItem = $(this);
@@ -4364,11 +4364,11 @@ $.widget("ui.sortable", $.ui.mouse, {
 			}
 
 			// Only put the placeholder inside the current Container, skip all
-			// list-item from other containers. This works because when moving
+			// listItem from other containers. This works because when moving
 			// an item from one container to another the
 			// currentContainer is switched before the placeholder is moved.
 			//
-			// Without this, moving list-item in "sub-sortables" can cause
+			// Without this, moving listItem in "sub-sortables" can cause
 			// the placeholder to jitter beetween the outer and inner container.
 			if (item.instance !== this.currentContainer) {
 				continue;
@@ -5187,7 +5187,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 			delayedTriggers.push(function(event) { this._trigger("update", event, this._uiHash()); }); //Trigger update callback if the DOM position has changed
 		}
 
-		// Check if the list-item Container has Changed and trigger appropriate
+		// Check if the listItem Container has Changed and trigger appropriate
 		// events.
 		if (this !== this.currentContainer) {
 			if(!noPropagation) {
@@ -6060,7 +6060,7 @@ $.widget( "ui.autocomplete", {
 			},
 			menufocus: function( event, ui ) {
 				// support: Firefox
-				// Prevent accidental activation of menu list-item in Firefox (#7024 #9118)
+				// Prevent accidental activation of menu listItem in Firefox (#7024 #9118)
 				if ( this.isNewMenu ) {
 					this.isNewMenu = false;
 					if ( event.originalEvent && /^mouse/.test( event.originalEvent.type ) ) {
@@ -6294,7 +6294,7 @@ $.widget( "ui.autocomplete", {
 	},
 
 	_normalize: function( items ) {
-		// assume all list-item have the right format when the first item is complete
+		// assume all listItem have the right format when the first item is complete
 		if ( items.length && items[0].label && items[0].value ) {
 			return items;
 		}
@@ -9785,7 +9785,7 @@ $.widget( "ui.menu", {
 				.removeUniqueId()
 				.show();
 
-		// Destroy menu list-item
+		// Destroy menu listItem
 		this.element.find( ".ui-menu-item" )
 			.removeClass( "ui-menu-item" )
 			.removeAttr( "role" )
@@ -9942,7 +9942,7 @@ $.widget( "ui.menu", {
 
 		menus = submenus.add( this.element );
 
-		// Don't refresh list list-item that are already adapted
+		// Don't refresh list listItem that are already adapted
 		menus.children( ":not(.ui-menu-item):has(a)" )
 			.addClass( "ui-menu-item" )
 			.attr( "role", "presentation" )
@@ -9954,7 +9954,7 @@ $.widget( "ui.menu", {
 					role: this._itemRole()
 				});
 
-		// Initialize unlinked menu-list-item containing spaces and/or dashes only as dividers
+		// Initialize unlinked menu-listItem containing spaces and/or dashes only as dividers
 		menus.children( ":not(.ui-menu-item)" ).each(function() {
 			var item = $( this );
 			// hyphen, em dash, en dash
