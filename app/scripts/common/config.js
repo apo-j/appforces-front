@@ -17,7 +17,7 @@ var Configuration = (function(configuration){
     self.DefaultPageUrl = {
         Psignin:"/signin",
         P404:"/404"
-    }
+    };
 
     return self;
 }(Appforces.Configuration || {}))

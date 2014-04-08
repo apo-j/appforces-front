@@ -17,6 +17,12 @@ var Enums = (function(enums){
 		p401: '104',
 		p0: 'ordinary'
 	};
+	
+	self.NavigationType = {
+		outer: "£outer",
+		jump: "£jump",
+		content: "£content"
+	};
 
     return self;
 }(Appforces.Enums || {}))

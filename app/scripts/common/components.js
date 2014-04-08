@@ -14,7 +14,8 @@ var Components = (function(components){
         2:'carrousel',
         3:'accordion',
         4:'list',
-        5:'listItem'
+        5:'listItemLink',
+        6:'listItem'
     }
 
     $.extend( true, components, component );

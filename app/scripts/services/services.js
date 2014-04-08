@@ -19,7 +19,37 @@ angular.module('services').factory('afComponent', ['$resource','afConfig',
         return $resource('api/components/:appId/:pageId/:componentId.json', {appId: afConfig.AppConfig.appId});
     }]);
 
-
+angular.module('services').factory('afNavigation', ['$resource','afEnums','$location','$rootScope',
+    function($resource, afEnums, $location, $rootScope){
+        
+		return {
+			navigate:function(src){
+				var _defaultSrcOptions = {
+					target: '_blank',
+					href:''
+				}
+				
+				angular.extend(_defaultSrcOptions, src);
+				
+				if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.outer) == 0){
+					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.inner, '');
+					$location.path(_defaultSrcOptions.href);
+				}else if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.content) == 0){
+					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.content, '');
+						
+				
+					
+				}else if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.jump) == 0){//jump
+						_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.jump, '');
+						
+				}else{
+					$rootScope.emit('NavigationError', src.href);
+				}
+			}
+		};
+    }]);
+	
+	
 /*angular.module('services').provider('afNavigationState',
     function(){
         var self = this;
