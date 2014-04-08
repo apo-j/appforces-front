@@ -1,10 +1,9 @@
-<li ng-repeat="item in items" ng-if="item.items.length <= 0">
-    <a ng-href="{{item.url}}" style="{{item.style}}" ng-class="item.css"><i ng-class="item.icon"></i>&nbsp;{{item.name}}</a>
-</li>
+<li  ng-repeat="item in items" ng-class="{'dropdown-submenu': item.level > 0 }">
+    <a ng-href="{{item.url}}" style="{{item.style}}" ng-if="item.items.length == 0" ng-class="item.css"><i ng-class="item.icon"></i>&nbsp;{{item.name}}</a>
 
-<li ng-repeat="item in items" ng-if="item.items.length > 0" ng-class="{'dropdown-submenu': item.level > 0 }">
-    <a ng-href="{{item.url}}" style="{{item.style}}" ng-class="item.css" data-toggle="dropdown"  class="dropdown-toggle"><i ng-class="item.icon"></i>&nbsp;{{item.name}}<b ng-if="item.level == 0" class="caret"></b></a>
+    <a ng-href="{{item.url}}" style="{{item.style}}" ng-class="item.css" ng-if="item.items.length > 0" data-toggle="dropdown"  class="dropdown-toggle"><i ng-class="item.icon"></i>&nbsp;{{item.name}}<b ng-if="item.level == 0" class="caret"></b></a>
     <ul af-navbar-item items="item.items" template-url="templateUrl" ng-if="item.items.length > 0" class="dropdown-menu"></ul>
 </li>
+
 
 

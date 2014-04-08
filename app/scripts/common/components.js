@@ -13,7 +13,8 @@ var Components = (function(components){
         1:'datepicker',
         2:'carrousel',
         3:'accordion',
-        4:'list'
+        4:'list',
+        5:'listItem'
     }
 
     $.extend( true, components, component );

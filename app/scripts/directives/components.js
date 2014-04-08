@@ -15,7 +15,7 @@ angular.module('directives.components').directive('afGeneralComponent',
                 var deferred = $q.defer();
 
                 if(!$scope.afdata.isLoaded){
-                    afComponent.get({pageId: afPage.currentPageData().id, componentId: $scope.afdata.id}, function(data){
+                    afComponent.get({pageId: afPage.currentPage().id, componentId: $scope.afdata.id}, function(data){
                         deferred.resolve(data);
                     },
                     function(reason){
@@ -37,7 +37,7 @@ angular.module('directives.components').directive('afGeneralComponent',
                         if(componentName){
 							$http.get(afUtils.templateUrl.components(componentName, scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
 								$compile(tplContent)(scope, function(clone, scope){
-									iElement.html(clone);
+									iElement.replaceWith(clone);
 								});
 							});
                         }
@@ -142,6 +142,25 @@ angular.module('directives.components').directive('afCarrousel',
         }
     }]);
 angular.module('directives.components').directive('afList',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+        return {
+            restrict: "AE",
+            scope:{
+                afdata:"="
+            },
+            compile:function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.component('list'), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.html(clone);
+                        });
+                    });
+                }
+            }
+        }
+    }]);
+
+angular.module('directives.components').directive('afListItem',
     ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
         return {
             restrict: "AE",
