@@ -160,7 +160,7 @@ angular.module('directives.components').directive('afList',
         }
     }]);
 
-angular.module('directives.components').directive('afListItem',
+angular.module('directives.components').directive('afListItemLink',
     ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
         return {
             restrict: "AE",
@@ -169,7 +169,7 @@ angular.module('directives.components').directive('afListItem',
             },
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.components('listItem', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.components('listItemLink', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.html(clone);
                         });

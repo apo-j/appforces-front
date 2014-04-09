@@ -106,6 +106,24 @@ angular.module('directives').directive('afNavbarItem',
         }
     }]);
 
+angular.module('directives').directive('afLink',
+    ['$http', '$templateCache', '$compile', 'afUtils','afNavigation', function($http, $templateCache, $compile, afUtils, afNavigation){
+        return {
+            restrict: 'AE',
+            scope:{
+                afHref:'@',
+                afTarget:'@'
+            },
+            compile: function(tElement, tAttr) {
+                return function(scope, iElement, iAttr) {
+                    iElement.on('click', function(event){
+                        afNavigation.navigateTo({href: scope.afHref, target: scope.afTarget});
+                    });
+                };
+            }
+        }
+    }]);
+
 
 /************************Side bar*********************************/
 angular.module('directives').directive('afSidebar',
@@ -148,20 +166,20 @@ angular.module('directives').directive('afPageBody',
                 $scope.afdata = $scope.afdata || {};
 				$scope.$on(afEvents.RELOAD_PAGE_BODY, function(event, data){
 					afData.get(data.url, data.params, function(pageData){
-						$scope.afdata = pageData;
-						$scope.$digest();//TODO ?
+                            $scope.afdata = pageData;
 					});
 				});
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-          
-                        var tplUrl = data.templateUrl;
-                        $http.get('/partials/sidebar/' + tplUrl + '.html', {cache: $templateCache}).success(function(tplContent){
+                    scope.$watch('afdata', function(v){
+                        var tplUrl = scope.afdata.templateUrl;
+                        $http.get('/partials/' + tplUrl + '.html', {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
-                                iElement.replaceWith(clone);
+                                iElement.html(clone);
                             });
                         });
+                    });
                 }
             }
         }

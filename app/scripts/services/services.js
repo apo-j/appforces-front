@@ -9,15 +9,19 @@ angular.module('services').factory('afHeader', ['$resource','afConfig',
         return $resource('api/headers/:appId/:pageId.json', {appId: afConfig.AppConfig.appId});
     }]);
 	
-angular.module('services').factory('afData', ['$resource','afConfig',
-    function($resource, afConfig){
+angular.module('services').factory('afData', ['$resource','afConfig','$http',
+    function($resource, afConfig, $http){
         return {
 			get:function(url, params, callback){
-				$http.get(url, params).success(function(data){
-					if(angular.isFunction(callback)){
-						callback(data);
-					}
-				});
+                if(url){
+                    url = url.replace(/^\//, '');
+                    var _url = 'api/data/' + afConfig.AppConfig.appId + '/' + url;
+                    $http.get(_url, params).success(function(data){
+                        if(angular.isFunction(callback)){
+                            callback(data);
+                        }
+                    });
+                }
 			}
 		}
     }]);	
@@ -32,32 +36,41 @@ angular.module('services').factory('afComponent', ['$resource','afConfig',
         return $resource('api/components/:appId/:pageId/:componentId.json', {appId: afConfig.AppConfig.appId});
     }]);
 
-angular.module('services').factory('afNavigation', ['$resource','afEnums','$location','$rootScope','afEvents',
-    function($resource, afEnums, $location, $rootScope, afEvents){
+angular.module('services').factory('afNavigation', ['$resource','afEnums','$location', '$window', '$rootScope','afEvents',
+    function($resource, afEnums, $location, $window, $rootScope, afEvents){
         
 		return {
-			navigate:function(src){
+			navigateTo:function(src){
 				var _defaultSrcOptions = {
 					target: '_blank',
 					href:''
 				}
-				
+
 				angular.extend(_defaultSrcOptions, src);
 				
 				if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.outer) == 0){
 					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.outer, '');
-					$location.path(_defaultSrcOptions.href);//TODO ? outbound navigation
+
+                    if(_defaultSrcOptions.target == '_self'){
+                        $window.location = _defaultSrcOptions.href;
+                    }else{
+                        $window.open(_defaultSrcOptions.href, '_blank');
+                    }
 				}else if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.inner) == 0){
 					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.inner, '');
-					$location.path(_defaultSrcOptions.href);//to other page of the same site	
+
+                    $rootScope.$apply( function(){
+                        $location.path(_defaultSrcOptions.href);//to other page of the same site
+                    });
 				}else if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.content) == 0){
 					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.content, '');
-					$rootScope.emit(afEvents.RELOAD_PAGE_BODY, {url:src.href, params:{}});	
+
+                    $rootScope.$broadcast(afEvents.RELOAD_PAGE_BODY, {url:_defaultSrcOptions.href, params:{}});
 				}else if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.jump) == 0){//jump
 						_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.jump, '');
 						//TODO jump
 				}else{
-					$rootScope.emit(afEvents.NAV_ERR, src.href);
+					$rootScope.$emit(afEvents.NAV_ERR, src.href);
 				}
 			}
 		};
@@ -168,16 +181,18 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 
             if(match){
                 _currentPage = match;
+                return _currentPage;
             }
+            return false;
         };
 
         self.currentPage = function(){
             return _currentPage;
         };
 
-        /*self.pageData = function(){
+        self.pageData = function(){
             return $resource('api/pages/:appId/:pageId.json');//, {get:{cache: self.cache}});
-        }*/
+        }
 
         self.pageTitle = function(){
             return (self.currentPage()? self.currentPage().title : null) || afConfig.AppConfig.appName || afConfig.AppName;
