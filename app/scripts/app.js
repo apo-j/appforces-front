@@ -48,10 +48,10 @@ angular.module("appForce", [
                     page: ['afPage', function(afPage){
                         afPage.setCurrentPage();
                        //TODO verify if this page needs authentication before open it
-                       /* var _p = afPage.currentPage();
+                        var _p = afPage.currentPage();
                         if(_p){
                              return afPage.pageData().get({appId: afConfig.AppConfig.appId, pageId: _p.id}).$promise;
-                        }*/
+                        }
                     }]
                 }
             });

@@ -136,5 +136,35 @@ angular.module('directives').directive('afSidebar',
             }
         }
     }]);
+	
+angular.module('directives').directive('afPageBody',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
+        return {
+            restrict: 'AE',
+            scope:{
+                afdata:'='
+            },
+            controller: ['$scope', 'afPage', 'afEvents', 'afData', function($scope, afPage, afEvents, afData){
+                $scope.afdata = $scope.afdata || {};
+				$scope.$on(afEvents.RELOAD_PAGE_BODY, function(event, data){
+					afData.get(data.url, data.params, function(pageData){
+						$scope.afdata = pageData;
+						$scope.$digest();//TODO ?
+					});
+				});
+            }],
+            compile: function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+          
+                        var tplUrl = data.templateUrl;
+                        $http.get('/partials/sidebar/' + tplUrl + '.html', {cache: $templateCache}).success(function(tplContent){
+                            $compile(tplContent)(scope, function(clone, scope){
+                                iElement.replaceWith(clone);
+                            });
+                        });
+                }
+            }
+        }
+    }]);	
 
 

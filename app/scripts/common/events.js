@@ -8,5 +8,6 @@ var Events = (function(events){
     self.LOGIN_CONFIRMED = 'e:login_confirmed';
     self.LOGIN_CANCELED = 'e:login_canceled';
     self.NAV_ERR = 'e:navigation_error';
+	self.RELOAD_PAGE_BODY = 'e:reload_page_body';
     return self;
 }(Appforces.Events || {}))

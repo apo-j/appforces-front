@@ -8,6 +8,19 @@ angular.module('services').factory('afHeader', ['$resource','afConfig',
     function($resource, afConfig){
         return $resource('api/headers/:appId/:pageId.json', {appId: afConfig.AppConfig.appId});
     }]);
+	
+angular.module('services').factory('afData', ['$resource','afConfig',
+    function($resource, afConfig){
+        return {
+			get:function(url, params, callback){
+				$http.get(url, params).success(function(data){
+					if(angular.isFunction(callback)){
+						callback(data);
+					}
+				});
+			}
+		}
+    }]);	
 
 angular.module('services').factory('afSidebar', ['$resource','afConfig',
     function($resource, afConfig){
@@ -23,7 +36,7 @@ angular.module('services').factory('afNavigation', ['$resource','afEnums','$loca
     function($resource, afEnums, $location, $rootScope, afEvents){
         
 		return {
-			navigateTo:function(src){
+			navigate:function(src){
 				var _defaultSrcOptions = {
 					target: '_blank',
 					href:''
@@ -32,18 +45,19 @@ angular.module('services').factory('afNavigation', ['$resource','afEnums','$loca
 				angular.extend(_defaultSrcOptions, src);
 				
 				if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.outer) == 0){
+					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.outer, '');
+					$location.path(_defaultSrcOptions.href);//TODO ? outbound navigation
+				}else if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.inner) == 0){
 					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.inner, '');
-					$location.path(_defaultSrcOptions.href);
+					$location.path(_defaultSrcOptions.href);//to other page of the same site	
 				}else if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.content) == 0){
 					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.content, '');
-						
-				
-					
+					$rootScope.emit(afEvents.RELOAD_PAGE_BODY, {url:src.href, params:{}});	
 				}else if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.jump) == 0){//jump
 						_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.jump, '');
-						
+						//TODO jump
 				}else{
-					$rootScope.$emit(afEvents.NAV_ERR, src);
+					$rootScope.emit(afEvents.NAV_ERR, src.href);
 				}
 			}
 		};

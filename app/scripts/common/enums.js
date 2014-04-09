@@ -20,6 +20,7 @@ var Enums = (function(enums){
 	
 	self.NavigationType = {
 		outer: "£outer",
+		inner: "£inner",
 		jump: "£jump",
 		content: "£content"
 	};

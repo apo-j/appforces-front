@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('controllers')
-    .controller('NavigationCtrl', ['$scope', 'afPage',
-        function ($scope, afPage) {
-
+    .controller('NavigationCtrl', ['$scope', 'afPage','page',
+        function ($scope, afPage, page) {
+			$scope.pageData = page;
         }]);
