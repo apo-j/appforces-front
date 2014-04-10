@@ -13,11 +13,13 @@ var Configuration = (function(configuration){
     self.DefaultFaviconUrl = "/images/favicon.ico";
     //configuration.Environment = "DEVELOPMENT";//PRODUCTION
     self.AppConfigUrl = "/api/config/";
+	self.DefaultSearchUrl = "/api/search";
     self.AppConfig = {};
     self.DefaultPageUrl = {
         Psignin:"/signin",
         P404:"/404"
     };
+	self.locationMode = 'hashbang';
 
     return self;
 }(Appforces.Configuration || {}))

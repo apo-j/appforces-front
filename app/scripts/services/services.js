@@ -17,7 +17,17 @@ angular.module('services').factory('afData', ['$resource','afConfig','$http',
                     url = url.replace(/^\//, '');
                     var _url = 'api/data/' + afConfig.AppConfig.appId + '/' + url;
                     return $http({method: 'get', url: _url});
-                }
+                }else{
+					//TODO
+				}
+			},
+			post:function(url, data){
+				if(url){
+					url = url.replace(/^\//, '');
+					return $http({method: 'post', url: url, data: data});
+				}else{
+					//TODO
+				}
 			}
 		}
     }]);	
@@ -32,8 +42,8 @@ angular.module('services').factory('afComponent', ['$resource','afConfig',
         return $resource('api/components/:appId/:pageId/:componentId.json', {appId: afConfig.AppConfig.appId});
     }]);
 
-angular.module('services').factory('afNavigation', ['$resource','afEnums','$location', '$window', '$rootScope','afEvents',
-    function($resource, afEnums, $location, $window, $rootScope, afEvents){
+angular.module('services').factory('afNavigation', ['$resource','afEnums', 'afUtils', '$location', '$window', '$rootScope','afEvents',
+    function($resource, afEnums, afUtils, $location, $window, $rootScope, afEvents){
         
 		return {
 			navigateTo:function(src){
@@ -45,7 +55,7 @@ angular.module('services').factory('afNavigation', ['$resource','afEnums','$loca
 				angular.extend(_defaultSrcOptions, src);
 				
 				if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.outer) == 0){
-					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.outer, '');
+					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.outer, ''); 
 
                     if(_defaultSrcOptions.target == '_self'){
                         $window.location = _defaultSrcOptions.href;
@@ -72,6 +82,34 @@ angular.module('services').factory('afNavigation', ['$resource','afEnums','$loca
 		};
     }]);
 	
+angular.module('services').provider('afUtils',
+    function(){
+        var self = this;
+        self._utils;
+
+        self.initUtils = function(utils){
+            self._utils = utils || {};
+        },
+		
+        self.$get = ['afConfig', 'afEnums', function(afConfig, afEnums) {
+				self._utils.getUrl = function (raw, replace) {
+					var res = '';
+					if(raw && replace){
+						res = raw.replace(replace.pattern, replace.content);
+					}
+					
+					if(afConfig.locationMode === 'hashbang' && replace.pattern === afEnums.NavigationType.inner){
+						res = '#/' + res;
+					}
+					
+					return res;
+				};
+				
+                return self._utils;
+            }]
+
+    });
+
 	
 /*angular.module('services').provider('afNavigationState',
     function(){

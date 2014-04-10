@@ -92,10 +92,11 @@ angular.module('directives').directive('afNavbarItem',
             restrict: 'AE',
             scope:{
               items:'=',
-              templateUrl:'='
+              templateUrl:'=',
+			  isRoot:'='
             },
             compile: function(tElement, tAttr) {
-                return function(scope, iElement, iAttr) {
+                return function(scope, iElement, iAttr) {					
                     $http.get(afUtils.templateUrl.headerMenuComponents(scope.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                              iElement.append(clone);
@@ -107,7 +108,7 @@ angular.module('directives').directive('afNavbarItem',
     }]);
 
 angular.module('directives').directive('afLink',
-    ['$http', '$templateCache', '$compile', 'afUtils','afNavigation', function($http, $templateCache, $compile, afUtils, afNavigation){
+    ['$http', '$templateCache', '$compile', 'afUtils','afConfig', 'afNavigation','afEnums', function($http, $templateCache, $compile, afUtils, afConfig, afNavigation, afEnums){
         return {
             restrict: 'AE',
             scope:{
@@ -116,8 +117,21 @@ angular.module('directives').directive('afLink',
             },
             compile: function(tElement, tAttr) {
                 return function(scope, iElement, iAttr) {
+					var href = 'javascript:void(0)';
+					
+					if(scope.afHref.indexOf(afEnums.NavigationType.outer) == 0){//permit right click of mouse on the outerbound link
+						href = afUtils.getUrl(scope.afHref, {pattern: afEnums.NavigationType.outer, content:''});
+					}
+					
+					if(scope.afHref.indexOf(afEnums.NavigationType.inner) == 0){//permit right click of mouse on the outerbound link
+						href = afUtils.getUrl(scope.afHref, {pattern: afEnums.NavigationType.inner, content:''});
+					}
+					
+					iElement.attr('href', href);
+					
                     iElement.on('click', function(event){
                         afNavigation.navigateTo({href: scope.afHref, target: scope.afTarget});
+						return false;
                     });
                 };
             }
@@ -168,9 +182,12 @@ angular.module('directives').directive('afPageBody',
                     afData.get(data.url, data.params).success(function(pageData){
                         $scope.afdata = pageData;
                     });
-					/*afData.get(data.url, data.params, function(pageData){
-                            $scope.afdata = pageData;
-					});*/
+				});
+				
+				$scope.$on(afEvents.SEARCH, function(event, data){
+                    afData.post(data.url, data.data).success(function(pageData){
+                        $scope.afdata = pageData;
+                    });
 				});
             }],
             compile: function(tElement, tAttr) {
@@ -187,5 +204,37 @@ angular.module('directives').directive('afPageBody',
             }
         }
     }]);	
+	
+angular.module('directives').directive('afSearch',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
+        return {
+            restrict: 'AE',
+            scope:{
+                afdata:'='
+            },
+            controller: ['$rootScope','$scope', 'afConfig', 'afEvents', 'afData', function($rootScope, $scope, afConfig, afEvents, afData){
+                $scope.reset = function(){
+					
+				};
+				
+				$scope.validate = function(){
+					$rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:$scope.afdata});
+				};
+				
+            }],
+            compile: function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    scope.$watch('afdata', function(v){
+                        var tplUrl = scope.afdata.templateUrl;
+                        $http.get('/partials/' + tplUrl + '.html', {cache: $templateCache}).success(function(tplContent){
+                            $compile(tplContent)(scope, function(clone, scope){
+                                iElement.replaceWith(clone);
+                            });
+                        });
+                    });
+                }
+            }
+        }
+    }]);		
 
 

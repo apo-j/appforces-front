@@ -9,5 +9,6 @@ var Events = (function(events){
     self.LOGIN_CANCELED = 'e:login_canceled';
     self.NAV_ERR = 'e:navigation_error';
 	self.RELOAD_PAGE_BODY = 'e:reload_page_body';
+	self.SEARCH = 'e:search';
     return self;
 }(Appforces.Events || {}))

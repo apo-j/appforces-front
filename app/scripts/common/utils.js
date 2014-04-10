@@ -17,24 +17,20 @@ var Utils = (function(utils){
         }
     };
 
-    self.fn = {
-        getUrl : function (code, params) {
-            var baseUrl = Resources.Params.BaseUrl || "";
-            var url = code || "";
-
-            if (url !== "") {
-                if (typeof params !== 'undefined') {
-                    $.each(params, function (i, val) {
-                        url = url.replace('{' + i + '}', val);
-                    });
-                }
-            }
-            else {
-                Utils.consoleLog("Func.getUrl: Route indéfinie (" + code + ")");
-            }
-
-            return baseUrl + url;
-        }
+    self.getUrl = function (raw, replace, mode) {
+		var res = '';
+		if(raw){
+			replace = replace || [];
+			angular.forEach(replace, function(item, index){
+				res = raw.replace(item.pattern, item.content);
+			});
+		}
+        
+		if(mode === 'hashbang'){
+			res = '#' + res;
+		}
+		
+		return res;
     };
 
     self.templateUrl = {

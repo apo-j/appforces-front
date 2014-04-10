@@ -17,11 +17,14 @@ angular.module("appForce", [
   //'content-mocks',
   'http-auth-interceptor'
 ])
-  .constant('afUtils', Utils)
+  .constant('_Utils', Utils)
   .constant('afConfig', Configuration)
   .constant('afEnums', Enums)
   .constant('afEvents', Events)
   .constant('afComponents', Components)
+  .config(['afUtilsProvider', '_Utils', function(afUtilsProvider, _Utils){
+	afUtilsProvider.initUtils(_Utils);
+  }])
   .config(['$routeProvider','afConfig','afEnums', function ($routeProvider, afConfig, afEnums) {
     //set the default 404 page
     //this would be overridden if
