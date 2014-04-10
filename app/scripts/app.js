@@ -45,11 +45,14 @@ angular.module("appForce", [
                 templateUrl: 'views/' + _page['layoutUrl'] + '.html',
                 controller: _page['ctrl'] || 'NavigationCtrl',
                 resolve:{
-                    page: ['afPage', function(afPage){
+                    page: ['afPage','afData', function(afPage, afData){
                        //TODO verify if this page needs authentication before open it
                         var _p = afPage.setCurrentPage();
                         if(_p){
-                             return afPage.pageData().get({appId: afConfig.AppConfig.appId, pageId: _p.id}).$promise;
+                            //use page id to fetch its default data
+                            //todo delete .json
+                            return afData.get(_p.id + '.json');
+                             //return afPage.pageData().get({appId: afConfig.AppConfig.appId, pageId: _p.id}).$promise;
                         }
                     }]
                 }

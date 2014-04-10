@@ -165,9 +165,12 @@ angular.module('directives').directive('afPageBody',
             controller: ['$scope', 'afPage', 'afEvents', 'afData', function($scope, afPage, afEvents, afData){
                 $scope.afdata = $scope.afdata || {};
 				$scope.$on(afEvents.RELOAD_PAGE_BODY, function(event, data){
-					afData.get(data.url, data.params, function(pageData){
+                    afData.get(data.url, data.params).success(function(pageData){
+                        $scope.afdata = pageData;
+                    });
+					/*afData.get(data.url, data.params, function(pageData){
                             $scope.afdata = pageData;
-					});
+					});*/
 				});
             }],
             compile: function(tElement, tAttr) {

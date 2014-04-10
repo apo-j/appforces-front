@@ -12,15 +12,11 @@ angular.module('services').factory('afHeader', ['$resource','afConfig',
 angular.module('services').factory('afData', ['$resource','afConfig','$http',
     function($resource, afConfig, $http){
         return {
-			get:function(url, params, callback){
+			get:function(url, params){
                 if(url){
                     url = url.replace(/^\//, '');
                     var _url = 'api/data/' + afConfig.AppConfig.appId + '/' + url;
-                    $http.get(_url, params).success(function(data){
-                        if(angular.isFunction(callback)){
-                            callback(data);
-                        }
-                    });
+                    return $http({method: 'get', url: _url});
                 }
 			}
 		}
