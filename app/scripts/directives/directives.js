@@ -185,9 +185,11 @@ angular.module('directives').directive('afPageBody',
 				});
 				
 				$scope.$on(afEvents.SEARCH, function(event, data){
-                    afData.post(data.url, data.data).success(function(pageData){
-                        $scope.afdata = pageData;
-                    });
+                    if(data.searchId === $scope.afdata.searchId){
+                        afData.post(data.url, data.data).success(function(pageData){
+                            $scope.afdata = pageData;
+                        });
+                    }
 				});
             }],
             compile: function(tElement, tAttr) {
@@ -204,37 +206,6 @@ angular.module('directives').directive('afPageBody',
             }
         }
     }]);	
-	
-angular.module('directives').directive('afSearch',
-    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
-        return {
-            restrict: 'AE',
-            scope:{
-                afdata:'='
-            },
-            controller: ['$rootScope','$scope', 'afConfig', 'afEvents', 'afData', function($rootScope, $scope, afConfig, afEvents, afData){
-                $scope.reset = function(){
-					
-				};
-				
-				$scope.validate = function(){
-					$rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:$scope.afdata});
-				};
-				
-            }],
-            compile: function(tElement, tAttr) {
-                return function(scope , iElement, iAttrs) {
-                    scope.$watch('afdata', function(v){
-                        var tplUrl = scope.afdata.templateUrl;
-                        $http.get('/partials/' + tplUrl + '.html', {cache: $templateCache}).success(function(tplContent){
-                            $compile(tplContent)(scope, function(clone, scope){
-                                iElement.replaceWith(clone);
-                            });
-                        });
-                    });
-                }
-            }
-        }
-    }]);		
+
 
 

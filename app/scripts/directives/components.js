@@ -178,3 +178,28 @@ angular.module('directives.components').directive('afListItemLink',
             }
         }
     }]);
+
+angular.module('directives.components').directive('afSearch',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
+        return {
+            restrict: 'AE',
+            scope:{
+                afdata:'='
+            },
+            compile: function(tElement, tAttr) {
+                return function(scope, iElement, iAttr) {
+                    scope.reset = function(){
+                        console.log('todo');
+                    };
+                    iElement.on('click', function(){
+                       alert('click');
+                    });
+                    scope.validate = function(){
+                        alert('v');
+                        //$rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:$scope.afdata.data});
+                    };
+                   // $compile(iElement)(scope);
+                };
+            }
+        }
+    }]);

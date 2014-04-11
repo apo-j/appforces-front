@@ -15,7 +15,8 @@ var Components = (function(components){
         3:'accordion',
         4:'list',
         5:'listItemLink',
-        6:'listItem'
+        6:'listItem',
+        7:'search'
     }
 
     $.extend( true, components, component );
