@@ -35,7 +35,7 @@ angular.module('directives.components').directive('afGeneralComponent',
 					.then(function(data){
                         var componentName = afComponents[scope.afdata.type];
                         if(componentName){
-							$http.get(afUtils.templateUrl.components(componentName, scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+							$http.get(afUtils.templateUrl.directiveComponent(componentName), {cache: $templateCache}).success(function(tplContent){
 								$compile(tplContent)(scope, function(clone, scope){
 									iElement.replaceWith(clone);
 								});
@@ -47,6 +47,33 @@ angular.module('directives.components').directive('afGeneralComponent',
         }
     }]);
 
+angular.module('directives.components').directive('afSearch',
+    ['$http', '$templateCache', '$rootScope', '$compile', 'afUtils', 'afEvents','afConfig', function($http, $templateCache, $rootScope, $compile, afUtils, afEvents, afConfig){
+        return {
+            restrict: 'AE',
+            scope:{
+                afdata:'='
+            },
+            compile: function(tElement, tAttr) {
+                return function(scope, iElement, iAttr) {
+					scope.originCriteria = angular.copy(scope.afdata.data.criteria);
+                    scope.reset = function(){
+                        scope.afdata.data.criteria = angular.copy(scope.originCriteria);
+                    };
+                    scope.validate = function(){
+                        $rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:scope.afdata.data});
+                    };
+					
+				   $http.get(afUtils.templateUrl.component('search', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+						$compile(tplContent)(scope, function(clone, scope){
+							iElement.replaceWith(clone);
+						});
+					});
+                };
+            }
+        }
+    }]);	
+	
 angular.module('directives.components').directive('afDatepicker',
         ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
             return {
@@ -175,31 +202,6 @@ angular.module('directives.components').directive('afListItemLink',
                         });
                     });
                 }
-            }
-        }
-    }]);
-
-angular.module('directives.components').directive('afSearch',
-    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
-        return {
-            restrict: 'AE',
-            scope:{
-                afdata:'='
-            },
-            compile: function(tElement, tAttr) {
-                return function(scope, iElement, iAttr) {
-                    scope.reset = function(){
-                        console.log('todo');
-                    };
-                    iElement.on('click', function(){
-                       alert('click');
-                    });
-                    scope.validate = function(){
-                        alert('v');
-                        //$rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:$scope.afdata.data});
-                    };
-                   // $compile(iElement)(scope);
-                };
             }
         }
     }]);

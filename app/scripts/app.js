@@ -14,7 +14,7 @@ angular.module("appForce", [
   'directives',
   'directives.components',
   'ui.bootstrap',
-  //'content-mocks',
+  'content-mocks',
   'http-auth-interceptor'
 ])
   .constant('_Utils', Utils)

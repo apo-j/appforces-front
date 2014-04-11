@@ -13,7 +13,7 @@ var Configuration = (function(configuration){
     self.DefaultFaviconUrl = "/images/favicon.ico";
     //configuration.Environment = "DEVELOPMENT";//PRODUCTION
     self.AppConfigUrl = "/api/config/";
-	self.DefaultSearchUrl = "/api/search";
+	self.DefaultSearchUrl = "/api/search";//TODO should add app id two this url
     self.AppConfig = {};
     self.DefaultPageUrl = {
         Psignin:"/signin",

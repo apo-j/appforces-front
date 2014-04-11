@@ -49,12 +49,15 @@ var Utils = (function(utils){
         headerMenuComponents:function(name){
             return '/partials/header/menu/components/' + name + '.html';
         },
-        components:function(type, templateUrl){
-            return '/partials/components/#{type}/#{url}.html'.replace(/#\{type\}/, type).replace(/#\{url\}/, templateUrl);
+        directiveComponent:function(type){
+            return '/partials/components/#{type}/#{type}.html'.replace(/#\{type\}/g, type);
         },
-        component:function(name){
-            return '/partials/components/' + name + '.html';
-        }
+        component:function(type, templateUrl){
+            return '/partials/components/#{type}/templates/#{url}.html'.replace(/#\{type\}/, type).replace(/#\{url\}/, templateUrl);
+        },
+		pageBody:function(url){
+            return '/partials/' + url + '.html';
+        },
     }
 
 

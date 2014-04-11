@@ -176,27 +176,21 @@ angular.module('directives').directive('afPageBody',
             scope:{
                 afdata:'='
             },
-            controller: ['$scope', 'afPage', 'afEvents', 'afData', function($scope, afPage, afEvents, afData){
+            controller: ['$scope', 'afPage', 'afEvents', 'afData','afEventRegister', function($scope, afPage, afEvents, afData, afEventRegister){
                 $scope.afdata = $scope.afdata || {};
-				$scope.$on(afEvents.RELOAD_PAGE_BODY, function(event, data){
-                    afData.get(data.url, data.params).success(function(pageData){
-                        $scope.afdata = pageData;
-                    });
-				});
 				
-				$scope.$on(afEvents.SEARCH, function(event, data){
-                    if(data.searchId === $scope.afdata.searchId){
-                        afData.post(data.url, data.data).success(function(pageData){
-                            $scope.afdata = pageData;
-                        });
-                    }
-				});
+				//register on page reload event
+				afEventRegister.registerOnPageReload($scope);
+				
+				if($scope.afdata.isSearchResultContainer === true){
+					//register on search event
+					afEventRegister.registerOnSearch($scope, $scope.afdata.searchId);
+				}
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
                     scope.$watch('afdata', function(v){
-                        var tplUrl = scope.afdata.templateUrl;
-                        $http.get('/partials/' + tplUrl + '.html', {cache: $templateCache}).success(function(tplContent){
+                        $http.get(afUtils.templateUrl.pageBody(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 iElement.html(clone);
                             });
@@ -206,6 +200,7 @@ angular.module('directives').directive('afPageBody',
             }
         }
     }]);	
+	
 
 
 

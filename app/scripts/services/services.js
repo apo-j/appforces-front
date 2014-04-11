@@ -31,6 +31,39 @@ angular.module('services').factory('afData', ['$resource','afConfig','$http',
 			}
 		}
     }]);	
+	
+angular.module('services').factory('afEventRegister', ['afConfig','afData','afEvents',
+    function(afConfig, afData, afEvents){
+        return {
+			registerOnPageReload: function(scope){
+				scope.$on(afEvents.RELOAD_PAGE_BODY, function(event, data){
+                    afData.get(data.url, data.params).success(function(pageData){
+                        $scope.afdata = pageData;
+                    });
+				});
+			},
+			registerOnSearch: function(scope, searchId){
+				scope.$on(afEvents.SEARCH, function(event, data){
+					if(data.data.searchId === searchId){
+						afData.post(data.url, data.data).success(function(pageData){
+							scope.afdata = pageData;
+						});
+					}
+				});
+				// (function(searchId){
+					// var _searchId = searchId;
+					// scope.$on(afEvents.SEARCH, function(event, data){
+						// if(data.data.searchId === _searchId){
+							// afData.post(data.url, data.data).success(function(pageData){
+								// scope.afdata = pageData;
+							// });
+						// }
+					// });
+				// }(searchId));
+				
+			}
+		}
+    }]);	
 
 angular.module('services').factory('afSidebar', ['$resource','afConfig',
     function($resource, afConfig){

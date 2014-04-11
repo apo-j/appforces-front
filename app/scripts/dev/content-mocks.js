@@ -14,12 +14,12 @@
 	"title": "index"
 	};
 	
-	$httpBackend.whenGET('api/pages/2/p123.json').respond(function(method, url, data) {
-      if(authorized){
-		return [200, page1]
-	  }
-      return [401, 'you dont have right to access this resource'];
-    });
+	// $httpBackend.whenGET('api/pages/2/p123.json').respond(function(method, url, data) {
+      // if(authorized){
+		// return [200, page1]
+	  // }
+      // return [401, 'you dont have right to access this resource'];
+    // });
 	
     $httpBackend.whenPOST('auth/login').respond(function(method, url, data) {
       authorized = true;
@@ -28,6 +28,24 @@
     $httpBackend.whenPOST('auth/logout').respond(function(method, url, data) {
       authorized = false;
       return [200];
+    });
+	
+	$httpBackend.whenPOST('api/search').respond(function(method, url, data) {
+      var res1 = {
+			"templateUrl":"components/accordion/1",
+			"os": "sumsung 2.3",
+			"ui": "sumsung",
+			"searchId": "123456"
+		};
+		var res2 = {
+			"templateUrl":"components/accordion/2",
+			"os": "Android 2.3",
+			"ui": "Android",
+			"searchId": "123456"
+		};
+		var _data = JSON.parse(data);
+	 var res = _data.criteria[0].val == _data.criteria[1].val ? res1 : res2;
+      return [200, res];
     });
     
     
