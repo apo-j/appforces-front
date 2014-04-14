@@ -25,7 +25,7 @@ angular.module("appForce", [
   .config(['afUtilsProvider', '_Utils', function(afUtilsProvider, _Utils){
 	afUtilsProvider.initUtils(_Utils);
   }])
-  .config(['$routeProvider','afConfig','afEnums', function ($routeProvider, afConfig, afEnums) {
+  .config(['$routeProvider','afConfig', function ($routeProvider, afConfig) {
     //set the default 404 page
     //this would be overridden if
     //a custom 404 page has been defined

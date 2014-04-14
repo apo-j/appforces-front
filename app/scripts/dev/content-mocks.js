@@ -35,13 +35,13 @@
 			"templateUrl":"components/accordion/1",
 			"os": "sumsung 2.3",
 			"ui": "sumsung",
-			"searchId": "123456"
+			"searchId": "12345612"
 		};
 		var res2 = {
 			"templateUrl":"components/accordion/2",
 			"os": "Android 2.3",
 			"ui": "Android",
-			"searchId": "123456"
+			"searchId": "12345612"
 		};
 		var _data = JSON.parse(data);
 	 var res = _data.criteria[0].val == _data.criteria[1].val ? res1 : res2;

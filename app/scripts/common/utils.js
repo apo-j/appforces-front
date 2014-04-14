@@ -57,7 +57,7 @@ var Utils = (function(utils){
         },
 		pageBody:function(url){
             return '/partials/' + url + '.html';
-        },
+        }
     }
 
 

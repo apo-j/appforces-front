@@ -48,7 +48,7 @@ angular.module('directives.components').directive('afGeneralComponent',
     }]);
 
 angular.module('directives.components').directive('afSearch',
-    ['$http', '$templateCache', '$rootScope', '$compile', 'afUtils', 'afEvents','afConfig', function($http, $templateCache, $rootScope, $compile, afUtils, afEvents, afConfig){
+    ['$timeout', '$http', '$templateCache', '$rootScope', '$compile', 'afUtils', 'afEvents','afConfig','$location','afPage', function( $timeout, $http, $templateCache, $rootScope, $compile, afUtils, afEvents, afConfig, $location,afPage){
         return {
             restrict: 'AE',
             scope:{
@@ -56,17 +56,46 @@ angular.module('directives.components').directive('afSearch',
             },
             compile: function(tElement, tAttr) {
                 return function(scope, iElement, iAttr) {
-					scope.originCriteria = angular.copy(scope.afdata.data.criteria);
+                    var self = {};
+                    self.resultPage = afPage.pageSearchResult();
+                    self.currentPath = $location.path();
+                    self.isInited = false;
+
+                    scope.originCriteria = angular.copy(scope.afdata.data.criteria);
                     scope.reset = function(){
                         scope.afdata.data.criteria = angular.copy(scope.originCriteria);
                     };
                     scope.validate = function(){
-                        $rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:scope.afdata.data});
+                        if(self.resultPage){
+                            if(self.currentPath === self.resultPage['url']){
+                                self.isInited = true;
+                                $rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:scope.afdata.data});
+                            }else{
+                                self.isInited = false;
+                                $location.path(self.resultPage['url']);//navigate to search result page
+                            }
+                        }
                     };
+
+                    $rootScope.$on('$viewContentLoaded', function(event, data){
+                        if( $location.path() === self.resultPage['url']){
+                            $rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:scope.afdata.data});
+                        }
+                    });
+
+
+                    $rootScope.$on(afEvents.SEARCH, function(event, data){
+
+                        if(!self.isInited){
+                            scope.afdata.data = data.data;
+                        }
+                    });
+
+
 					
 				   $http.get(afUtils.templateUrl.component('search', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
 						$compile(tplContent)(scope, function(clone, scope){
-							iElement.replaceWith(clone);
+							iElement.html(clone);
 						});
 					});
                 };
@@ -196,9 +225,9 @@ angular.module('directives.components').directive('afListItemLink',
             },
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.components('listItemLink', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.component('listItemLink', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
-                            iElement.html(clone);
+                            iElement.replaceWith(clone);
                         });
                     });
                 }

@@ -189,17 +189,16 @@ angular.module('directives').directive('afPageBody',
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    scope.$watch('afdata', function(v){
-                        $http.get(afUtils.templateUrl.pageBody(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
-                            $compile(tplContent)(scope, function(clone, scope){
-                                iElement.html(clone);
-                            });
+                    $http.get(afUtils.templateUrl.pageBody(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.html(clone);
                         });
                     });
                 }
             }
         }
-    }]);	
+    }]);
+
 	
 
 

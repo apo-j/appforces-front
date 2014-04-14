@@ -177,6 +177,7 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
         var _404Page = null;
         var _500Page = null;
         var _401Page = null;
+        var _searchResultPage = null;
 
         self.cache = $cacheFactory('lrucache', {
             capacity: 100
@@ -239,6 +240,16 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
             }
 
             return _500Page;
+        };
+
+        self.pageSearchResult = function(){
+            if(!_searchResultPage){
+                _searchResultPage = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
+                    return item.type === afEnums.pageType['pSearchResult'];
+                });
+            }
+
+            return _searchResultPage;
         };
 
         self.setCurrentPage = function(){

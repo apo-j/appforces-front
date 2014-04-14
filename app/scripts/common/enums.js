@@ -15,6 +15,7 @@ var Enums = (function(enums){
 		p404: '102',
 		p500: '103',
 		p401: '104',
+        pSearchResult:'105',
 		p0: 'ordinary'
 	};
 	
