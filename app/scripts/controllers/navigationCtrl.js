@@ -4,8 +4,8 @@
 'use strict';
 
 angular.module('controllers')
-    .controller('NavigationCtrl', ['$scope', 'afPage','page',
-        function ($scope, afPage, page) {
+    .controller('NavigationCtrl', ['$scope', 'afEvents', 'afPage','page',
+        function ($scope, afEvents, afPage, page) {
             //Set default page data
 			$scope.pageData = page.data;
         }]);

@@ -9,6 +9,32 @@ angular.module('services').factory('afHeader', ['$resource','afConfig',
         return $resource('api/headers/:appId/:pageId.json', {appId: afConfig.AppConfig.appId});
     }]);
 	
+angular.module('services').factory('afVars', [
+    function(){
+		var _vars = {};
+		
+        return {
+			set:function(property, value){
+				if(property){
+					_vars[property] = value;
+				}
+			},
+			get:function(property){
+				if(property){
+					return _vars[property] || false;
+				}else{
+					return false;
+				}
+			},
+			remove:function(property){
+				delete _vars[property];
+			},
+			empty:function(){
+				_vars = {};
+			}
+		};
+    }]);	
+	
 angular.module('services').factory('afData', ['$resource','afConfig','$http',
     function($resource, afConfig, $http){
         return {
@@ -32,8 +58,8 @@ angular.module('services').factory('afData', ['$resource','afConfig','$http',
 		}
     }]);	
 	
-angular.module('services').factory('afEventRegister', ['afConfig','afData','afEvents',
-    function(afConfig, afData, afEvents){
+angular.module('services').factory('afEventRegister', ['$rootScope', 'afConfig','afData','afEvents',
+    function($rootScope, afConfig, afData, afEvents){
         return {
 			registerOnPageReload: function(scope){
 				scope.$on(afEvents.RELOAD_PAGE_BODY, function(event, data){
@@ -47,20 +73,12 @@ angular.module('services').factory('afEventRegister', ['afConfig','afData','afEv
 					if(data.data.searchId === searchId){
 						afData.post(data.url, data.data).success(function(pageData){
 							scope.afdata = pageData;
+							$rootScope.$broadcast(afEvents.SEARCH_SUCCESS, {searchId: searchId, data: data.data});
+						}).error(function(rejection){
+							$rootScope.$broadcast(afEvents.SEARCH_ERROR, {searchId: searchId, data: data.data});
 						});
 					}
 				});
-				// (function(searchId){
-					// var _searchId = searchId;
-					// scope.$on(afEvents.SEARCH, function(event, data){
-						// if(data.data.searchId === _searchId){
-							// afData.post(data.url, data.data).success(function(pageData){
-								// scope.afdata = pageData;
-							// });
-						// }
-					// });
-				// }(searchId));
-				
 			}
 		}
     }]);	

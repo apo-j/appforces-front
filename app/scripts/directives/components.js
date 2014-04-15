@@ -48,7 +48,7 @@ angular.module('directives.components').directive('afGeneralComponent',
     }]);
 
 angular.module('directives.components').directive('afSearch',
-    ['$timeout', '$http', '$templateCache', '$rootScope', '$compile', 'afUtils', 'afEvents','afConfig','$location','afPage', function( $timeout, $http, $templateCache, $rootScope, $compile, afUtils, afEvents, afConfig, $location,afPage){
+    ['$timeout', '$http', '$templateCache', '$rootScope', '$compile', 'afUtils', 'afEvents','afConfig','$location','afPage', 'afVars', function( $timeout, $http, $templateCache, $rootScope, $compile, afUtils, afEvents, afConfig, $location,afPage, afVars){
         return {
             restrict: 'AE',
             scope:{
@@ -58,40 +58,30 @@ angular.module('directives.components').directive('afSearch',
                 return function(scope, iElement, iAttr) {
                     var self = {};
                     self.resultPage = afPage.pageSearchResult();
-                    self.currentPath = $location.path();
-                    self.isInited = false;
+					self.currentSearch = afVars.get('currentSearch');
+					
+					if(self.currentSearch && self.currentSearch['searchId'] ===  scope.afdata.data.searchId){
+						scope.afdata.data = angular.copy(self.currentSearch);
+						$rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:scope.afdata.data});
+					}
 
                     scope.originCriteria = angular.copy(scope.afdata.data.criteria);
+					
                     scope.reset = function(){
                         scope.afdata.data.criteria = angular.copy(scope.originCriteria);
                     };
+					
                     scope.validate = function(){
+						afVars.set('currentSearch', angular.copy(scope.afdata.data));
                         if(self.resultPage){
-                            if(self.currentPath === self.resultPage['url']){
-                                self.isInited = true;
+                            if($location.path() === self.resultPage['url']){
                                 $rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:scope.afdata.data});
                             }else{
-                                self.isInited = false;
                                 $location.path(self.resultPage['url']);//navigate to search result page
                             }
                         }
                     };
-
-                    $rootScope.$on('$viewContentLoaded', function(event, data){
-                        if( $location.path() === self.resultPage['url']){
-                            $rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:scope.afdata.data});
-                        }
-                    });
-
-
-                    $rootScope.$on(afEvents.SEARCH, function(event, data){
-
-                        if(!self.isInited){
-                            scope.afdata.data = data.data;
-                        }
-                    });
-
-
+						
 					
 				   $http.get(afUtils.templateUrl.component('search', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
 						$compile(tplContent)(scope, function(clone, scope){
