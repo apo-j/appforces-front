@@ -48,7 +48,7 @@ angular.module('directives.components').directive('afGeneralComponent',
     }]);
 
 angular.module('directives.components').directive('afSearch',
-    ['$timeout', '$http', '$templateCache', '$rootScope', '$compile', 'afUtils', 'afEvents','afConfig','$location','afPage', 'afVars', function( $timeout, $http, $templateCache, $rootScope, $compile, afUtils, afEvents, afConfig, $location,afPage, afVars){
+    ['$http', '$templateCache', '$rootScope', '$compile', 'afUtils', 'afEvents','afConfig','$location','afPage', 'afVars', function( $http, $templateCache, $rootScope, $compile, afUtils, afEvents, afConfig, $location,afPage, afVars){
         return {
             restrict: 'AE',
             scope:{
@@ -82,7 +82,6 @@ angular.module('directives.components').directive('afSearch',
                         }
                     };
 						
-					
 				   $http.get(afUtils.templateUrl.component('search', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
 						$compile(tplContent)(scope, function(clone, scope){
 							iElement.html(clone);
