@@ -12,7 +12,6 @@ var Events = (function(events){
 	self.SEARCH = 'e:search';
 	self.SEARCH_SUCCESS = 'e:search_success';
 	self.SEARCH_ERROR = 'e:search_error';
-	self.afVIEW_CONTENT_LOADED = 'e:af:view_content_loaded'
 	
     return self;
 }(Appforces.Events || {}))

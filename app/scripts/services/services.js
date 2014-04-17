@@ -29,7 +29,7 @@ angular.module('services').factory('afVars', [
 			remove:function(property){
 				delete _vars[property];
 			},
-			empty:function(){
+			removeAll:function(){
 				_vars = {};
 			}
 		};
