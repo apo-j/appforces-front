@@ -7,23 +7,26 @@ angular.module('services', ['ngResource']);
 angular.module('services').factory('afLunrSearch', ['afLunr',
     function(afLunr){	
 		var _engine;
-		return {
-			initIndex: function(properties){
+		return function(properties, fromJSON){
+			if(!fromJSON){
 				_engine = afLunr(properties);
-			},
-			fromJSON: function(index){
+			}else{
+				//TODO
 				_engine = afLunr.Index.load(index.toJSON());
-			},
-			store: function(values){
-				if(_engine){
-					_engine.add(values);
+			}
+
+			return {
+				store: function(values){
+					if(_engine){
+						_engine.add(values);
+					}
+				},
+				search: function(q){
+					if(_engine){
+						return _engine.search(q);
+					}
+					return null;
 				}
-			},
-			search: function(q){
-				if(_engine){
-					return _engine.search(q);
-				}
-				return null;
 			}
 		}
     }]);	

@@ -4,10 +4,11 @@
 'use strict';
 angular.module('services', ['ngResource']);
 	
-angular.module('services').factory('afWorkers', [
-    function(){
-		var _workers = {};
-		if (typeof (Worker) !== "undefined") {
+angular.module('services').factory('afWorkers', ['afConfig',
+    function(afConfig){
+		if (afConfig.IsWorkerSupported) {
+			var _workers = {};
+			
 			return {
 				createWorker: function(key, workPath){
 					if(_workers[key]){
@@ -32,7 +33,7 @@ angular.module('services').factory('afWorkers', [
 				}
 			};
 		}else{
-			return false;
+			return null;
 		}
     }]);	
 	

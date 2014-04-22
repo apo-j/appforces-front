@@ -19,7 +19,9 @@ var Configuration = (function(configuration){
         Psignin:"/signin",
         P404:"/404"
     };
-	self.locationMode = 'hashbang';
+	self.LocationMode = 'hashbang';
+	self.IsWorkerSupported = false;
+	self.WorkerBasePath = '/workers/';
 
     return self;
 }(Appforces.Configuration || {}))

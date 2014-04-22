@@ -10,6 +10,7 @@ var Events = (function(events){
     self.NAV_ERR = 'e:navigation.error';
 	self.RELOAD_PAGE_BODY = 'e:reload.page.body';
 	self.SEARCH = 'e:search';
+	self.LOCAL_SEARCH = 'e:local.search';
 	self.SEARCH_SUCCESS = 'e:search_success';
 	self.SEARCH_ERROR = 'e:search_error';
 	

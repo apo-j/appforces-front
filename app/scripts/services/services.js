@@ -79,6 +79,12 @@ angular.module('services').factory('afEventRegister', ['$rootScope', 'afConfig',
 						});
 					}
 				});
+			},
+			registerOnLocalSearch: function(scope){
+				scope.$on(afEvents.LOCAL_SEARCH, function(event, data){
+						scope.results = data;
+					}
+				});
 			}
 		}
     }]);	

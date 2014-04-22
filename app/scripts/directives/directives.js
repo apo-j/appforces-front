@@ -108,7 +108,7 @@ angular.module('directives').directive('afNavbarItem',
     }]);
 
 angular.module('directives').directive('afLink',
-    ['$http', '$templateCache', '$compile', 'afUtils','afConfig', 'afNavigation','afEnums', function($http, $templateCache, $compile, afUtils, afConfig, afNavigation, afEnums){
+    ['afUtils', 'afNavigation','afEnums', function(afUtils, afNavigation, afEnums){
         return {
             restrict: 'AE',
             scope:{
@@ -139,6 +139,37 @@ angular.module('directives').directive('afLink',
     }]);
 
 
+angular.module('directives').directive('afLocalSearchLauncher',
+    ['afUtils', 'afEnums', 'afDocsSearch', function(afUtils, afEnums, afDocsSearch){
+        return {
+            restrict: 'AE',
+            scope:{
+                keywords:'@'
+            },
+            compile: function(tElement, tAttr) {
+                return function(scope, iElement, iAttr) {
+					var href = 'javascript:void(0)';
+					
+					if(scope.afHref.indexOf(afEnums.NavigationType.outer) == 0){//permit right click of mouse on the outerbound link
+						href = afUtils.getUrl(scope.afHref, {pattern: afEnums.NavigationType.outer, content:''});
+					}
+					
+					if(scope.afHref.indexOf(afEnums.NavigationType.inner) == 0){//permit right click of mouse on the outerbound link
+						href = afUtils.getUrl(scope.afHref, {pattern: afEnums.NavigationType.inner, content:''});
+					}
+					
+					iElement.attr('href', href);
+					
+                    iElement.on('click', function(event){
+                        afNavigation.navigateTo({href: scope.afHref, target: scope.afTarget});
+						return false;
+                    });
+                };
+            }
+        }
+    }]);	
+	
+	
 /************************Side bar*********************************/
 angular.module('directives').directive('afSidebar',
     ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
@@ -198,6 +229,30 @@ angular.module('directives').directive('afPageBody',
             }
         }
     }]);
+	
+	
+angular.module('directives').directive('afLocalSearchContainer',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
+        return {
+            restrict: 'AE',
+            scope:{
+                templateUrl:'@',
+				results:'='
+            },
+            controller: ['$scope','afEventRegister', function($scope, afEventRegister){
+				afEventRegister.registerOnLocalSearch($scope);
+            }],
+            compile: function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.LocalSearch(scope.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.html(clone);
+                        });
+                    });
+                }
+            }
+        }
+    }]);	
 
 	
 
