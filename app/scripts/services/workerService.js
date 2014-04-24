@@ -2,20 +2,19 @@
  * Created by Pluto on 17/4/14.
  */
 'use strict';
-angular.module('services', ['ngResource']);
-	
+
 angular.module('services').factory('afWorkers', ['afConfig',
     function(afConfig){
 		if (afConfig.IsWorkerSupported) {
 			var _workers = {};
 			
 			return {
-				createWorker: function(key, workPath){
+				createWorker: function(key, workerPath){
 					if(_workers[key]){
 						return _workers[key];
 					}
 					
-					_workers[key] = new Worker(workPath);
+					_workers[key] = new Worker(workerPath);
 					return _workers[key];
 				},
 				getWorker:function(key){

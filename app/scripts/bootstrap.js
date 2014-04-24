@@ -14,7 +14,7 @@ angular.element(document).ready(function() {
 	//set navigator compatibilites config
 	//web worker
 	if (typeof (Worker) !== "undefined") {
-		Configuration.isWorkerSupported = true;
+		Configuration.IsWorkerSupported = true;
 	}
 	
     //send appHost back to server to fetch app config data before bootstrap

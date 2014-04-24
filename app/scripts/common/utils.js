@@ -34,6 +34,9 @@ var Utils = (function(utils){
     };
 
     self.templateUrl = {
+		template:function(name){
+			return name + '.html';
+		},
         header:function(name){
             return '/partials/header/' + name + '.html';
         },

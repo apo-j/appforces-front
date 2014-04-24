@@ -22,6 +22,7 @@ angular.module("appForce", [
   .constant('afEnums', Enums)
   .constant('afEvents', Events)
   .constant('afComponents', Components)
+  .constant('afLunr', lunr)
   .config(['afUtilsProvider', '_Utils', function(afUtilsProvider, _Utils){
 	afUtilsProvider.initUtils(_Utils);
   }])
@@ -81,6 +82,10 @@ angular.module("appForce", [
         });
         //Register the events listeners of errors
         $rootScope.$on(afEvents.NAV_ERR, function(event, data) {
+            $log.error(angular.toJson(angular.extend(event, data),true));
+        });
+		//Register the events listeners of errors
+		$rootScope.$on(afEvents.ERROR, function(event, data) {
             $log.error(angular.toJson(angular.extend(event, data),true));
         });
     }]);

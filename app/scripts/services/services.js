@@ -58,8 +58,8 @@ angular.module('services').factory('afData', ['$resource','afConfig','$http',
 		}
     }]);	
 	
-angular.module('services').factory('afEventRegister', ['$rootScope', 'afConfig','afData','afEvents',
-    function($rootScope, afConfig, afData, afEvents){
+angular.module('services').factory('afEventRegister', ['$rootScope', 'afConfig','afData','afEvents','afDocsSearch',
+    function($rootScope, afConfig, afData, afEvents, afDocsSearch){
         return {
 			registerOnPageReload: function(scope){
 				scope.$on(afEvents.RELOAD_PAGE_BODY, function(event, data){
@@ -82,8 +82,12 @@ angular.module('services').factory('afEventRegister', ['$rootScope', 'afConfig',
 			},
 			registerOnLocalSearch: function(scope){
 				scope.$on(afEvents.LOCAL_SEARCH, function(event, data){
-						scope.results = data;
-					}
+						scope.results = afDocsSearch.search(data.query);
+						
+						scope.results.then(function(data){
+							alert(angular.toJson(data, true));
+						});
+						
 				});
 			}
 		}

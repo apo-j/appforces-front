@@ -21,7 +21,7 @@ var Configuration = (function(configuration){
     };
 	self.LocationMode = 'hashbang';
 	self.IsWorkerSupported = false;
-	self.WorkerBasePath = '/workers/';
+	self.WorkerBasePath = '/scripts/workers/';
 
     return self;
 }(Appforces.Configuration || {}))

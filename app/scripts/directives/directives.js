@@ -139,31 +139,15 @@ angular.module('directives').directive('afLink',
     }]);
 
 
-angular.module('directives').directive('afLocalSearchLauncher',
-    ['afUtils', 'afEnums', 'afDocsSearch', function(afUtils, afEnums, afDocsSearch){
+angular.module('directives').directive('afLocalSearchLink',
+    ['afUtils', 'afEvents','$rootScope', function(afUtils, afEvents, $rootScope){
         return {
             restrict: 'AE',
-            scope:{
-                keywords:'@'
-            },
             compile: function(tElement, tAttr) {
                 return function(scope, iElement, iAttr) {
-					var href = 'javascript:void(0)';
-					
-					if(scope.afHref.indexOf(afEnums.NavigationType.outer) == 0){//permit right click of mouse on the outerbound link
-						href = afUtils.getUrl(scope.afHref, {pattern: afEnums.NavigationType.outer, content:''});
-					}
-					
-					if(scope.afHref.indexOf(afEnums.NavigationType.inner) == 0){//permit right click of mouse on the outerbound link
-						href = afUtils.getUrl(scope.afHref, {pattern: afEnums.NavigationType.inner, content:''});
-					}
-					
-					iElement.attr('href', href);
-					
-                    iElement.on('click', function(event){
-                        afNavigation.navigateTo({href: scope.afHref, target: scope.afTarget});
-						return false;
-                    });
+					iElement.on('click', function(){
+						$rootScope.$broadcast(afEvents.LOCAL_SEARCH, {query: iAttr.keywords});
+					});
                 };
             }
         }
@@ -244,7 +228,7 @@ angular.module('directives').directive('afLocalSearchContainer',
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.LocalSearch(scope.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.template(scope.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.html(clone);
                         });

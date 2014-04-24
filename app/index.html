@@ -44,6 +44,7 @@
        ga('send', 'pageview');
     </script>
     <script src="vendor/Namespace.js"></script>
+	<script src="vendor/lunr.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <!-- build:js({.tmp,app}) scripts/common.js -->
@@ -54,6 +55,7 @@
     <script src="scripts/common/events.js"></script>
     <script src="scripts/common/components.js"></script>
     <!-- endbuild -->
+	
     <script src="bower_components/angular/angular.js"></script>
 	<script src="vendor/jqueryui/js/jquery-ui-1.10.4.custom.js"></script>
     <script src="bower_components/angular-mocks/angular-mocks.js"></script>
@@ -73,6 +75,10 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/bootstrap.js"></script>
         <script src="scripts/services/services.js"></script>
+		<script src="scripts/services/workerService.js"></script>
+		<script src="scripts/services/workerManagerService.js"></script>
+		<script src="scripts/services/lunrSearchService.js"></script>
+		<script src="scripts/services/docsSearchService.js"></script>
         <script src="scripts/directives/directives.js"></script>
         <script src="scripts/directives/components.js"></script>
         <script src="scripts/app.js"></script>

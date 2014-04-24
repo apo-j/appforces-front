@@ -13,6 +13,7 @@ var Events = (function(events){
 	self.LOCAL_SEARCH = 'e:local.search';
 	self.SEARCH_SUCCESS = 'e:search_success';
 	self.SEARCH_ERROR = 'e:search_error';
+	self.ERROR = 'e:error';
 	
     return self;
 }(Appforces.Events || {}))
