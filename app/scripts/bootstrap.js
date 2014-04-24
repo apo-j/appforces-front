@@ -11,12 +11,12 @@ angular.element(document).ready(function() {
         appHost = appHost.split(':')[0];//remove port number if any
     }
 
-    if (typeof (Worker) !== "undefined") {
-        Configuration.isWorkerSupported = true;
-    }else{
-        Configuration.isWorkerSupported = false;
-    }
-
+	//set navigator compatibilites config
+	//web worker
+	if (typeof (Worker) !== "undefined") {
+		Configuration.IsWorkerSupported = true;
+	}
+	
     //send appHost back to server to fetch app config data before bootstrap
     $.getJSON(Configuration.AppConfigUrl + appHost +  '.json', function(data){
         if(data && data.status == 200){
