@@ -20,11 +20,7 @@ importScripts('/vendor/lunr.min.js', '/bower_components/underscore/underscore.js
 			index.add(value);
 		},
 		stores: function(data){
-			index = lunr(function(){
-					this.ref('id');
-					this.field('title', {boost: 50});
-					this.field('keywords', { boost : 20 });
-				});
+			index = lunr.Index.load(data.index);
 			documents = data.documents; 	
 			_.each(documents, function(value, key){
 				var doc = _.extend({id: key}, value);

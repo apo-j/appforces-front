@@ -7,7 +7,7 @@ angular.module('services').factory('afLunrSearch', ['afConfig', 'afLunr','afWork
     function(afConfig, afLunr, afWorkerManager, $q, $rootScope, afEvents){	
 		var _deferred;
 			
-		return function(docs, fromJSON){//docs == null if fromJSON is true
+		return function(index, docs){
 			var documents = docs;
 			if (afConfig.IsWorkerSupported) {
 				var actionHandlers = {
@@ -21,11 +21,11 @@ angular.module('services').factory('afLunrSearch', ['afConfig', 'afLunr','afWork
 							_deferred.reject(status);
 						}
 					}
-				}
+				};
 			
 				var searchWorker = afWorkerManager.getSearchWorker();
 				
-				searchWorker.postMessage({action: 'stores', data: {documents: documents}});//init index and add docs
+				searchWorker.postMessage({action: 'stores', data: {index: index, documents: documents}});//init index and add docs
 				searchWorker.onmessage = function(event){
 					if(actionHandlers.hasOwnProperty(event.data.action)){
 						actionHandlers[event.data.action](event.data.data, event.data.status);
@@ -45,21 +45,13 @@ angular.module('services').factory('afLunrSearch', ['afConfig', 'afLunr','afWork
 			}else{
 				var _engine;
 
-				if(!fromJSON){
-					_engine = afLunr(function(){
-						this.ref('id');
-						this.field('title', {boost: 50});
-						this.field('keywords', { boost : 20 });
-					});
-					
-					angular.forEach(documents, function(document, key){
-						var doc = angular.extend({id: key}, document);
-						_engine.add(doc);
-					});
-				}else{
-					//TODO
-					_engine = afLunr.Index.load(index.toJSON());
-				}
+				_engine = afLunr.Index.load(index);
+				
+				angular.forEach(documents, function(document, key){
+					var doc = angular.extend({id: key}, document);
+					_engine.add(doc);
+				});
+			
 
 				return {
 					search: function(q){
