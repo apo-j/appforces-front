@@ -18,6 +18,7 @@ angular.module("appForce", [
   'http-auth-interceptor'
 ])
   .constant('_Utils', Utils)
+  .constant('afLunr', lunr)
   .constant('afConfig', Configuration)
   .constant('afEnums', Enums)
   .constant('afEvents', Events)
