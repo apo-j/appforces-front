@@ -37,11 +37,10 @@ angular.module('services').factory('afLunrSearch', ['afConfig', 'afLunr','afWork
 				return {
 					search: function(q){
 						_deferred = $q.defer();
-						searchWorker.postMessage({action: 'search', data: q});
+						searchWorker.postMessage({action: 'search', data: {query: q, limit: afConfig.AppConfig.LocalSearchLimit}});
 						return _deferred.promise;
 					}
 				}
-				
 			}else{
 				var _engine;
 
@@ -51,24 +50,21 @@ angular.module('services').factory('afLunrSearch', ['afConfig', 'afLunr','afWork
 					var doc = angular.extend({id: key}, document);
 					_engine.add(doc);
 				});
-			
 
 				return {
 					search: function(q){
                         _deferred = $q.defer();
 						if(_engine){
 							var results = [];
+                            var limit = afConfig.AppConfig.LocalSearchLimit === 0 ? results.length : afConfig.AppConfig.LocalSearchLimit || afConfig.LocalSearchLimit;
+
 							angular.forEach(_engine.search(q), function(result){
-								var key = result.ref;
-								var item = documents[key];
-							
-								var limit = 14;
 								if(results.length < limit) {
+                                    var item = documents[result.ref];
 									results.push(item);
 								}
 							});
-							
-							
+
 							_deferred.resolve(results);
 						}else{
 							_deferred.reject(q);
@@ -77,9 +73,6 @@ angular.module('services').factory('afLunrSearch', ['afConfig', 'afLunr','afWork
 					}
 				}
 			}
-			
-		
-			
 		}
     }]);	
 	

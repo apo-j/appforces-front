@@ -2,6 +2,7 @@
  * Created by xyj on 21/01/14.
  */
 'use strict';
+var Appforces = Appforces || {};
 
 var Configuration = (function(configuration){
     var self = configuration;
@@ -22,6 +23,6 @@ var Configuration = (function(configuration){
 	self.LocationMode = 'hashbang';
 	self.IsWorkerSupported = false;
 	self.WorkerBasePath = '/scripts/workers/';
-
+    self.LocalSearchLimit = 40;
     return self;
 }(Appforces.Configuration || {}))

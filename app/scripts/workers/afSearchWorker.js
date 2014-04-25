@@ -3,7 +3,7 @@
  */
 'use strict';
 
-importScripts('/vendor/lunr.min.js', '/bower_components/underscore/underscore.js'); 
+importScripts('/vendor/lunr.min.js', '/bower_components/underscore/underscore.js', '/scripts/common/config.js');
 
 (function(){
 	var index;
@@ -29,12 +29,11 @@ importScripts('/vendor/lunr.min.js', '/bower_components/underscore/underscore.js
 		},
 		search: function(data){
 			var results = [];
-			_.each(index.search(data), function(value){
-				var key = value.ref;
-				var item = documents[key];
-				
-				var limit = 14;
+
+            var limit = data.limit == 0 ? results.length  : data.limit || Configuration.LocalSearchLimit;
+			_.each(index.search(data.query), function(result){
 				if(results.length < limit) {
+                    var item = documents[result.ref];
 					results.push(item);
 				}
 			}) 

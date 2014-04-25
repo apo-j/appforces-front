@@ -90,8 +90,36 @@ angular.module('directives.components').directive('afSearch',
                 };
             }
         }
-    }]);	
-	
+    }]);
+
+angular.module('directives.components').directive('afLocalSearch',
+    ['$http', '$templateCache', '$rootScope', '$compile', 'afUtils', 'afEvents','afConfig','$location', function( $http, $templateCache, $rootScope, $compile, afUtils, afEvents, afConfig, $location){
+        return {
+            restrict: 'AE',
+            scope:{
+                afdata:'='
+            },
+            controller: ['$scope','$rootScope', function($scope, $rootScope){
+                $scope.q = '';
+                $scope.submit = function(){
+                    $rootScope.$broadcast(afEvents.LOCAL_SEARCH, {query: $scope.q});
+                };
+               /* $scope.search = function(query){
+                    $rootScope.$broadcast(afEvents.LOCAL_SEARCH, {query: query});
+                };*/
+            }],
+            compile: function(tElement, tAttr) {
+                return function(scope, iElement, iAttr) {
+                    $http.get(afUtils.templateUrl.component('localSearch', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.html(clone);
+                        });
+                    });
+                };
+            }
+        }
+    }]);
+
 angular.module('directives.components').directive('afDatepicker',
         ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
             return {
