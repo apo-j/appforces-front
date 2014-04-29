@@ -23,7 +23,6 @@ angular.module("appForce", [
   .constant('afEnums', Enums)
   .constant('afEvents', Events)
   .constant('afComponents', Components)
-  .constant('afLunr', lunr)
   .config(['afUtilsProvider', '_Utils', function(afUtilsProvider, _Utils){
 	afUtilsProvider.initUtils(_Utils);
   }])

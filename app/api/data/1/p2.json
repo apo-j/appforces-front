@@ -1,0 +1,7 @@
+{
+    "templateUrl":"components/accordion/3",
+    "os": "Android 2.3",
+    "ui": "Android",
+    "isSearchResultContainer": true,
+    "searchId": "123456"
+}

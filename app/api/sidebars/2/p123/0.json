@@ -1,0 +1,63 @@
+{
+    "status": 200,
+	"id":5,
+	"type":5,
+	"templateUrl": "sidebar",
+	"isLoaded": true,
+	"style": "",
+	"css":"",
+	"data":"03/12/2014",
+	"items":[
+		{
+			"id":4,
+			"type":4,
+			"templateUrl":"",
+			"isLoaded": true,
+			"style": "",
+			"css":"",
+			"data":"03/12/2014",
+			"items":[
+				{
+					"id":2,
+					"type":2,
+					"templateUrl":"1",
+					"isLoaded": true,
+					"style": "",
+					"css":"",
+					"data":"03/12/2014",
+					"items":[]
+				},
+				{
+					"id":3,
+					"type":3,
+					"templateUrl":"1",
+					"isLoaded": true,
+					"style": "",
+					"css":"",
+					"data":"03/12/2014",
+					"items":[]
+				}
+			]
+		},
+		{
+			"id":2,
+			"type":1,
+			"templateUrl":"1",
+			"isLoaded": true,
+			"style": "",
+			"css":"",
+			"data":"03/12/2014",
+			"items":[]
+		},
+		{
+			"id":3,
+			"type":3,
+			"templateUrl":"2",
+			"isLoaded": false,
+			"style": "",
+			"css":"",
+			"data":"03/12/2014",
+			"items":[]
+		}
+	]
+}
