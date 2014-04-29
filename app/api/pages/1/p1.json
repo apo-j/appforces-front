@@ -1,6 +1,27 @@
 {
     "status": 200,
-    "id": "p1",
-    "templateUrl":"components/accordion/1",
-    "title": "Home"
+    "templateUrl":"1",
+    "isSearchResultContainer": false,
+    "searchId": "123456",
+    "items":[
+        {
+            "id":4,
+            "type":1,
+            "templateUrl":"1",
+            "isLoaded": true,
+            "style": "",
+            "css":"",
+            "data":"03/12/2014"
+        },
+        {
+            "id":4,
+            "type":3,
+            "templateUrl":"1",
+            "isLoaded": true,
+            "style": "",
+            "css":"",
+            "data":""
+        }
+    ]
+
 }

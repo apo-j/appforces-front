@@ -197,16 +197,16 @@ angular.module('directives').directive('afPageBody',
 				//register on page reload event
 				afEventRegister.registerOnPageReload($scope);
 				
-				if($scope.afdata.isSearchResultContainer === true){
+				/*if($scope.afdata.isSearchResultContainer === true){
 					//register on search event
 					afEventRegister.registerOnSearch($scope, $scope.afdata.searchId);
-				}
+				}*/
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.pageBody(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.page(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
-                            iElement.html(clone);
+                            iElement.replaceWith(clone);
                         });
                     });
                 }

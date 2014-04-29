@@ -20,7 +20,6 @@
             "items": [
                 {
                     "name": "",
-                    "isRoot": true,
                     "url": "/",
                     "css":"",
                     "style":"display:inline-block;min-width:50px;text-align:center",

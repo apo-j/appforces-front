@@ -297,9 +297,13 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
             return _currentPage;
         };
 
-        self.pageData = function(){
+        self.page = function(){
             return $resource('api/pages/:appId/:pageId.json');//, {get:{cache: self.cache}});
-        }
+        };
+
+        self.currentPageData = function(){
+            return self.page().get({appId: afConfig.AppConfig.appId, pageId: self.currentPage().id}).$promise;
+        };
 
         self.pageTitle = function(){
             return (self.currentPage()? self.currentPage().title : null) || afConfig.AppConfig.appName || afConfig.AppName;
