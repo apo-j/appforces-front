@@ -11,7 +11,29 @@
             "isLoaded": true,
             "style": "",
             "css":"",
-            "data":"03/12/2014"
+            "data":"03/12/2014",
+            "items":[
+                {
+                    "id":4,
+                    "type":1,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"col-xs-4",
+                    "data":"03/12/2014",
+                    "items":[]
+                },
+                {
+                    "id":4,
+                    "type":3,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"col-xs-3",
+                    "data":"",
+                    "items":[]
+                }
+            ]
         },
         {
             "id":4,
@@ -20,7 +42,19 @@
             "isLoaded": true,
             "style": "",
             "css":"",
-            "data":""
+            "data":"",
+            "items":[
+                {
+                    "id":4,
+                    "type":3,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"",
+                    "data":"",
+                    "items":[]
+                }
+            ]
         }
     ]
 

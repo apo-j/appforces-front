@@ -236,7 +236,18 @@ angular.module('directives').directive('afLocalSearchContainer',
                 }
             }
         }
-    }]);	
+    }]);
+
+angular.module('directives').directive('afRow',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
+        return {
+            restrict: 'AE',
+            scope:{
+               afdata:'='
+            },
+            templateUrl: '/partials/row.html'
+        }
+    }]);
 
 	
 
