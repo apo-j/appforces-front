@@ -120,7 +120,48 @@ angular.module('directives.components').directive('afLocalSearch',
         }
     }]);
 
+
+angular.module('directives.components').directive('afSearchResult',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+        return {
+            restrict: "AE",
+            scope:{
+                resultTemplateUrl:'@',
+                afdata:"="
+            },
+            compile:function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.component('searchResult', scope.resultTemplateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.replaceWith(clone);
+                        });
+                    });
+                }
+            }
+        }
+    }]);
+
 angular.module('directives.components').directive('afDatepicker',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+        return {
+            restrict: "AE",
+            scope:{
+                afdata:"="
+            },
+            compile:function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.component('datepicker', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.replaceWith(clone);
+                        });
+                    });
+                }
+            }
+        }
+    }]);
+
+
+angular.module('directives.components').directive('afDatepickerTemplate',
         ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
             return {
 				require: "ngModel",
@@ -186,9 +227,9 @@ angular.module('directives.components').directive('afAccordion',
             },
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.components('accordion', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.component('accordion', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
-                            iElement.html(clone);
+                            iElement.replaceWith(clone);
                         });
                     });
                 }
@@ -205,7 +246,7 @@ angular.module('directives.components').directive('afCarrousel',
             },
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.components('carrousel', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.component('carrousel', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.html(clone);
                         });

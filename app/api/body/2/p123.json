@@ -1,0 +1,43 @@
+{
+	"id":5,
+	"type":5,
+	"templateUrl": "sidebar",
+	"items":[
+		{
+			"id":4,
+			"type":4,
+			"templateUrl":"",
+			"isComposite":true,
+			"items":[
+				{
+					"id":2,
+					"type":2,
+					"templateUrl":"",
+					"isComposite":false,
+					"items":[]
+				},
+				{
+					"id":3,
+					"type":3,
+					"templateUrl":"",
+					"isComposite":false,
+					"items":[]
+				}
+			]
+		},
+		{
+			"id":2,
+			"type":2,
+			"templateUrl":"",
+			"isComposite":false,
+			"items":[]
+		},
+		{
+			"id":3,
+			"type":3,
+			"templateUrl":"",
+			"isComposite":false,
+			"items":[]
+		}
+	]
+}

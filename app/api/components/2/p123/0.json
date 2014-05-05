@@ -1,0 +1,55 @@
+{
+	"id":5,
+	"type":5,
+	"templateUrl": "sidebar",
+	"isContainer":true,
+	"isLoaded": true,
+	"data":{},
+	"items":[
+		{
+			"id":4,
+			"type":4,
+			"templateUrl":"",
+			"isContainer":true,
+			"isLoaded": true,
+			"data":{},
+			"items":[
+				{
+					"id":2,
+					"type":2,
+					"templateUrl":"",
+					"isContainer":false,
+					"isLoaded": true,
+					"data":{},
+					"items":[]
+				},
+				{
+					"id":3,
+					"type":3,
+					"templateUrl":"",
+					"isContainer":false,
+					"isLoaded": true,
+					"data":{},
+					"items":[]
+				}
+			]
+		},
+		{
+			"id":2,
+			"type":2,
+			"templateUrl":"",
+			"isContainer":false,
+			"isLoaded": true,
+			"data":{},
+			"items":[]
+		},
+		{
+			"id":3,
+			"type":3,
+			"templateUrl":"",
+			"isContainer":false,
+			"isLoaded": true,
+			"items":[]
+		}
+	]
+}

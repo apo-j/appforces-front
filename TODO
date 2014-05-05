@@ -10,5 +10,5 @@ Version 2:
 1: custom 404 page                                                                  :OK
 2: add sub users of a specific site
 3: Search: 针对某个模块内部内容的搜索（暂时仅前端）
-
+4: Redo ng-repeat in partials/sidebar/sidebar.html and partials/pages/1.html
 NB: 404, 401, 500 pages must be available, if not, a default one should be offered

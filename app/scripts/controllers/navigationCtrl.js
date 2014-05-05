@@ -7,6 +7,6 @@ angular.module('controllers')
     .controller('NavigationCtrl', ['$scope', 'afEvents', 'afDocsSearch', 'afPage','page',
         function ($scope, afEvents, afDocsSearch, afPage, page) {
             //Set default page data
-			$scope.pageData = page.data;
+			$scope.pageData = page;
 			
         }]);

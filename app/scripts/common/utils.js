@@ -58,8 +58,8 @@ var Utils = (function(utils){
         component:function(type, templateUrl){
             return '/partials/components/#{type}/templates/#{url}.html'.replace(/#\{type\}/, type).replace(/#\{url\}/, templateUrl);
         },
-		pageBody:function(url){
-            return '/partials/' + url + '.html';
+        page:function(url){
+            return '/partials/pages/' + url + '.html';
         }
     }
 

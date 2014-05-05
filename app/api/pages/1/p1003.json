@@ -1,0 +1,15 @@
+{
+    "status": 200,
+    "id":"p1003",
+    "type":"102",
+    "title": "Not found",
+    "pageSecurity":{
+        "requireLogin": false,
+        "passwordDigest": ""
+    },
+    "code":"sp404",
+    "url":"/404",
+    "isIndexPage": false,
+    "layoutUrl":"40401",
+    "ctrl": "NavigationCtrl"
+}

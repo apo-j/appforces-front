@@ -85,8 +85,7 @@ angular.module('services').factory('afEventRegister', ['$rootScope', 'afConfig',
 					scope.results = afDocsSearch.search(data.query);
 
 					scope.results.then(function(data){
-						scope.results = data;					
-						alert(angular.toJson(data, true));
+						scope.results = data;
 					});
 						
 				});
@@ -297,9 +296,13 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
             return _currentPage;
         };
 
-        self.pageData = function(){
+        self.page = function(){
             return $resource('api/pages/:appId/:pageId.json');//, {get:{cache: self.cache}});
-        }
+        };
+
+        self.currentPageData = function(){
+            return self.page().get({appId: afConfig.AppConfig.appId, pageId: self.currentPage().id}).$promise;
+        };
 
         self.pageTitle = function(){
             return (self.currentPage()? self.currentPage().title : null) || afConfig.AppConfig.appName || afConfig.AppName;

@@ -1,0 +1,32 @@
+{
+    "status": 200,
+	"id":5,
+	"type":5,
+	"templateUrl": "sidebar",
+	"style": "",
+	"css":"",
+	"isLoaded": true,
+	"data":{},
+	"items":[
+		{
+			"id":100,
+			"type":2,
+			"templateUrl":"2",
+			"style": "",
+			"css":"",
+			"isLoaded": true,
+			"data":{},
+			"items":[]
+		},
+		{
+			"id":101,
+			"type":3,
+			"templateUrl":"2",
+			"style": "",
+			"css":"",
+			"isLoaded": true,
+			"data":{},
+			"items":[]
+		}
+	]
+}

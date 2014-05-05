@@ -1,0 +1,138 @@
+{
+    "status": 200,
+    "appId" : 2,
+    "appName" : "sales",
+	"faviconUrl" : "http://www.w3schools.com/favicon.ico",
+	"appleTouchFaviconUrl": "",
+    "styleId":"styles/main.less",
+    "isI18nOn":true,
+	"languageId": 1,
+	"specialPages":[
+		{	
+			"id":"p1230",
+			"type":"100",
+			"title": "Sign in",
+			"state":"signin",
+			"pageSecurity":{
+				"requireLogin": false,
+				"passwordDigest": ""
+			},
+			"code":"spSignin",
+			"url":"/signin",
+			"layoutUrl":"contact"
+		},
+		{	
+			"id":"p1231",
+			"type":"101",
+			"title": "Sign up",
+			"state":"signup",
+			"pageSecurity":{
+				"requireLogin": false,
+				"passwordDigest": ""
+			},
+			"code":"spSignup",
+			"url":"/signup",
+			"isIndexPage": false,
+			"layoutUrl":"contact"
+		},
+		{	
+			"id":"p1232",
+			"type":"102",
+			"title": "Not found",
+			"state":"404",
+			"pageSecurity":{
+				"requireLogin": false,
+				"passwordDigest": ""
+			},
+			"code":"sp404",
+			"url":"/404",
+			"isIndexPage": false,
+			"layoutUrl":"contact"
+		},
+		{	
+			"id":"p1233",
+			"type":"104",
+			"title": "Unauthorized",
+			"state":"401",
+			"pageSecurity":{
+				"requireLogin": false,
+				"passwordDigest": ""
+			},
+			"code":"sp401",
+			"url":"/401",
+			"isIndexPage": false,
+			"layoutUrl":"contact"
+		},
+		{	
+			"id":"p1234",
+			"type":"103",
+			"title": "Server error",
+			"state":"500",
+			"pageSecurity":{
+				"requireLogin": false,
+				"passwordDigest": ""
+			},
+			"code":"sp500",
+			"url":"/500",
+			"isIndexPage": false,
+			"layoutUrl":"contact"
+		}
+	],
+    "pages":[
+	{	
+			"id":"p1230",
+			"type":"100",
+			"title": "Sign in",
+			"state":"signin",
+			"pageSecurity":{
+				"requireLogin": false,
+				"passwordDigest": ""
+			},
+			"code":"spSignin",
+			"url":"/signin",
+			"layoutUrl":"signin"
+		},
+		{
+			"id":"p123",
+			"type":"0",
+			"title": "accueil",
+			"state":"index",
+			"pageSecurity":{
+				"requireLogin": false,
+				"passwordDigest": ""
+			},
+			"code":"index",
+			"url":"/",
+			"isIndexPage": true,
+			"layoutUrl":"main"
+		}, 
+		{
+			"id":"p456",
+			"type":"0",
+			"title": "about",
+			"state":"about",
+			"pageSecurity":{
+				"requireLogin": true,
+				"passwordDigest": ""
+			},
+			"code":"about",
+			"url":"/about",
+			"isIndexPage": false,
+			"layoutUrl":"about"
+		}, 
+		{	
+			"id":"p789",
+			"type":"0",
+			"title": "contact",
+			"state":"contact",
+			"pageSecurity":{
+				"requireLogin": false,
+				"passwordDigest": ""
+			},
+			"code":"contact",
+			"url":"/contact",
+			"isIndexPage": false,
+			"layoutUrl":"contact"
+		}
+	]
+}

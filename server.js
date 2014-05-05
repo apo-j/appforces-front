@@ -111,7 +111,7 @@ function apiProxy() {
 
 
 app.configure(function() {
-    app.set('port', process.env.PORT || 5050);
+    app.set('port', process.env.PORT || 10000);
     //app.set('views', 'app/views');
     //app.set('view engine', 'jade');
     app.use(express.logger('dev'));

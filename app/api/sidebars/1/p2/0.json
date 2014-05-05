@@ -1,0 +1,34 @@
+{
+    "status": 200,
+    "id":5,
+    "type":6,
+    "templateUrl": "sidebar",
+    "isLoaded": true,
+    "style": "",
+    "css":"",
+    "data":"",
+    "items":[
+        {
+            "id":4,
+            "type":7,
+            "templateUrl":"1",
+            "isLoaded": true,
+            "style": "",
+            "css":"",
+            "data":{
+                "searchId": "123456",
+                "criteria":[
+                    {
+                        "name":"criteria1",
+                        "val": ""
+                    } ,
+                    {
+                        "name": "criteria2",
+                        "val": ""
+                    }
+                ]
+            },
+            "items":[]
+        }
+    ]
+}

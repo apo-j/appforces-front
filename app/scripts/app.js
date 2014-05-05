@@ -23,7 +23,6 @@ angular.module("appForce", [
   .constant('afEnums', Enums)
   .constant('afEvents', Events)
   .constant('afComponents', Components)
-  .constant('afLunr', lunr)
   .config(['afUtilsProvider', '_Utils', function(afUtilsProvider, _Utils){
 	afUtilsProvider.initUtils(_Utils);
   }])
@@ -54,9 +53,7 @@ angular.module("appForce", [
                        //TODO verify if this page needs authentication before open it
                         var _p = afPage.setCurrentPage();
                         if(_p){
-                            //use page id to fetch its default data
-                            //todo delete .json
-                            return afData.get(_p.id + '.json');
+                            return afPage.currentPageData();//afData.get(_p.id + '.json');
                              //return afPage.pageData().get({appId: afConfig.AppConfig.appId, pageId: _p.id}).$promise;
                         }
                     }]

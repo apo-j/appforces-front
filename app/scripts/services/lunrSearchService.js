@@ -37,7 +37,7 @@ angular.module('services').factory('afLunrSearch', ['afConfig', 'afLunr','afWork
 				return {
 					search: function(q){
 						_deferred = $q.defer();
-						searchWorker.postMessage({action: 'search', data: {query: q, limit: afConfig.AppConfig.LocalSearchLimit}});
+						searchWorker.postMessage({action: 'search', data: {query: q, limit: afConfig.AppConfig.localSearchLimit}});
 						return _deferred.promise;
 					}
 				}
@@ -56,7 +56,7 @@ angular.module('services').factory('afLunrSearch', ['afConfig', 'afLunr','afWork
                         _deferred = $q.defer();
 						if(_engine){
 							var results = [];
-                            var limit = afConfig.AppConfig.LocalSearchLimit === 0 ? results.length : afConfig.AppConfig.LocalSearchLimit || afConfig.LocalSearchLimit;
+                            var limit = afConfig.AppConfig.localSearchLimit === 0 ? results.length : afConfig.AppConfig.LocalSearchLimit || afConfig.LocalSearchLimit;
 
 							angular.forEach(_engine.search(q), function(result){
 								if(results.length < limit) {
