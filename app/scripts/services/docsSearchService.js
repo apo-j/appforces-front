@@ -5,7 +5,7 @@
 
 var docs = [];
 
-for(var i = 0; i < 15000; i++){
+for(var i = 0; i < 3000; i++){
     docs.push( {
         title: 'two' + i,
         keywords: 'two title titre 2 ' + i ,

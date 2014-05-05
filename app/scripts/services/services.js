@@ -82,10 +82,10 @@ angular.module('services').factory('afEventRegister', ['$rootScope', 'afConfig',
 			},
 			registerOnLocalSearch: function(scope){
 				scope.$on(afEvents.LOCAL_SEARCH, function(event, data){
-					scope.results = afDocsSearch.search(data.query);
+                    scope.results = afDocsSearch.search(data.query);
 
-					scope.results.then(function(data){
-						scope.results = data;
+                    scope.results.then(function(data){
+                        scope.results = data;
 					});
 						
 				});

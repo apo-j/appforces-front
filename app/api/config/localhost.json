@@ -8,7 +8,7 @@
     "isI18nOn":false,
     "languageId": 1,
 	"isLocalSearchActivated": true,
-	"localSearchLimit": 2,
+	"localSearchLimit": 30,
     "pages":[
         {
             "id":"p1001",

@@ -227,10 +227,14 @@ angular.module('directives').directive('afLocalSearchContainer',
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.component('localSearchContainer', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
-                        $compile(tplContent)(scope, function(clone, scope){
-                            iElement.html(clone);
-                        });
+                    scope.$watch('results', function(value){
+                        if(angular.isArray(value)){
+                            $http.get(afUtils.templateUrl.component('localSearchContainer', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                                $compile(tplContent)(scope, function(clone, scope){
+                                    iElement.html(clone);
+                                });
+                            });
+                        }
                     });
                 }
             }
