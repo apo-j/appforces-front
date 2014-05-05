@@ -85,8 +85,7 @@ angular.module('services').factory('afEventRegister', ['$rootScope', 'afConfig',
 					scope.results = afDocsSearch.search(data.query);
 
 					scope.results.then(function(data){
-						scope.results = data;					
-						alert(angular.toJson(data, true));
+						scope.results = data;
 					});
 						
 				});

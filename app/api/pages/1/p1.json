@@ -10,7 +10,7 @@
             "templateUrl":"1",
             "isLoaded": true,
             "style": "",
-            "css":"",
+            "css":"col-xs-5",
             "data":"03/12/2014",
             "items":[
                 {
@@ -37,7 +37,7 @@
         },
         {
             "id":4,
-            "type":3,
+            "type":9,
             "templateUrl":"1",
             "isLoaded": true,
             "style": "",
@@ -46,11 +46,12 @@
             "items":[
                 {
                     "id":4,
-                    "type":3,
+                    "type":9,
                     "templateUrl":"1",
+                    "itemTemplateUrl":"1",
                     "isLoaded": true,
                     "style": "",
-                    "css":"",
+                    "css":"col-xs-10",
                     "data":"",
                     "items":[]
                 }

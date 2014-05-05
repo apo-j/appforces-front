@@ -8,29 +8,6 @@
     "css":"",
     "data":"",
     "items":[
-        {
-            "id":4,
-            "type":4,
-            "templateUrl":"list",
-            "isLoaded": true,
-            "style": "",
-            "css":"",
-            "data":"",
-            "items":[
-                {
-                    "id":2,
-                    "type":5,
-                    "templateUrl":"1",
-                    "isLoaded": true,
-                    "url":"£outerhttp://www.ifeng.com",
-                    "target":"_blank",
-                    "style": "",
-                    "css":"",
-                    "data":"巴黎世家",
-                    "items":[]
-                }
-            ]
-        },
 		{
             "id":5,
             "type":8,
@@ -39,28 +16,6 @@
             "style": "",
             "css":"",
             "data":{},
-            "items":[]
-        },
-        {
-            "id":4,
-            "type":7,
-            "templateUrl":"1",
-            "isLoaded": true,
-            "style": "",
-            "css":"",
-            "data":{
-                "searchId": "123456",
-                "criteria":[
-                    {
-                        "name":"criteria1",
-                        "val": ""
-                    } ,
-                    {
-                        "name": "criteria2",
-                        "val": ""
-                    }
-                ]
-            },
             "items":[]
         }
     ]

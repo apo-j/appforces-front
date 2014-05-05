@@ -220,15 +220,14 @@ angular.module('directives').directive('afLocalSearchContainer',
         return {
             restrict: 'AE',
             scope:{
-                templateUrl:'@',
-				results:'='
+                afdata:'='
             },
             controller: ['$scope','afEventRegister', function($scope, afEventRegister){
-				afEventRegister.registerOnLocalSearch($scope);
+                afEventRegister.registerOnLocalSearch($scope);
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.template(scope.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.component('localSearchContainer', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.html(clone);
                         });
@@ -237,6 +236,8 @@ angular.module('directives').directive('afLocalSearchContainer',
             }
         }
     }]);
+
+
 
 angular.module('directives').directive('afRow',
     ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
