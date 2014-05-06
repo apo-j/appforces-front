@@ -200,7 +200,7 @@ angular.module('directives.components').directive('afDatepickerTemplate',
 						};
 						
 						var setUpDatePicker = function () {
-							var options = scope.$eval(iAttrs.afDatepicker) || {};
+							var options = scope.$eval(iAttrs.afDatepickerTemplate) || {};
 							options.onSelect = onSelectHandler(options.onSelect);
 							iElement.bind('change', updateModel);
 							iElement.datepicker('destroy');
@@ -212,7 +212,7 @@ angular.module('directives.components').directive('afDatepickerTemplate',
 							iElement.datepicker("setDate", ngModelCtrl.$viewValue);
 						};
 						
-						scope.$watch(iAttrs.afDatepicker, setUpDatePicker, true);
+						scope.$watch(iAttrs.afDatepickerTemplate, setUpDatePicker, true);
                     }
                 }
             }
