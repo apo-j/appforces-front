@@ -17,12 +17,13 @@ var Utils = (function(utils){
         }
     };
 
-    self.getUrl = function (raw, replace, mode) {
+    self.makeUrl = function (raw, replace, mode) {
 		var res = '';
 		if(raw){
+            res = raw;
 			replace = replace || [];
 			angular.forEach(replace, function(item, index){
-				res = raw.replace(item.pattern, item.content);
+                res = res.replace(item.pattern, item.content);
 			});
 		}
         

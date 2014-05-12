@@ -95,8 +95,20 @@ angular.module('directives').directive('afNavbarItem',
               templateUrl:'=',
 			  isRoot:'='
             },
+            controller: ['$scope', 'afPage','$location', 'afUtils','afConfig', function($scope, afPage, $location, afUtils, afConfig){
+                $scope.isCurrent = function(url){
+                    if($scope.isRoot && afPage.currentPage().url == url){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.getUrl = function(url){
+                    return afUtils.makeUrl(url, null, afConfig.LocationMode);
+                }
+
+            }],
             compile: function(tElement, tAttr) {
-                return function(scope, iElement, iAttr) {					
+                return function(scope, iElement, iAttr) {
                     $http.get(afUtils.templateUrl.headerMenuComponents(scope.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                              iElement.append(clone);

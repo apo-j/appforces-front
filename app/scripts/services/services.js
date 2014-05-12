@@ -154,12 +154,12 @@ angular.module('services').provider('afUtils',
 		
         self.$get = ['afConfig', 'afEnums', function(afConfig, afEnums) {
 				self._utils.getUrl = function (raw, replace) {
-					var res = '';
+					var res = raw;
 					if(raw && replace){
-						res = raw.replace(replace.pattern, replace.content);
+						res = res.replace(replace.pattern, replace.content);
 					}
 					
-					if(afConfig.locationMode === 'hashbang' && replace.pattern === afEnums.NavigationType.inner){
+					if(afConfig.LocationMode === 'hashbang' && replace.pattern === afEnums.NavigationType.inner){
 						res = '#/' + res;
 					}
 					
