@@ -118,7 +118,7 @@
             "code":"contact",
             "url":"/contact",
             "isIndexPage": false,
-            "layoutUrl":"contact",
+            "layoutUrl":"main",
             "ctrl": "NavigationCtrl"
         }
     ]
