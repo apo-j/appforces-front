@@ -208,11 +208,6 @@ angular.module('directives').directive('afPageBody',
 				
 				//register on page reload event
 				afEventRegister.registerOnPageReload($scope);
-				
-				/*if($scope.afdata.isSearchResultContainer === true){
-					//register on search event
-					afEventRegister.registerOnSearch($scope, $scope.afdata.searchId);
-				}*/
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
