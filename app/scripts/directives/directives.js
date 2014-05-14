@@ -97,8 +97,13 @@ angular.module('directives').directive('afNavbarItem',
             },
             controller: ['$scope', 'afPage','$location', 'afUtils','afConfig', function($scope, afPage, $location, afUtils, afConfig){
                 $scope.isCurrent = function(url){
-                    if($scope.isRoot && afPage.currentPage().url == url){
-                        return true;
+                    if($scope.isRoot && url){
+                        var _currentLocation = afPage.currentPage().url;
+                        if(_currentLocation === '/' && url === '/'){//index page
+                            return true;
+                        }else if(_currentLocation !== '/' && url !== '/' && _currentLocation.indexOf(url) === 0){//others pages
+                            return true;
+                        }
                     }
                     return false;
                 };
