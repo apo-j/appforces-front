@@ -202,7 +202,7 @@ angular.module('directives').directive('afSidebar',
     }]);
 	
 angular.module('directives').directive('afPageBody',
-    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
+    ['$http', '$templateCache', '$compile', 'afUtils','afComponents', function($http, $templateCache, $compile, afUtils, afComponents){
         return {
             restrict: 'AE',
             scope:{
@@ -216,7 +216,8 @@ angular.module('directives').directive('afPageBody',
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.page(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    //container
+                    $http.get(afUtils.templateUrl.directiveComponent(afComponents['10']), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.replaceWith(clone);
                         });
@@ -253,18 +254,6 @@ angular.module('directives').directive('afLocalSearchContainer',
         }
     }]);
 
-
-
-angular.module('directives').directive('afRow',
-    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
-        return {
-            restrict: 'AE',
-            scope:{
-               afdata:'='
-            },
-            templateUrl: '/partials/row.html'
-        }
-    }]);
 
 	
 

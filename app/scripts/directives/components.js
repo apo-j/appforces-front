@@ -55,6 +55,7 @@ angular.module('directives.components').directive('afContainer',
                 afdata:"="
             },
             compile:function(tElement, tAttr) {
+                tElement.addClass('afcontainer');
                 return function(scope , iElement, iAttrs) {
                     $http.get(afUtils.templateUrl.component('container', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
