@@ -108,15 +108,29 @@
             "ctrl": "NavigationCtrl"
         },
         {
-            "id":"p3",
+            "id":"p2",
             "type":"0",
-            "title": "contact",
+            "title": "cloth-hat",
             "pageSecurity":{
                 "requireLogin": false,
                 "passwordDigest": ""
             },
-            "code":"contact",
-            "url":"/contact",
+            "code":"cloth-hat-female",
+            "url":"/cloth-hat/female",
+            "isIndexPage": false,
+            "layoutUrl":"main",
+            "ctrl": "NavigationCtrl"
+        },
+        {
+            "id":"p3",
+            "type":"0",
+            "title": "cloth-hat",
+            "pageSecurity":{
+                "requireLogin": false,
+                "passwordDigest": ""
+            },
+            "code":"cloth-hat-male",
+            "url":"/cloth-hat/male",
             "isIndexPage": false,
             "layoutUrl":"main",
             "ctrl": "NavigationCtrl"

@@ -18,7 +18,8 @@ var Components = (function(components){
         6:'listItem',
         7:'search',
         8:'localSearch',
-        9:'localSearchContainer'
+        9:'localSearchContainer',
+        10:'container'
     }
 
     $.extend( true, components, component );

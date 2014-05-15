@@ -47,6 +47,26 @@ angular.module('directives.components').directive('afGeneralComponent',
         }
     }]);
 
+angular.module('directives.components').directive('afContainer',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+        return {
+            restrict: "AE",
+            scope:{
+                afdata:"="
+            },
+            compile:function(tElement, tAttr) {
+                tElement.addClass('afcontainer');
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.component('container', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.html(clone);
+                        });
+                    });
+                }
+            }
+        }
+    }]);
+
 angular.module('directives.components').directive('afSearch',
     ['$http', '$templateCache', '$rootScope', '$compile', 'afUtils', 'afEvents','afConfig','$location','afPage', 'afVars', function( $http, $templateCache, $rootScope, $compile, afUtils, afEvents, afConfig, $location,afPage, afVars){
         return {

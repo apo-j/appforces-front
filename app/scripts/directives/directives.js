@@ -97,8 +97,13 @@ angular.module('directives').directive('afNavbarItem',
             },
             controller: ['$scope', 'afPage','$location', 'afUtils','afConfig', function($scope, afPage, $location, afUtils, afConfig){
                 $scope.isCurrent = function(url){
-                    if($scope.isRoot && afPage.currentPage().url == url){
-                        return true;
+                    if($scope.isRoot && url){
+                        var _currentLocation = afPage.currentPage().url;
+                        if(_currentLocation === '/' && url === '/'){//index page
+                            return true;
+                        }else if(_currentLocation !== '/' && url !== '/' && _currentLocation.indexOf(url) === 0){//others pages
+                            return true;
+                        }
                     }
                     return false;
                 };
@@ -197,7 +202,7 @@ angular.module('directives').directive('afSidebar',
     }]);
 	
 angular.module('directives').directive('afPageBody',
-    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
+    ['$http', '$templateCache', '$compile', 'afUtils','afComponents', function($http, $templateCache, $compile, afUtils, afComponents){
         return {
             restrict: 'AE',
             scope:{
@@ -211,7 +216,8 @@ angular.module('directives').directive('afPageBody',
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.page(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    //container
+                    $http.get(afUtils.templateUrl.directiveComponent(afComponents['10']), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.replaceWith(clone);
                         });
@@ -248,18 +254,6 @@ angular.module('directives').directive('afLocalSearchContainer',
         }
     }]);
 
-
-
-angular.module('directives').directive('afRow',
-    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
-        return {
-            restrict: 'AE',
-            scope:{
-               afdata:'='
-            },
-            templateUrl: '/partials/row.html'
-        }
-    }]);
 
 	
 
