@@ -1,5 +1,6 @@
 {
     "status": 200,
+    "type":10,
     "templateUrl":"1",
     "searchId": "123456",
     "style": "",
@@ -15,43 +16,32 @@
             "items":[
                 {
                     "id":4,
-                    "type":10,
+                    "type":2,
                     "templateUrl":"1",
                     "isLoaded": true,
                     "style": "",
-                    "css":"col-xs-4",
-                    "data":"09/12/2014",
-                    "items":[
-                        {
-                            "id":4,
-                            "type":1,
-                            "templateUrl":"1",
-                            "isLoaded": true,
-                            "style": "",
-                            "css":"col-xs-4",
-                            "data":"09/12/2014",
-                            "items":[]
-                        },
-                        {
-                            "id":4,
-                            "type":1,
-                            "templateUrl":"1",
-                            "isLoaded": true,
-                            "style": "",
-                            "css":"col-xs-4",
-                            "data":"11/12/2015",
-                            "items":[]
-                        }
-                    ]
-                },
-                {
-                    "id":4,
-                    "type":3,
-                    "templateUrl":"1",
-                    "isLoaded": true,
-                    "style": "",
-                    "css":"col-xs-3",
-                    "data":"",
+                    "css":"col-xs-8",
+                    "data":{
+                        "interval": 5000,
+                        "slides":[
+                            {
+                                "image": "http://placekitten.com/600/300",
+                                "text": "More Cats"
+                            },
+                            {
+                                "image": "http://placekitten.com/601/300",
+                                "text": "Extra Kittys"
+                            },
+                            {
+                                "image": "http://placekitten.com/602/300",
+                                "text": "Lots of Felines"
+                            },
+                            {
+                                "image": "http://placekitten.com/603/300",
+                                "text": "Surplus Cutes"
+                            }
+                        ]
+                    },
                     "items":[]
                 }
             ]
@@ -67,23 +57,34 @@
             "items":[
                 {
                     "id":4,
-                    "type":3,
+                    "type":11,
                     "templateUrl":"1",
                     "isLoaded": true,
                     "style": "",
-                    "css":"col-xs-3",
-                    "data":"",
+                    "css":"col-xs-6",
+                    "data":{
+                        "id":1,
+                        "image1":"http://p0.jmstatic.com/jmstore/image/000/000/237_std/536fd3126ce43.jpg?1400120547",
+                        "image2":"http://p0.jmstatic.com/brand/logo_180/14.jpg",
+                        "title":"",
+                        "description":"<p><b>聚美“防晒节” 1亿元让利 </b></p><p>水宝宝来袭 千种爆款满199减50 最后一天</p><p class=\"zhe\">全场<span>2.5</span>折起</p>"
+                    },
                     "items":[]
                 },
                 {
                     "id":4,
-                    "type":9,
+                    "type":11,
                     "templateUrl":"1",
-                    "itemTemplateUrl":"1",
                     "isLoaded": true,
                     "style": "",
-                    "css":"col-xs-10",
-                    "data":"",
+                    "css":"col-xs-6",
+                    "data":{
+                        "id":2,
+                        "image1":"http://p0.jmstatic.com/jmstore/image/000/000/282_std/5371e986bf5bd.jpg?1399974390",
+                        "image2":"http://p0.jmstatic.com/brand/logo_180/608.jpg",
+                        "title":"",
+                        "description":"<p><b>香奈儿品牌团</b></p><p>不可超越的经典</p><p class=\"zhe\"><span>5.5</span>折起</p>"
+                    },
                     "items":[]
                 }
             ]

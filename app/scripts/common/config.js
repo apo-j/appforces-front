@@ -24,5 +24,12 @@ var Configuration = (function(configuration){
 	self.IsWorkerSupported = false;
 	self.WorkerBasePath = '/scripts/workers/';
     self.LocalSearchLimit = 40;
+
+
+    self.ComponentDefaultOptions = {
+        Carousel:{
+            Interval:3000
+        }
+    }
     return self;
 }(Appforces.Configuration || {}))

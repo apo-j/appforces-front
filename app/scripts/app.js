@@ -6,7 +6,7 @@ angular.module('filters', []);
 angular.module("appForce", [
   'ngCookies',
   'ngResource',
-  //'ngSanitize',
+  'ngSanitize',
   'ngRoute',
   'controllers',
   'services',

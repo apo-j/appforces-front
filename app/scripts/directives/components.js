@@ -67,6 +67,52 @@ angular.module('directives.components').directive('afContainer',
         }
     }]);
 
+angular.module('directives.components').directive('afCarousel',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+        return {
+            restrict: "AE",
+            scope:{
+                afdata:"="
+            },
+            controller: ['$scope','afConfig', function($scope, afConfig){
+                $scope.interval = $scope.afdata.data.interval || afConfig.ComponentDefaultOptions.Carousel.Interval;
+                $scope.slides = $scope.afdata.data.slides;
+            }],
+            compile:function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.component('carousel', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.replaceWith(clone);
+                        });
+                    });
+                }
+            }
+        }
+    }]);
+
+angular.module('directives.components').directive('afProductBloc',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+        return {
+            restrict: "AE",
+            scope:{
+                afdata:"="
+            },
+            controller: ['$scope','afConfig', function($scope, afConfig){
+                $scope.data = $scope.afdata.data;
+            }],
+            compile:function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.component('productBloc', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.replaceWith(clone);
+                        });
+                    });
+                }
+            }
+        }
+    }]);
+
+
 angular.module('directives.components').directive('afSearch',
     ['$http', '$templateCache', '$rootScope', '$compile', 'afUtils', 'afEvents','afConfig','$location','afPage', 'afVars', function( $http, $templateCache, $rootScope, $compile, afUtils, afEvents, afConfig, $location,afPage, afVars){
         return {
@@ -250,25 +296,6 @@ angular.module('directives.components').directive('afAccordion',
                     $http.get(afUtils.templateUrl.component('accordion', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.replaceWith(clone);
-                        });
-                    });
-                }
-            }
-        }
-    }]);
-
-angular.module('directives.components').directive('afCarrousel',
-    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
-        return {
-            restrict: "AE",
-            scope:{
-                afdata:"="
-            },
-            compile:function(tElement, tAttr) {
-                return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.component('carrousel', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
-                        $compile(tplContent)(scope, function(clone, scope){
-                            iElement.html(clone);
                         });
                     });
                 }

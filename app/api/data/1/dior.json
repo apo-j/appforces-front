@@ -1,5 +1,5 @@
 {
-    "templateUrl":"components/carrousel/1",
+    "templateUrl":"components/carousel/1",
     "os": "Android 2.3",
     "ui": "Android"
 }

@@ -11,7 +11,7 @@ component:{
 var Components = (function(components){
     var component = {
         1:'datepicker',
-        2:'carrousel',
+        2:'carousel',
         3:'accordion',
         4:'list',
         5:'listItemLink',
@@ -19,7 +19,8 @@ var Components = (function(components){
         7:'search',
         8:'localSearch',
         9:'localSearchContainer',
-        10:'container'
+        10:'container',
+        11:'productBloc'
     }
 
     $.extend( true, components, component );
