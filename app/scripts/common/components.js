@@ -20,7 +20,7 @@ var Components = (function(components){
         8:'localSearch',
         9:'localSearchContainer',
         10:'container',
-        11:'productBloc'
+        11:'articleBloc'
     }
 
     $.extend( true, components, component );
