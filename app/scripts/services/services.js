@@ -41,8 +41,8 @@ angular.module('services').factory('afData', ['$resource','afConfig','$http',
 			get:function(url, params){
                 if(url){
                     url = url.replace(/^\//, '');
-                    var _url = 'api/data/' + afConfig.AppConfig.appId + '/' + url;
-                    return $http({method: 'get', url: _url});
+                    var _url = afConfig.AppDataUrl + afConfig.AppConfig.appId + '/' + url;
+                    return $http(angular.extend({method: 'get', url: _url}, params));
                 }else{
 					//TODO
 				}
@@ -98,10 +98,16 @@ angular.module('services').factory('afSidebar', ['$resource','afConfig',
         return $resource('api/sidebars/:appId/:pageId/:position.json', {appId: afConfig.AppConfig.appId});
     }]);
 
-angular.module('services').factory('afComponent', ['$resource','afConfig',
+angular.module('services').factory('afComponentData', ['$resource','afConfig',
     function($resource, afConfig){
-        return $resource('api/components/:appId/:pageId/:componentId.json', {appId: afConfig.AppConfig.appId});
+        return $resource('api/components/:appId/:componentId.json', {appId: afConfig.AppConfig.appId});
     }]);
+
+angular.module('services').factory('afArticleData', ['$resource','afConfig',
+    function($resource, afConfig){
+        return $resource('api/articles/:appId/:articleId.json', {appId: afConfig.AppConfig.appId});
+    }]);
+
 
 angular.module('services').factory('afNavigation', ['$resource','afEnums', 'afUtils', '$location', '$window', '$rootScope','afEvents',
     function($resource, afEnums, afUtils, $location, $window, $rootScope, afEvents){

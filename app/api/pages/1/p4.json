@@ -1,0 +1,32 @@
+{
+    "status": 200,
+    "type":10,
+    "templateUrl":"1",
+    "searchId": "123456",
+    "style": "",
+    "css":"col-xs-12",
+    "items":[
+        {
+            "id":3,
+            "type":12,
+            "templateUrl":"1",
+            "isLoaded": true,
+            "style": "",
+            "css":"col-xs-12",
+            "data":"",
+            "items":[
+                {
+                    "id":4,
+                    "type":11,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"col-xs-6",
+                    "data":{},
+                    "items":[]
+                }
+            ]
+        }
+    ]
+
+}

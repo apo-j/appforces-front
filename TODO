@@ -12,3 +12,24 @@ Version 2:
 3: Search: 针对某个模块内部内容的搜索（暂时仅前端）
 4: Redo ng-repeat in partials/sidebar/sidebar.html and partials/pages/1.html
 NB: 404, 401, 500 pages must be available, if not, a default one should be offered
+
+
+
+Version 3:
+
+
+
+Db:
+1: table lien_component_article => results affected to items property of component
+2: table lien_component_component ? => results affected to data property of component
+these two tables above can decide what data should be loaded for a component
+3: table component:
+     "id":1,
+     "type":10,
+     "templateUrl":"1",
+     "isLoaded": true,
+     "style": "",
+     "css":"row col-xs-12",
+     "parentID:"" //id of another component
+4: table lien_page_component
+

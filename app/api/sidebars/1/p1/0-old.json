@@ -1,0 +1,22 @@
+{
+    "status": 200,
+    "id":5,
+    "type":6,
+    "templateUrl": "sidebar",
+    "isLoaded": true,
+    "style": "",
+    "css":"",
+    "data":"",
+    "items":[
+		{
+            "id":5,
+            "type":8,
+            "templateUrl":"1",
+            "isLoaded": true,
+            "style": "",
+            "css":"",
+            "data":{},
+            "items":[]
+        }
+    ]
+}

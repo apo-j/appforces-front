@@ -8,15 +8,111 @@
     "css":"",
     "data":"",
     "items":[
-		{
-            "id":5,
-            "type":8,
+        {
+            "id":4,
+            "type":4,
+            "templateUrl":"list",
+            "isLoaded": true,
+            "style": "",
+            "css":"",
+            "data":"",
+            "items":[
+                {
+                    "id":2,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "url":"£outerhttp://www.ifeng.com",
+                    "target":"_blank",
+                    "style": "",
+                    "css":"",
+                    "data":"Balenciaga 巴黎世家",
+                    "items":[]
+                },
+                {
+                    "id":3,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "url":"£innerabout",
+                    "target":"",
+                    "style": "",
+                    "css":"",
+                    "data":"Buberry 巴宝莉",
+                    "items":[]
+                },
+                {
+                    "id":3,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "url":"£outerhttp://www.ifeng.com",
+                    "target":"_self",
+                    "style": "",
+                    "css":"",
+                    "data":"Cartier 卡地亚",
+                    "items":[]
+                },
+                {
+                    "id":3,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "url":"/",
+                    "target":"",
+                    "style": "",
+                    "css":"",
+                    "data":"Chanel 香奈儿",
+                    "items":[]
+                },
+                {
+                    "id":3,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "url":"£content/coach.json",
+                    "target":"",
+                    "style": "",
+                    "css":"",
+                    "data":"Coach",
+                    "items":[]
+                },
+                {
+                    "id":3,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "url":"£content/dior.json",
+                    "target":"",
+                    "style": "",
+                    "css":"",
+                    "data":"Dior",
+                    "items":[]
+                }
+             ]
+        },
+        {
+            "id":4,
+            "type":7,
             "templateUrl":"1",
             "isLoaded": true,
             "style": "",
             "css":"",
-            "data":{},
+            "data":{
+                "searchId": "123456",
+                "criteria":[
+                    {
+                        "name":"criteria1",
+                        "val": ""
+                    } ,
+                    {
+                        "name": "criteria2",
+                        "val": ""
+                    }
+                ]
+            },
             "items":[]
         }
+
     ]
 }
