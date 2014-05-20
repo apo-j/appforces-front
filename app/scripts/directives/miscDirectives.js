@@ -51,23 +51,22 @@ angular.module('directives').directive('afLocalSearchLink',
 
 /************************Side bar*********************************/
 angular.module('directives').directive('afSidebar',
-    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
+    ['$http', '$templateCache', '$compile', 'afUtils', 'afComponents',  function($http, $templateCache, $compile, afUtils, afComponents){
         return {
             restrict: 'AE',
             scope:{
                 position:'='
             },
             controller: ['$scope', 'afPage', 'afSidebar', function($scope, afPage, afSidebar){
-                $scope.sidebar = afSidebar.get({pageId: afPage.currentPage().id, position: $scope.position}).$promise;
+                $scope.afdata = afSidebar.get({pageId: afPage.currentPage().id, position: $scope.position}).$promise;
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    scope.sidebar.then(function(data){
-                        scope.sidebar = data;
-                        return scope.sidebar;
+                    scope.afdata.then(function(data){
+                        scope.afdata = data;
+                        return scope.afdata;
                     }).then(function(data){
-                        var tplUrl = data.templateUrl;
-                        $http.get('/partials/sidebar/' + tplUrl + '.html', {cache: $templateCache}).success(function(tplContent){
+                       $http.get(afUtils.templateUrl.sidebar(data.templateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 iElement.replaceWith(clone);
                             });

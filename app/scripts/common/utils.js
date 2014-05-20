@@ -41,6 +41,9 @@ var Utils = (function(utils){
         header:function(name){
             return '/partials/header/' + name + '.html';
         },
+        sidebar:function(name){
+            return '/partials/sidebar/' + name + '.html';
+        },
         headerTop:function(name){
             return '/partials/header/top/' + name + '.html';
         },
