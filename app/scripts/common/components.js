@@ -21,7 +21,9 @@ var Components = (function(components){
         9:'localSearchContainer',
         10:'container',
         11:'articleBloc',
-        12:'articleDetailsBloc'
+        12:'articleDetailsBloc',
+        13:'htmlContent',
+        14:'articleBuyerConfigBloc'
     }
 
     $.extend( true, components, component );

@@ -1,7 +1,11 @@
-<a ng-class="afdata.css" style="{{afdata.style}}" ng-href="#/articles?articleId={{afdata.id}}">
-    <img ng-src="{{data.image1}}">
-    <div>
-        <p ng-bind-html="data.description"></p>
-        <img ng-src="{{data.image2}}">
+<div ng-class="afdata.css" style="{{afdata.style}}" ng-style="{margin:'5px', float:'left'}">
+    <a  ng-href="#/articles?articleId={{afdata.id}}">
+        <img style="width:285px;" ng-src="{{data.image1}}">
+    </a>
+    <div class="title">
+        <a ng-href="#/articles?articleId={{afdata.id}}">
+            {{data.title}}
+        </a>
     </div>
-</a>
+    <div class="price">{{data.price}}</div>
+</div>

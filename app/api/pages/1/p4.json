@@ -17,11 +17,31 @@
             "items":[
                 {
                     "id":4,
-                    "type":11,
+                    "type":2,
                     "templateUrl":"1",
                     "isLoaded": true,
                     "style": "",
                     "css":"col-xs-6",
+                    "data":{},
+                    "items":[]
+                },
+                {
+                    "id":4,
+                    "type":14,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"col-xs-6",
+                    "data":{},
+                    "items":[]
+                },
+                {
+                    "id":4,
+                    "type":13,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"col-xs-12",
                     "data":{},
                     "items":[]
                 }
