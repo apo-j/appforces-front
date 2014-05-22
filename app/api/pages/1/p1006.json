@@ -1,0 +1,60 @@
+{
+    "status": 200,
+    "templateUrl":"1",
+    "searchId": "123456",
+    "items":[
+        {
+            "id":4,
+            "type":1,
+            "templateUrl":"1",
+            "isLoaded": true,
+            "style": "",
+            "css":"col-xs-12",
+            "items":[
+                {
+                    "id":4,
+                    "type":1,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"col-xs-4",
+                    "data":"09/12/2014",
+                    "items":[]
+                },
+                {
+                    "id":4,
+                    "type":3,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"col-xs-3",
+                    "data":"",
+                    "items":[]
+                }
+            ]
+        },
+        {
+            "id":4,
+            "type":9,
+            "templateUrl":"1",
+            "isLoaded": true,
+            "style": "",
+            "css":"col-xs-12",
+            "data":"",
+            "items":[
+                {
+                    "id":4,
+                    "type":9,
+                    "templateUrl":"1",
+                    "itemTemplateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"col-xs-10",
+                    "data":"",
+                    "items":[]
+                }
+            ]
+        }
+    ]
+
+}
