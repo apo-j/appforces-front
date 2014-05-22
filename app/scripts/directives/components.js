@@ -121,6 +121,25 @@ angular.module('directives.components').directive('afArticleBloc',
         }
     }]);
 
+angular.module('directives.components').directive('afHtmlContent',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+        return {
+            restrict: "AE",
+            scope:{
+                afdata:"="
+            },
+            compile:function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.component('htmlContent', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.replaceWith(clone);
+                        });
+                    });
+                }
+            }
+        }
+    }]);
+
 angular.module('directives.components').directive('afArticleBuyerConfigBloc',
     ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
         return {
@@ -176,7 +195,7 @@ angular.module('directives.components').directive('afArticleDetailsBloc',
                         return scope.afdata.data;
                     }).then(function(data){
                         //use the same template of container
-                        $http.get(afUtils.templateUrl.component('container', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $http.get(afUtils.templateUrl.component('articleDetailsBloc', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 iElement.replaceWith(clone);
                             });

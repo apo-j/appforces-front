@@ -64,7 +64,7 @@
         }
 
         .af-nav .nav li.dropdown.open > .dropdown-toggle, .af-nav .nav li.dropdown.active > .dropdown-toggle, .af-nav .nav li.dropdown.open.active > .dropdown-toggle {
-            background-color: #F7F7F7;
+            background-color: #555555;
             color: #555555;
         }
 

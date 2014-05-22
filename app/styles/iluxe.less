@@ -7,12 +7,9 @@ body {
   padding-bottom: 20px;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+.row{
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 /* Custom page headers */
@@ -40,12 +37,19 @@ body {
     max-width: 730px;
   }
 }
+
+@media (min-width: 1366px) {
+  .container {
+    max-width: 1230px;
+  }
+}
+
 .container-narrow > hr {
   margin: 30px 0;
 }
 
 #main{
-  margin-top: 60px;
+  margin-top: 15px;
 }
 
 #menu{

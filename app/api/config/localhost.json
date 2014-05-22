@@ -4,7 +4,7 @@
     "appName" : "tt",
     "faviconUrl" : "http://www.w3schools.com/favicon.ico",
     "appleTouchFaviconUrl": "",
-    "styleId":"styles/iluxe.less",
+    "styleId":"styles/iluxe.css",
     "isI18nOn":false,
     "languageId": 1,
 	"isLocalSearchActivated": true,

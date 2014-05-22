@@ -24,6 +24,11 @@ angular.element(document).ready(function() {
             document.getElementById(Configuration.FaviconId).setAttribute('href', (Configuration.AppConfig.faviconUrl || Configuration.DefaultFaviconUrl));//favicon
             document.getElementById(Configuration.AppleTouchFaviconId).setAttribute('href', (Configuration.AppConfig.appleTouchFaviconUrl || Configuration.DefaultAppTouchFaviconUrl));//appleTouchIcon
             angular.bootstrap(document, ['appForce']);
+
+            /*//todo only for dev (compile less)
+            var script = document.createElement('script');
+            script.src = "vendor/less.min.js";
+            document.getElementsByTagName('head')[0].appendChild(script);*/
         }else{
             $('body').text("Application not available!");
         }
