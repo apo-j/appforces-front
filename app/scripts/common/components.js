@@ -23,7 +23,8 @@ var Components = (function(components){
         11:'articleBloc',
         12:'articleDetailsBloc',
         13:'htmlContent',
-        14:'articleBuyerConfigBloc'
+        14:'articleBuyerConfigBloc',
+        15:'containerArticles'
     }
 
     $.extend( true, components, component );

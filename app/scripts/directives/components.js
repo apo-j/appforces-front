@@ -34,12 +34,12 @@ angular.module('directives.components').directive('afGeneralComponent',
                             if(scope.afdata.type === 10){//container
                                 scope.afdata.items = data.data;
                             }else{
-                                scope.afdata.data = data.data;
+                                angular.extend(scope.afdata.data, data.data);
                             }
                             scope.afdata.isLoaded = true;
                         }
 
-                        return scope.afdata.data;
+                        return data;
 					})
 					.then(function(data){
                         var componentName = afComponents[scope.afdata.type];
@@ -57,6 +57,48 @@ angular.module('directives.components').directive('afGeneralComponent',
     }]);
 
 angular.module('directives.components').directive('afContainer',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+        return {
+            restrict: "AE",
+            scope:{
+                afdata:"="
+            },
+            controller: ['$scope','afArticles','$q', function($scope, afArticles, $q){
+                var deferred = $q.defer();
+
+                if(!$scope.afdata.isLoaded){
+                    afArticles.get(null, function(data){
+                            deferred.resolve(data);
+                        },
+                        function(reason){
+                            deferred.reject(reason);
+                        });
+                }else{
+                    deferred.resolve({});
+                }
+
+                $scope.newData = deferred.promise;
+            }],
+            compile:function(tElement, tAttr) {
+                tElement.addClass('afcontainer');
+                return function(scope , iElement, iAttrs) {
+                    scope.newData.then(function(data){
+                        scope.afdata.items = data.data;
+                        return data;
+                    })
+                    .then(function(data){
+                        $http.get(afUtils.templateUrl.component('container', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                            $compile(tplContent)(scope, function(clone, scope){
+                                iElement.html(clone);
+                            });
+                        });
+                    });
+                }
+            }
+        }
+    }]);
+
+angular.module('directives.components').directive('afContainerArticles',
     ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
         return {
             restrict: "AE",
@@ -169,11 +211,11 @@ angular.module('directives.components').directive('afArticleDetailsBloc',
             scope:{
                 afdata:"="
             },
-            controller: ['$scope','afConfig','$q', '$routeParams','afArticleData', function($scope, afConfig, $q, $routeParams, afArticleData){
+            controller: ['$scope','afConfig','$q', '$routeParams','afArticles', function($scope, afConfig, $q, $routeParams, afArticles){
                 var deferred = $q.defer();
 
                 if($routeParams.hasOwnProperty('articleId')){
-                    afArticleData.get({articleId: $routeParams.articleId}, function(data){
+                    afArticles.get({articleId: $routeParams.articleId}, function(data){
                             deferred.resolve(data);
                         },
                         function(reason){

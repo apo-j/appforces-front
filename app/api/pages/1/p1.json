@@ -4,6 +4,7 @@
     "templateUrl":"1",
     "searchId": "123456",
     "style": "",
+    "data": "",
     "css":"col-xs-12",
     "items":[
         {
@@ -12,6 +13,7 @@
             "templateUrl":"1",
             "isLoaded": true,
             "style": "",
+            "data":"",
             "css":"row col-xs-12",
             "items":[
                 {
@@ -48,7 +50,7 @@
         },
         {
             "id":3,
-            "type":10,
+            "type":15,
             "templateUrl":"1",
             "isLoaded": false,
             "style": "",

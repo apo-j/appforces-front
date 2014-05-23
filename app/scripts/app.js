@@ -49,7 +49,7 @@ angular.module("appForce", [
                 templateUrl: 'views/' + _page['layoutUrl'] + '.html',
                 controller: _page['ctrl'] || 'NavigationCtrl',
                 resolve:{
-                    page: ['afPage','afData', function(afPage, afData){
+                    page: ['afPage', function(afPage){
                        //TODO verify if this page needs authentication before open it
                         var _p = afPage.setCurrentPage();
                         if(_p){
@@ -65,7 +65,7 @@ angular.module("appForce", [
         redirectTo: afConfig.DefaultPageUrl.P404
     });
   }])
-    .run(['$rootScope','$location','afPage','afEvents','afConfig','$log', function($rootScope,$location, afPage, afEvents, afConfig, $log){
+    .run(['$rootScope','$location','afPage','afEvents','afConfig','$log', function($rootScope, $location, afPage, afEvents, afConfig, $log){
         //Register global events Listeners
         $rootScope.$on(afEvents.REQUIRE_LOGIN, function() {
             $rootScope.prevState = $rootScope.prevState || (afPage.currentPage()? afPage.currentPage().url : '/');

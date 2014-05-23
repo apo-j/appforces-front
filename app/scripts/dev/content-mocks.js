@@ -3,7 +3,7 @@
   /**
    * This module is used to simulate backend server for this demo application.
    */
-  angular.module('content-mocks',['ngMockE2E'])
+  angular.module('content-mocks',['ngMockE2E', 'services'])
   
   .run(function($httpBackend) {
 

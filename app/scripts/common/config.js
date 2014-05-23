@@ -25,7 +25,7 @@ var Configuration = (function(configuration){
 	self.IsWorkerSupported = false;
 	self.WorkerBasePath = '/scripts/workers/';
     self.LocalSearchLimit = 40;
-
+    self.SearchGetAllDefaultParamVal = 0;
 
     self.ComponentDefaultOptions = {
         Carousel:{

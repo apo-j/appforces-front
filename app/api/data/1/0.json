@@ -1,0 +1,22 @@
+{
+    "data":[
+        {
+            "brand":"CHANEL",
+            "gender":"f",
+            "name": "Coco Mademoiselle",
+            "description":"Eau de Parfum",
+            "price":55.70,
+            "image":"http://www.sephora.fr/media/catalog_ProductCatalog/m108096_P96042_princ_sm.jpg",
+            "keyWords":"chanel parfum coco mademoiselle eau de parfum"
+        },
+        {
+            "brand":"CHANEL",
+            "gender":"f",
+            "name": "Bleu de CHANEL",
+            "description":"Eau de Toilette",
+            "price":54.40,
+            "image":"http://www.sephora.fr/media/catalog_ProductCatalog/m22934_P114112_princ_sm.jpg",
+            "keyWords":"chanel parfum bleu de chanel eau de toilette"
+        }
+    ]
+}

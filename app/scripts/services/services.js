@@ -103,9 +103,9 @@ angular.module('services').factory('afComponentData', ['$resource','afConfig',
         return $resource('api/components/:appId/:componentId.json', {appId: afConfig.AppConfig.appId});
     }]);
 
-angular.module('services').factory('afArticleData', ['$resource','afConfig',
+angular.module('services').factory('afArticles', ['$resource','afConfig',
     function($resource, afConfig){
-        return $resource('api/articles/:appId/:articleId.json', {appId: afConfig.AppConfig.appId});
+        return $resource('api/articles/:appId/:articleId.json', {appId: afConfig.AppConfig.appId, articleId: afConfig.SearchGetAllDefaultParamVal});
     }]);
 
 
@@ -176,29 +176,6 @@ angular.module('services').provider('afUtils',
             }]
 
     });
-
-	
-/*angular.module('services').provider('afNavigationState',
-    function(){
-        var self = this;
-        self._states  = [];
-
-        self.initStates = function(states){
-            self._states = states || [];
-        },
-        self.$get = ['$location','afUtils', function($location, afUtils) {
-                return {
-                    currentState:function(){
-                        var match = afUtils.Collection.find(self._states, function(state){
-                            return $location.path().toLowerCase() ===  (state.url || '/').toLowerCase();
-                        });
-
-                       return match ? match : null;//{state: 'index', url:'/'};
-                    }
-                };
-            }]
-
-    });*/
 
 //page
 angular.module('services').factory('afPage',['afConfig','$resource','$cacheFactory','afUtils','$location','afEnums',

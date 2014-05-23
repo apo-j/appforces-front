@@ -26,8 +26,7 @@ angular.module('services').factory('afDocsSearch', ['afLunrSearch',
 			this.field('keywords', { boost : 20 });
 		});
 		
-		var _index = afLunrSearch(index.toJSON(),
-		docs);
+		var _index = afLunrSearch(index.toJSON(), docs);
 		
 		return {
 			search:function(q){
