@@ -11,47 +11,17 @@ angular.module('directives.components').directive('afGeneralComponent',
             scope:{
               afdata:"="
             },
-            controller: ['$scope','afComponentData','$q', function($scope, afComponentData, $q){
-                var deferred = $q.defer();
-
-                if(!$scope.afdata.isLoaded){
-                    afComponentData.get({componentId: $scope.afdata.id}, function(data){
-                        deferred.resolve(data);
-                    },
-                    function(reason){
-                        deferred.reject(reason);
-                    });
-                }else{
-                    deferred.resolve({});
-                }
-
-                $scope.newData = deferred.promise;
-            }],
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    scope.newData.then(function(data){
-                        if(!scope.afdata.isLoaded){
-                            if(scope.afdata.type === 10){//container
-                                scope.afdata.items = data.data;
-                            }else{
-                                angular.extend(scope.afdata.data, data.data);
-                            }
-                            scope.afdata.isLoaded = true;
-                        }
-
-                        return data;
-					})
-					.then(function(data){
-                        var componentName = afComponents[scope.afdata.type];
-                        if(componentName){
-							$http.get(afUtils.templateUrl.directiveComponent(componentName), {cache: $templateCache}).success(function(tplContent){
-								$compile(tplContent)(scope, function(clone, scope){
-									iElement.replaceWith(clone);
-								});
+                    var componentName = afComponents[scope.afdata.type];
+                    if(componentName){
+					    $http.get(afUtils.templateUrl.directiveComponent(componentName), {cache: $templateCache}).success(function(tplContent){
+							$compile(tplContent)(scope, function(clone, scope){
+								iElement.replaceWith(clone);
 							});
-                        }
-                    });
-                }
+						});
+                    }
+                };
             }
         }
     }]);
@@ -63,18 +33,18 @@ angular.module('directives.components').directive('afContainer',
             scope:{
                 afdata:"="
             },
-            controller: ['$scope','afArticles','$q', function($scope, afArticles, $q){
+            controller: ['$scope','afComponentData','$q', function($scope, afComponentData, $q){
                 var deferred = $q.defer();
 
                 if(!$scope.afdata.isLoaded){
-                    afArticles.get(null, function(data){
-                            deferred.resolve(data);
+                    afComponentData.get({componentId: $scope.afdata.id}, function(data){
+                            deferred.resolve(data.data);
                         },
                         function(reason){
                             deferred.reject(reason);
                         });
                 }else{
-                    deferred.resolve({});
+                    deferred.resolve( $scope.afdata.items);
                 }
 
                 $scope.newData = deferred.promise;
@@ -83,7 +53,7 @@ angular.module('directives.components').directive('afContainer',
                 tElement.addClass('afcontainer');
                 return function(scope , iElement, iAttrs) {
                     scope.newData.then(function(data){
-                        scope.afdata.items = data.data;
+                        scope.afdata.items = data;
                         return data;
                     })
                     .then(function(data){
@@ -105,12 +75,34 @@ angular.module('directives.components').directive('afContainerArticles',
             scope:{
                 afdata:"="
             },
+            controller: ['$scope','afArticles','$q', function($scope, afArticles, $q){
+                var deferred = $q.defer();
+
+                if(!$scope.afdata.isLoaded){
+                    afArticles.get(null, function(data){
+                            deferred.resolve(data.data);
+                        },
+                        function(reason){
+                            deferred.reject(reason);
+                        });
+                }else{
+                    deferred.resolve($scope.afdata.items);
+                }
+
+                $scope.newData = deferred.promise;
+            }],
             compile:function(tElement, tAttr) {
                 tElement.addClass('afcontainer');
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.component('container', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
-                        $compile(tplContent)(scope, function(clone, scope){
-                            iElement.html(clone);
+                    scope.newData.then(function(data){
+                        scope.afdata.items = data;
+                        return data;
+                    })
+                    .then(function(data){
+                        $http.get(afUtils.templateUrl.component('container', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                             $compile(tplContent)(scope, function(clone, scope){
+                                 iElement.html(clone);
+                             });
                         });
                     });
                 }
