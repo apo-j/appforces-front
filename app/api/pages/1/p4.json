@@ -2,6 +2,7 @@
     "status": 200,
     "type":10,
     "templateUrl":"1",
+    "isLoaded": true,
     "searchId": "123456",
     "style": "",
     "css":"col-xs-12",
