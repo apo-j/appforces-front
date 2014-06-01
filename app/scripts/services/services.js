@@ -47,10 +47,10 @@ angular.module('services').factory('afData', ['$resource','afConfig','$http',
 					//TODO
 				}
 			},
-			post:function(url, data){
+			post:function(url, params){
 				if(url){
 					url = url.replace(/^\//, '');
-					return $http({method: 'post', url: url, data: data});
+					return $http({method: 'post', url: url, data: params});
 				}else{
 					//TODO
 				}
@@ -63,8 +63,8 @@ angular.module('services').factory('afEventRegister', ['$rootScope', 'afConfig',
         return {
 			registerOnPageReload: function(scope){
 				scope.$on(afEvents.RELOAD_PAGE_BODY, function(event, data){
-                    afData.get(data.url, data.params).success(function(pageData){
-                        $scope.afdata = pageData;
+                    afData.post(data.url, data.params).success(function(pageData){
+                        scope.afdata = pageData;
                     });
 				});
 			},
@@ -190,6 +190,19 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
         var _401Page = null;
         var _searchResultPage = null;
 
+        self.pages = {};
+
+        self.addPage = function(page){
+            self.pages[page.key] = page.value;
+        };
+
+        self.getPage = function(key){
+            if(self.pages.hasOwnProperty(key)){
+                return self.pages[key]
+            }else{
+                return false;
+            }
+        }
         self.cache = $cacheFactory('lrucache', {
             capacity: 100
         });

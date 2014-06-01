@@ -3,29 +3,42 @@
 angular.module('directives.miscellaneous', [])
 
 angular.module('directives.miscellaneous').directive('afLink',
-    ['afUtils', 'afNavigation','afEnums', function(afUtils, afNavigation, afEnums){
+    ['$rootScope','afUtils', 'afNavigation','afEnums','afPage','afEvents','afConfig', function($rootScope, afUtils, afNavigation, afEnums, afPage,afEvents, afConfig){
         return {
             restrict: 'AE',
             scope:{
-                afHref:'@',
-                afTarget:'@'
+                afdata:'='
             },
             compile: function(tElement, tAttr) {
                 return function(scope, iElement, iAttr) {
-                    var href = 'javascript:void(0)';
+                    iElement.text(scope.afdata.label);
+                    scope.href = 'javascript:void(0)';
 
-                    if(scope.afHref.indexOf(afEnums.NavigationType.outer) == 0){//permit right click of mouse on the outerbound link
-                        href = afUtils.getUrl(scope.afHref, {pattern: afEnums.NavigationType.outer, content:''});
+                    if(scope.afdata.url.indexOf(afEnums.NavigationType.outer) == 0){//permit right click of mouse on the outerbound link
+                        scope.href = afUtils.getUrl(scope.afdata.url, {pattern: afEnums.NavigationType.outer, content:''});
+                    }else if(scope.afdata.url.indexOf(afEnums.NavigationType.inner) == 0){//permit right click of mouse on the innerbound link
+                        scope.href = afUtils.getUrl(scope.afdata.url, {pattern: afEnums.NavigationType.inner, content:''});
+                    }else if(scope.afdata.url.indexOf(afEnums.NavigationType.content) == 0){
+                        scope.criteria = angular.copy(scope.afdata.criteria);
+
+                        var current = afPage.getPage(afPage.currentPage().id);
+                        if(current){
+                            angular.forEach(current.data.criteria, function(c){
+                                scope.criteria.push(c);
+                            })
+                        }
+
                     }
 
-                    if(scope.afHref.indexOf(afEnums.NavigationType.inner) == 0){//permit right click of mouse on the outerbound link
-                        href = afUtils.getUrl(scope.afHref, {pattern: afEnums.NavigationType.inner, content:''});
-                    }
-
-                    iElement.attr('href', href);
+                    iElement.attr('href', scope.href);
 
                     iElement.on('click', function(event){
-                        afNavigation.navigateTo({href: scope.afHref, target: scope.afTarget});
+                        if(scope.afdata.url.indexOf(afEnums.NavigationType.content) == 0){
+                            $rootScope.$broadcast(afEvents.RELOAD_PAGE_BODY, {url:afConfig.DefaultSearchUrl, params:scope.criteria});
+                        }else{
+                            afNavigation.navigateTo({href: scope.afdata.url, target: scope.afdata.target});
+                        }
+
                         return false;
                     });
                 };
@@ -94,9 +107,11 @@ angular.module('directives').directive('afPageBody',
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
                     //container
-                    $http.get(afUtils.templateUrl.directiveComponent(afComponents['10']), {cache: $templateCache}).success(function(tplContent){
-                        $compile(tplContent)(scope, function(clone, scope){
-                            iElement.replaceWith(clone);
+                    scope.$watch('afdata', function(value){
+                        $http.get(afUtils.templateUrl.directiveComponent(afComponents['10']), {cache: $templateCache}).success(function(tplContent){
+                            $compile(tplContent)(scope, function(clone, scope){
+                                iElement.html(clone);
+                            });
                         });
                     });
                 }

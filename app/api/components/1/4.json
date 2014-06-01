@@ -14,11 +14,16 @@
                     "type":5,
                     "templateUrl":"1",
                     "isLoaded": true,
-                    "url":"£outerhttp://www.ifeng.com",
-                    "target":"_blank",
                     "style": "",
                     "css":"",
-                    "data":"Balenciaga 巴黎世家",
+                    "data":{
+                        "url":"£content",
+                        "target":"",
+                        "label":"Balenciaga 巴黎世家",
+                        "criteria":[
+                            {"key": "brand", "value":"Balenciaga"}
+                        ]
+                    },
                     "items":[]
                 },
                 {
@@ -26,11 +31,16 @@
                     "type":5,
                     "templateUrl":"1",
                     "isLoaded": true,
-                    "url":"£innerabout",
-                    "target":"",
                     "style": "",
                     "css":"",
-                    "data":"Buberry 巴宝莉",
+                    "data":{
+                        "url":"£innercloth-hat/male",
+                        "target":"",
+                        "label":"Buberry 巴宝莉",
+                        "criteria":[
+                            {"key": "brand", "value":"Buberry"}
+                        ]
+                    },
                     "items":[]
                 },
                 {
@@ -38,11 +48,16 @@
                     "type":5,
                     "templateUrl":"1",
                     "isLoaded": true,
-                    "url":"£outerhttp://www.ifeng.com",
-                    "target":"_self",
                     "style": "",
                     "css":"",
-                    "data":"Cartier 卡地亚",
+                    "data":{
+                        "url":"£outerhttp://www.ifeng.com",
+                        "target":"_self",
+                        "label":"Cartier 卡地亚",
+                        "criteria":[
+                            {"key": "brand", "value":"Cartier"}
+                        ]
+                    },
                     "items":[]
                 },
                 {
@@ -50,11 +65,16 @@
                     "type":5,
                     "templateUrl":"1",
                     "isLoaded": true,
-                    "url":"/",
-                    "target":"",
                     "style": "",
                     "css":"",
-                    "data":"Chanel 香奈儿",
+                    "data":{
+                        "url":"/",
+                        "target":"",
+                        "label":"Chanel 香奈儿",
+                        "criteria":[
+                            {"key": "brand", "value":"Chanel"}
+                        ]
+                    },
                     "items":[]
                 },
                 {
@@ -62,11 +82,16 @@
                     "type":5,
                     "templateUrl":"1",
                     "isLoaded": true,
-                    "url":"£content/coach.json",
-                    "target":"",
                     "style": "",
                     "css":"",
-                    "data":"Coach",
+                    "data":{
+                        "url":"£content/coach.json",
+                        "target":"",
+                        "label":"Coach",
+                        "criteria":[
+                            {"key": "brand", "value":"Coach"}
+                        ]
+                    },
                     "items":[]
                 },
                 {
@@ -74,11 +99,16 @@
                     "type":5,
                     "templateUrl":"1",
                     "isLoaded": true,
-                    "url":"£content/dior.json",
-                    "target":"",
                     "style": "",
                     "css":"",
-                    "data":"Dior",
+                    "data":{
+                        "url":"£content/dior.json",
+                        "target":"",
+                        "label":"Dior",
+                        "criteria":[
+                            {"key": "brand", "value":"Dior"}
+                        ]
+                    },
                     "items":[]
                 }
             ]

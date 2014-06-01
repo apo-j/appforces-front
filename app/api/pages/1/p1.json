@@ -3,9 +3,13 @@
     "type":10,
     "templateUrl":"1",
     "isLoaded":true,
-    "searchId": "123456",
     "style": "",
-    "data": "",
+    "data": {
+        "searchId": "123456",
+        "criteria":[
+            {"key": "category", "value":"cloth-hat"}
+        ]
+    },
     "css":"col-xs-12",
     "items":[
         {

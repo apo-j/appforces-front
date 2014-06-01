@@ -5,7 +5,7 @@
    */
   angular.module('content-mocks',['ngMockE2E', 'services'])
   
-  .run(function($httpBackend) {
+  .run(['$httpBackend', '$http', function($httpBackend, $http) {
 
     var authorized = false;
 	
@@ -29,8 +29,9 @@
       authorized = false;
       return [200];
     });
-	
-	$httpBackend.whenPOST('api/search').respond(function(method, url, data) {
+
+     //for search
+	/*$httpBackend.whenPOST('api/search').respond(function(method, url, data) {
       var res1 = {
 			"templateUrl":"components/accordion/1",
 			"os": "sumsung 2.3",
@@ -46,6 +47,48 @@
 		var _data = JSON.parse(data);
 	 var res = _data.criteria[0].val == _data.criteria[1].val ? res1 : res2;
       return [200, res];
+    });*/
+
+    $httpBackend.whenPOST('api/search').respond(function(method, url, data) {
+       var _data = {
+            "status": 200,
+            "templateUrl":"1",
+            "searchId": "123456",
+            "items":[
+            {
+                "id":4,
+                "type":10,
+                "templateUrl":"1",
+                "isLoaded": true,
+                "style": "",
+                "css":"col-xs-12",
+                "items":[
+                    {
+                        "id":4,
+                        "type":1,
+                        "templateUrl":"1",
+                        "isLoaded": true,
+                        "style": "",
+                        "css":"col-xs-4",
+                        "data":"09/12/2014",
+                        "items":[]
+                    },
+                    {
+                        "id":4,
+                        "type":3,
+                        "templateUrl":"1",
+                        "isLoaded": true,
+                        "style": "",
+                        "css":"col-xs-3",
+                        "data":"",
+                        "items":[]
+                    }
+                ]
+            }
+        ]
+
+        }
+        return [200, _data];
     });
     
     
@@ -60,5 +103,5 @@
 
     $httpBackend.whenGET(/.*/).passThrough();
 
-  });
+  }]);
 })();
