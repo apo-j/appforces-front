@@ -163,5 +163,39 @@
             "layoutUrl":"main",
             "ctrl": "NavigationCtrl"
         }
+    ],
+    "workflow":[
+        {
+            "code": "login",
+            "theme":1,
+            "states":[
+                {
+                    "code":"step1",
+                    "state":0
+                },
+                {
+                    "code":"step2",
+                    "state":0
+                },
+                {
+                    "code":"step3",
+                    "state":0
+                }
+            ]
+        },
+        {
+            "code": "payment",
+            "theme":1,
+            "states":[
+                {
+                    "code":"step1",
+                    "state":0
+                },
+                {
+                    "code":"step2",
+                    "state":0
+                }
+            ]
+        }
     ]
 }

@@ -18,7 +18,10 @@ NB: 404, 401, 500 pages must be available, if not, a default one should be offer
 Version 3:
 1: define Workflow as services:
     Interface: next(), current(), prev()
-    for each workflow: states:[{code; state(terminated?); ...}]
+    for each workflow: states:[{code; state(0,1,2,3?); ...}]
+    table workflow : "id", "code", "description", "theme"?
+
+    table workflowstate : "id", "workflowid", "order", "code", "state"
 
 
 Db:

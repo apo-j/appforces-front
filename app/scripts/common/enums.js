@@ -18,7 +18,12 @@ var Enums = (function(enums){
         pSearchResult:'105',
 		p0: 'ordinary'
 	};
-	
+
+    self.workflowEnums = {
+        login: "login",
+        payment: "payment"
+    }
+
 	self.NavigationType = {
 		outer: "£outer",
 		inner: "£inner",
