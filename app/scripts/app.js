@@ -42,24 +42,41 @@ angular.module("appForce", [
      });
 
 
-    for(var i = 0, j = afConfig.AppConfig.pages.length; i < j; i++){
-       var _page = afConfig.AppConfig.pages[i];
+     angular.forEach(afConfig.AppConfig.pages, function(page, key){
+         $routeProvider.when(page['url'], {
+             templateUrl: 'views/' + page['layoutUrl'] + '.html',
+             controller: page['ctrl'] || 'NavigationCtrl',
+             resolve:{
+                 page: ['afPage', function(afPage){
+                     //TODO verify if this page needs authentication before open it
+                     var _p = afPage.setCurrentPage();
+                     if(_p){
+                         return afPage.currentPageData();//afData.get(_p.id + '.json');
+                         //return afPage.pageData().get({appId: afConfig.AppConfig.appId, pageId: _p.id}).$promise;
+                     }
+                 }]
+             }
+         });
+     });
 
-       $routeProvider.when(_page['url'], {
-                templateUrl: 'views/' + _page['layoutUrl'] + '.html',
-                controller: _page['ctrl'] || 'NavigationCtrl',
-                resolve:{
-                    page: ['afPage', function(afPage){
-                       //TODO verify if this page needs authentication before open it
-                        var _p = afPage.setCurrentPage();
-                        if(_p){
-                            return afPage.currentPageData();//afData.get(_p.id + '.json');
-                             //return afPage.pageData().get({appId: afConfig.AppConfig.appId, pageId: _p.id}).$promise;
-                        }
-                    }]
-                }
-            });
-    };
+
+    angular.forEach(afConfig.AppConfig.workflow, function(workflow, key){
+        //register workflow route
+        $routeProvider.when(workflow['url'], {
+            templateUrl: 'views/' + workflow['layoutUrl'] + '.html',
+            controller: workflow['ctrl'] || 'NavigationCtrl',
+            resolve:{
+                page: ['afPage', function(afPage){
+                    //TODO verify if this page needs authentication before open it
+                    var _p = afPage.setCurrentPage();
+                    if(_p){
+                        return afPage.currentPageData();//afData.get(_p.id + '.json');
+                        //return afPage.pageData().get({appId: afConfig.AppConfig.appId, pageId: _p.id}).$promise;
+                    }
+                }]
+            }
+        });
+    });
 
     $routeProvider.otherwise({
         redirectTo: afConfig.DefaultPageUrl.P404
