@@ -166,8 +166,9 @@
     ],
     "workflow":[
         {
+            "id": 0,
             "code": "payment",
-            "layoutUrl":"main",
+            "layoutUrl":"workflow",
             "url":"/checkout",
             "states":[
                 {

@@ -23,6 +23,7 @@ angular.module("appForce", [
   .constant('afEnums', Enums)
   .constant('afEvents', Events)
   .constant('afComponents', Components)
+  .constant('afWorkflowList', Workflow)
   .config(['afUtilsProvider', '_Utils', function(afUtilsProvider, _Utils){
 	afUtilsProvider.initUtils(_Utils);
   }])
@@ -47,7 +48,7 @@ angular.module("appForce", [
              templateUrl: 'views/' + page['layoutUrl'] + '.html',
              controller: page['ctrl'] || 'NavigationCtrl',
              resolve:{
-                 page: ['afPage', function(afPage){
+                 page: ['afPage', 'afData', function(afPage, afData){
                      //TODO verify if this page needs authentication before open it
                      var _p = afPage.setCurrentPage();
                      if(_p){
@@ -66,11 +67,11 @@ angular.module("appForce", [
             templateUrl: 'views/' + workflow['layoutUrl'] + '.html',
             controller: workflow['ctrl'] || 'NavigationCtrl',
             resolve:{
-                page: ['afPage', function(afPage){
+                page: ['afPage', 'afData', function(afPage, afData){
                     //TODO verify if this page needs authentication before open it
                     var _p = afPage.setCurrentPage();
                     if(_p){
-                        return afPage.currentPageData();//afData.get(_p.id + '.json');
+                        return afPage.workflowData(_p.id);//afData.get(_p.id + '.json');
                         //return afPage.pageData().get({appId: afConfig.AppConfig.appId, pageId: _p.id}).$promise;
                     }
                 }]

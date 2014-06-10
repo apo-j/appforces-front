@@ -2,11 +2,13 @@
     "status": 200,
     "id": 0,
     "type":17,
-    "templateUrl":"1",
+    "templateUrl": null,
     "isLoaded":true,
     "style": "",
     "css":"col-xs-12",
     "data": {
+        "type": "1",
+        "templateUrl": 1,
         "steps": [
             {
                 "id":4,

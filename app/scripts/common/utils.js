@@ -64,6 +64,14 @@ var Utils = (function(utils){
         },
         page:function(url){
             return '/partials/pages/' + url + '.html';
+        },
+        workflow:function(type, templateUrl){
+            if(templateUrl){
+                return '/partials/components/workflow/#{type}/templates/#{url}.html'.replace(/#\{type\}/g, type).replace(/#\{url\}/, templateUrl);
+            }else{
+                return '/partials/components/workflow/#{type}/#{type}.html'.replace(/#\{type\}/g, type);
+            }
+
         }
     }
 
