@@ -281,10 +281,17 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
                 return $location.path().toLowerCase() ===  (page.url || '/').toLowerCase();
             });
 
+            if(!match){
+                match = afUtils.Collection.find(afConfig.AppConfig.workflow, function(wf){
+                    return $location.path().toLowerCase() ===  (wf.url || '/').toLowerCase();
+                });
+            }
+
             if(match){
                 _currentPage = match;
                 return _currentPage;
             }
+
             return false;
         };
 

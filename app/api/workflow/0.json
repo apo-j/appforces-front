@@ -1,0 +1,67 @@
+{
+    "status": 200,
+    "id": 0,
+    "type":17,
+    "templateUrl":"1",
+    "isLoaded":true,
+    "style": "",
+    "css":"col-xs-12",
+    "data": {
+        "steps": [
+            {
+                "id":4,
+                "type":10,
+                "templateUrl":"1",
+                "isLoaded": true,
+                "style": "",
+                "css":"row col-xs-12",
+                "data":"",
+                "items":[
+                    {
+                        "id":2,
+                        "type":2,
+                        "templateUrl":"1",
+                        "isLoaded": true,
+                        "style": "",
+                        "css":"col-xs-8",
+                        "data":{
+                            "interval": 5000,
+                            "slides":[
+                                {
+                                    "image": "http://placekitten.com/600/300",
+                                    "text": "More Cats"
+                                },
+                                {
+                                    "image": "http://placekitten.com/601/300",
+                                    "text": "Extra Kittys"
+                                }
+                            ]
+                        },
+                        "items":[]
+                    }
+                ]
+            },
+            {
+                "id":4,
+                "type":1,
+                "templateUrl":"1",
+                "isLoaded": true,
+                "style": "",
+                "css":"col-xs-4",
+                "data":"09/12/2014",
+                "items":[]
+            },
+            {
+                "id":4,
+                "type":3,
+                "templateUrl":"1",
+                "isLoaded": true,
+                "style": "",
+                "css":"col-xs-3",
+                "data":"",
+                "items":[]
+            }
+        ]
+    },
+    "items":[]
+}

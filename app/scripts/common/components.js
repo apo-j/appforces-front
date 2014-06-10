@@ -25,7 +25,8 @@ var Components = (function(components){
         13:'htmlContent',
         14:'articleBuyerConfigBloc',
         15:'containerArticles',
-        16:'SearchResult'
+        16:'searchResult',
+        17:'workflow'
     }
 
     $.extend( true, components, component );
