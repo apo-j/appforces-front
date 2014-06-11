@@ -17,7 +17,9 @@
                 "isLoaded": true,
                 "style": "",
                 "css":"row col-xs-12",
-                "data":"",
+                "data":{
+                    "name": "step0"
+                },
                 "items":[
                     {
                         "id":2,
@@ -45,23 +47,50 @@
             },
             {
                 "id":4,
-                "type":1,
+                "type":10,
                 "templateUrl":"1",
                 "isLoaded": true,
                 "style": "",
-                "css":"col-xs-4",
-                "data":"09/12/2014",
-                "items":[]
+                "css":"row col-xs-12",
+                "data":{
+                    "name": "step1"
+                },
+                "items":[
+                    {
+                        "id": 4,
+                        "type":1,
+                        "templateUrl":"1",
+                        "isLoaded": true,
+                        "style": "",
+                        "css":"col-xs-4",
+                        "data":"09/12/2014",
+                        "items":[]
+                    }
+
+                ]
             },
             {
                 "id":4,
-                "type":3,
+                "type":10,
                 "templateUrl":"1",
                 "isLoaded": true,
                 "style": "",
-                "css":"col-xs-3",
-                "data":"",
-                "items":[]
+                "css":"row col-xs-12",
+                "data":{
+                    "name": "step2"
+                },
+                "items":[
+                    {
+                        "id":4,
+                        "type":3,
+                        "templateUrl":"1",
+                        "isLoaded": true,
+                        "style": "",
+                        "css":"col-xs-3",
+                        "data":"",
+                        "items":[]
+                    }
+                ]
             }
         ]
     },

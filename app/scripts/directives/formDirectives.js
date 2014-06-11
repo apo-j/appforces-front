@@ -1,11 +1,15 @@
 /**
+ * Created by Pluto on 6/11/2014.
+ */
+
+/**
  * Created by xyj on 10/06/2014.
  */
 
 'use strict';
-angular.module('directives.workflow', []);
+angular.module('directives.form', []);
 
-angular.module('directives.workflow').directive('afWorkflow',
+angular.module('directives.workflow').directive('afForm',
     ['$http', '$templateCache', '$compile', 'afUtils','afWorkflowList', function($http, $templateCache, $compile,afUtils, afWorkflowList){
         return {
             restrict: "AE",
@@ -27,7 +31,7 @@ angular.module('directives.workflow').directive('afWorkflow',
         }
     }]);
 
-angular.module('directives.components').directive('afPaymentFlow',
+/*angular.module('directives.components').directive('afPaymentFlow',
     ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
         return {
             restrict: "AE",
@@ -65,4 +69,6 @@ angular.module('directives.components').directive('afPaymentFlow',
                 }
             }
         }
-    }]);
+    }]);*/
+
+

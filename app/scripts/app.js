@@ -13,6 +13,7 @@ angular.module("appForce", [
   'filters',
   'directives',
   'directives.components',
+  'directives.form',
   'ui.bootstrap',
   'content-mocks',
   'http-auth-interceptor'
