@@ -72,6 +72,9 @@ var Utils = (function(utils){
                 return '/partials/components/workflow/#{type}/#{type}.html'.replace(/#\{type\}/g, type);
             }
 
+        },
+        formItem: function(type){
+            return '/partials/components/formItem/templates/#{type}.html'.replace(/#\{type\}/g, type);
         }
     }
 

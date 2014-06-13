@@ -58,13 +58,60 @@
                 "items":[
                     {
                         "id": 4,
-                        "type":1,
+                        "type":18,
                         "templateUrl":"1",
                         "isLoaded": true,
                         "style": "",
                         "css":"col-xs-4",
-                        "data":"09/12/2014",
-                        "items":[]
+                        "data":{
+                            "action": "http://loclhost"
+                        },
+                        "items":[
+                            {
+                                "id":4,
+                                "type":10,
+                                "templateUrl":"1",
+                                "isLoaded": true,
+                                "style": "",
+                                "css":"row col-xs-12",
+                                "data":null,
+                                "items":[
+                                    {
+                                        "id":4,
+                                        "type":19,
+                                        "templateUrl":"1",
+                                        "isLoaded": true,
+                                        "style": "",
+                                        "css":"col-xs-6",
+                                        "data":{
+                                            "type":5,
+                                            "placeholder":"login",
+                                            "name":"login",
+                                            "value":"login",
+                                            "required":false
+                                        },
+                                        "items":[]
+                                    },
+                                    {
+
+                                        "id":4,
+                                        "type":19,
+                                        "templateUrl":"1",
+                                        "isLoaded": true,
+                                        "style": "",
+                                        "css":"col-xs-6",
+                                        "data":{
+                                            "type":1,
+                                            "placeholder":"login",
+                                            "name":"",
+                                            "value":"100",
+                                            "required":false
+                                        },
+                                        "items":[]
+                                    }
+                                ]
+                            }
+                        ]
                     }
 
                 ]

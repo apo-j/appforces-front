@@ -31,5 +31,13 @@ var Enums = (function(enums){
 		content: "£content"
 	};
 
+    self.FormItemTypeEnums = {
+        1: "text",
+        2: "textarea",
+        3: "radio",
+        4: "checkbox",
+        5: "label"
+    };
+
     return self;
 }(Appforces.Enums || {}))

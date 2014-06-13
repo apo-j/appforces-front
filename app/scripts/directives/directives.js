@@ -6,7 +6,8 @@ angular.module('directives', [
     'directives.navDirectives',
     'directives.miscellaneous',
     'directives.components',
-    'directives.workflow'
+    'directives.workflow',
+    'directives.form'
 ]);
 
 
