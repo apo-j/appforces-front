@@ -104,7 +104,7 @@
                                             "type":1,
                                             "placeholder":"login",
                                             "name":"login",
-                                            "value":"100",
+                                            "value":100,
                                             "required":false
                                         },
                                         "items":[]
