@@ -17,13 +17,25 @@ angular.module('directives.form').directive('afForm',
                 afdata:"="
             },
             controller: ['$scope', function($scope){
+                $scope.formData = {};
+
                 $scope.submit = function(){
-                    alert($scope.afdata.data.action);
-                }
+                    $http.post($scope.afdata.data.action, $scope.formData)
+                        .success(function(data) {
+                            alert(data);
+                        })
+                        .error(function(data, status, headers, config) {
+                            alert('error');
+                        });
+                };
 
                 $scope.reset = function(){
                     $scope.$broadcast(afEvents.RESET_FORM);
-                }
+                };
+
+               /* $scope.$watch('formData', function(v){
+                 alert("changed");
+                 },true);*/
             }],
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
@@ -42,14 +54,24 @@ angular.module('directives.form').directive('afFormItem',
         return {
             restrict: "AE",
             scope:{
-                afdata:"="
+                afdata:"=",
+                afOptionalData:"="
             },
             controller: ['$scope', function($scope){
-                $scope.originalValue = $scope.afdata.data.value;
+                if($scope.afdata.data.type != 5){//label
+                    $scope.formData = $scope.afdata.data.value;
 
-                $scope.$on(afEvents.RESET_FORM, function(event, data){
-                    $scope.afdata.data.value = $scope.originalValue;
-                });
+                    $scope.$watch('formData', function(v){
+                        if($scope.afOptionalData[$scope.afdata.data.name] !== v){
+                            $scope.afOptionalData[$scope.afdata.data.name] = v;
+                        }
+                    });
+
+                    $scope.$on(afEvents.RESET_FORM, function(event, data){
+                        $scope.formData = $scope.afdata.data.value;
+                    });
+                }
+
             }],
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {

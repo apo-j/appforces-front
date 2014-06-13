@@ -9,7 +9,8 @@ angular.module('directives.components').directive('afGeneralComponent',
         return {
             restrict: "AE",
             scope:{
-              afdata:"="
+              afdata:"=",
+              afOptionalData:"="
             },
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
@@ -31,7 +32,8 @@ angular.module('directives.components').directive('afContainer',
         return {
             restrict: "AE",
             scope:{
-                afdata:"="
+                afdata:"=",
+                afOptionalData:"="
             },
             controller: ['$scope','afComponentData','$q', function($scope, afComponentData, $q){
                 var deferred = $q.defer();

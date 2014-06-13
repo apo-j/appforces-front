@@ -1,5 +1,5 @@
 <form ng-class="afdata.css" style="{{afdata.style}}">
-    <div ng-repeat="item in afdata.items" af-general-component afdata="item"></div>
+    <div ng-repeat="item in afdata.items" af-general-component afdata="item" af-optional-data="formData"></div>
 
     <button ng-click="submit()">validate</button>
     <button ng-click="reset()">reset</button>

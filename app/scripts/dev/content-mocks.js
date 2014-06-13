@@ -98,6 +98,10 @@
     $httpBackend.whenPOST('data/protected').respond(function(method, url, data) {
       return authorized ? [200,'This is confidential [' + data + '].'] : [401];
     });
+    $httpBackend.whenPOST('api/form/submit').respond(function(method, url, data) {
+        return [200,'I have received and processed your data [' + data + '].'];
+    });
+
 
     //otherwise
 

@@ -64,7 +64,7 @@
                         "style": "",
                         "css":"col-xs-4",
                         "data":{
-                            "action": "http://loclhost"
+                            "action": "api/form/submit"
                         },
                         "items":[
                             {
@@ -103,7 +103,7 @@
                                         "data":{
                                             "type":1,
                                             "placeholder":"login",
-                                            "name":"",
+                                            "name":"login",
                                             "value":"100",
                                             "required":false
                                         },
