@@ -1,0 +1,10 @@
+{
+    "status": 200,
+    "workflow":[
+        {
+            "code":"payment",
+            "type":1,
+            "authorization":"login"
+        }
+    ]
+}

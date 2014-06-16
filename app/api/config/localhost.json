@@ -94,20 +94,6 @@
             "ctrl": "NavigationCtrl"
         },
         {
-            "id":"p200",
-            "type":"200",
-            "title": "payment",
-            "pageSecurity":{
-                "requireLogin": false,
-                "passwordDigest": ""
-            },
-            "code":"payment",
-            "url":"/checkout",
-            "isIndexPage": false,
-            "layoutUrl":"workflow",
-            "ctrl": "NavigationCtrl"
-        },
-        {
             "id":"p1",
             "type":"0",
             "title": "Iluxe-Privee",

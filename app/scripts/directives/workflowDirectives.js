@@ -6,7 +6,7 @@
 angular.module('directives.workflow', []);
 
 angular.module('directives.workflow').directive('afWorkflow',
-    ['$http', '$templateCache', '$compile', 'afUtils','afWorkflowList', function($http, $templateCache, $compile,afUtils, afWorkflowList){
+    ['$http', '$templateCache', '$compile', 'afUtils','afWorkflowManager', function($http, $templateCache, $compile,afUtils, afWorkflowManager){
         return {
             restrict: "AE",
             scope:{
@@ -27,42 +27,25 @@ angular.module('directives.workflow').directive('afWorkflow',
         }
     }]);
 
-angular.module('directives.components').directive('afPaymentFlow',
-    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+angular.module('directives.workflow').directive('afWorkflowLauncher',
+    ['$http', '$templateCache', '$compile', 'afUtils','afWorkflowList', function($http, $templateCache, $compile,afUtils, afWorkflowList){
         return {
             restrict: "AE",
             scope:{
-                afdata:"="
+                wfCode:"@"
             },
-            controller: ['$scope', function($scope){
-                //payment workflow logic here
-                $scope.currentStep = 0;
-                $scope.totalSteps = $scope.afdata.steps.length;
-                $scope.prevStep = function(){
-                    if($scope.currentStep > 0){
-                        $scope.currentStep--;
-                    }
-                };
-                $scope.nextStep = function(){
-                    if($scope.currentStep < $scope.totalSteps - 1){
-                        $scope.currentStep++;
-                    }
-                };
+            controller:['$scope', function($scope){
 
-                $scope.terminate = function(){
-                    alert('ok');
-                }
             }],
             compile:function(tElement, tAttr) {
-                tElement.addClass('afworkflow');
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.workflow('payment', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
-                        $compile(tplContent)(scope, function(clone, scope){
-                            iElement.html(clone);
-                        });
-                    });
+                    var flow = scope.wfCode;
+                    if(!!flow){
+                        iElement.on('click', function(){
 
-                }
+                        });
+                    }
+                };
             }
         }
     }]);
