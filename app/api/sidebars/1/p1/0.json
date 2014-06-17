@@ -5,7 +5,7 @@
     "templateUrl": "sidebar",
     "isLoaded": true,
     "style": "",
-    "css":"",
+    "css":"col-md-2",
     "data":"",
     "items":[
         {
