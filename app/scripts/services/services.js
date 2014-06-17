@@ -309,15 +309,6 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
             return self.page().get({appId: afConfig.AppConfig.appId, pageId: self.currentPage().id}).$promise;
         };
 
-        //TODO
-        self.workflow = function(){
-            return $resource('api/workflow/:workflowId.json');//, {get:{cache: self.cache}});
-        };
-
-        self.workflowData = function(id){
-            return self.workflow().get({workflowId: id}).$promise;
-        };
-
         self.pageTitle = function(){
             return (self.currentPage()? self.currentPage().title : null) || afConfig.AppConfig.appName || afConfig.AppName;
         };
