@@ -62,7 +62,7 @@ angular.module("appForce", [
      });
 
 
-    angular.forEach(afConfig.AppConfig.workflow, function(workflow, key){
+   /* angular.forEach(afConfig.AppConfig.workflow, function(workflow, key){
         //register workflow route
         $routeProvider.when(workflow['url'], {
             templateUrl: 'views/' + workflow['layoutUrl'] + '.html',
@@ -78,7 +78,7 @@ angular.module("appForce", [
                 }]
             }
         });
-    });
+    });*/
 
     $routeProvider.otherwise({
         redirectTo: afConfig.DefaultPageUrl.P404

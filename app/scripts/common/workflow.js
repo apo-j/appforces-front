@@ -6,7 +6,10 @@
 
 var Workflow = (function(workflow){
     var flow = {
-        1:'payment'
+        1:{
+            code:'payment',
+            url: '/checkout'
+        }
     }
 
     $.extend( true, workflow, flow );

@@ -16,7 +16,7 @@ angular.module('directives.workflow').directive('afWorkflow',
                 return function(scope , iElement, iAttrs) {
                     var workflow = afWorkflowList[scope.afdata.data.type];
                     if(workflow){
-                        $http.get(afUtils.templateUrl.workflow(workflow), {cache: $templateCache}).success(function(tplContent){
+                        $http.get(afUtils.templateUrl.workflow(workflow.code), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 iElement.replaceWith(clone);
                             });
@@ -26,6 +26,29 @@ angular.module('directives.workflow').directive('afWorkflow',
             }
         }
     }]);
+
+
+angular.module('directives.workflow').directive('afWorkflowLauncher',
+    ['afWorkflowList','$location', function(afWorkflowList, $location){
+        return {
+            restrict: "AE",
+            scope:{
+                wfType:'@'
+            },
+            link:function(scope , iElement, iAttrs) {
+                iElement.on('click', function(){
+                    var workflow = afWorkflowList[scope.wfType]
+                    if(workflow){
+                        scope.$apply( function(){
+                            $location.path(workflow.url);//to other page of the same site
+                        });
+                    }
+                })
+            }
+        }
+    }]);
+
+
 
 angular.module('directives.components').directive('afPaymentFlow',
     ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){

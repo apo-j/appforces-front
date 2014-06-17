@@ -31,6 +31,7 @@ var Configuration = (function(configuration){
         Carousel:{
             Interval:3000
         }
-    }
+    };
+
     return self;
 }(Appforces.Configuration || {}))

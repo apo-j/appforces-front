@@ -1,0 +1,3 @@
+Page type
+ 100 - 999 special page eg: 404 login etc
+ 1000 - 2000 workflow  => to launch a workflow use flowing code   <any af-workflow-launcher wf-type="1">TEXT</any>

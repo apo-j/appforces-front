@@ -94,8 +94,8 @@
             "ctrl": "NavigationCtrl"
         },
         {
-            "id":"p200",
-            "type":"200",
+            "id":"p1007",
+            "type":"1000",
             "title": "payment",
             "pageSecurity":{
                 "requireLogin": false,
@@ -104,7 +104,7 @@
             "code":"payment",
             "url":"/checkout",
             "isIndexPage": false,
-            "layoutUrl":"workflow",
+            "layoutUrl":"main",
             "ctrl": "NavigationCtrl"
         },
         {

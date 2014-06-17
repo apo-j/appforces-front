@@ -1,0 +1,129 @@
+{
+    "status": 200,
+    "id": "index",
+    "templateUrl": "header",
+    "css":"header outer",
+    "style":"",
+    "top": {
+        "id": "1",
+        "templateUrl": "top-iluxe",
+        "css":"container navbar iluxe-header",
+        "style":"height:100px;width:800px;text-align: center;margin-bottom:0"
+    },
+    "menu": {
+        "id": "1",
+        "templateUrl": "menu",
+        "navbar":{
+            "id": "1",
+            "templateUrl": "navbar",
+            "itemTemplateUrl":"navbar-item",
+            "items": [
+                {
+                    "name": "",
+                    "url": "/",
+                    "css":"",
+                    "style":"display:inline-block;min-width:50px;text-align:center",
+                    "icon":"glyphicon glyphicon-home",
+                    "items": [
+                    ]
+                },
+                {
+                    "name": "衣帽",
+                    "url": "/cloth-hat",
+                    "items": [
+                        {
+                            "name": "男式",
+                            "url": "/cloth-hat/male",
+                            "items": []
+                        },
+                        {
+                            "name": "女式",
+                            "url": "/cloth-hat/female",
+                            "items": []
+                        }
+                    ]
+                },
+                {
+                    "name": "箱包",
+                    "url": "about",
+                    "items": [
+                        {
+                            "name": "男式",
+                            "url": "sub2",
+                            "items": []
+                        },
+                        {
+                            "name": "女式",
+                            "url": "sub3",
+                            "items": []
+                        }
+                    ]
+                },
+                {
+                    "name": "鞋履",
+                    "url": "about",
+                    "items": [
+                        {
+                            "name": "男式",
+                            "url": "sub1",
+                            "items": []
+                        },
+                        {
+                            "name": "女式",
+                            "url": "sub2",
+                            "items": []
+                        }
+                    ]
+                },
+                {
+                    "name": "珠宝",
+                    "url": "about",
+                    "items": [
+                        {
+                            "name": "男式",
+                            "url": "sub1",
+                            "items": []
+                        },
+                        {
+                            "name": "女式",
+                            "url": "sub2",
+                            "items": []
+                        }
+                    ]
+                },
+                {
+                    "name": "化妆品",
+                    "url": "about",
+                    "items": [
+                        {
+                            "name": "男式",
+                            "url": "sub1",
+                            "items": []
+                        },
+                        {
+                            "name": "女式",
+                            "url": "sub2",
+                            "items": []
+                        }
+                    ]
+                },
+                {
+                    "name": "母婴",
+                    "url": "about",
+                    "items": []
+                },
+                {
+                    "name": "二手",
+                    "url": "about",
+                    "items": []
+                },
+                {
+                    "name": "优惠促销",
+                    "url": "about",
+                    "items": []
+                }
+
+            ]
+        }
+    }
+}
