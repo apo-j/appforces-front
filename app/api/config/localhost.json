@@ -20,7 +20,8 @@
             },
             "code":"spSignin",
             "url":"/signin",
-            "layoutUrl":"contact",
+            "layoutUrl": null,
+            "layout":22,
             "ctrl": "NavigationCtrl"
         },
         {
@@ -34,7 +35,8 @@
             "code":"spSignup",
             "url":"/signup",
             "isIndexPage": false,
-            "layoutUrl":"contact",
+            "layoutUrl": null,
+            "layout":22,
             "ctrl": "NavigationCtrl"
         },
         {
@@ -49,6 +51,7 @@
             "url":"/404",
             "isIndexPage": false,
             "layoutUrl":"40401",
+            "layout":22,
             "ctrl": "NavigationCtrl"
         },
         {
@@ -63,6 +66,7 @@
             "url":"/500",
             "isIndexPage": false,
             "layoutUrl":"50001",
+            "layout":22,
             "ctrl": "NavigationCtrl"
         },
         {
@@ -76,7 +80,8 @@
             "code":"sp401",
             "url":"/401",
             "isIndexPage": false,
-            "layoutUrl":"contact",
+            "layoutUrl": null,
+            "layout":22,
             "ctrl": "NavigationCtrl"
         },
         {
@@ -90,7 +95,8 @@
             "code":"sr",
             "url":"/search-result",
             "isIndexPage": false,
-            "layoutUrl":"main",
+            "layoutUrl": null,
+            "layout":22,
             "ctrl": "NavigationCtrl"
         },
         {
@@ -104,7 +110,8 @@
             "code":"payment",
             "url":"/checkout",
             "isIndexPage": false,
-            "layoutUrl":"main",
+            "layoutUrl": null,
+            "layout":22,
             "ctrl": "NavigationCtrl"
         },
         {
@@ -118,7 +125,8 @@
             "code":"index",
             "url":"/",
             "isIndexPage": true,
-            "layoutUrl":"main",
+            "layoutUrl": null,
+            "layout":22,
             "ctrl": "NavigationCtrl"
         },
         {
@@ -132,7 +140,8 @@
             "code":"cloth-hat-female",
             "url":"/cloth-hat/female",
             "isIndexPage": false,
-            "layoutUrl":"main",
+            "layoutUrl": null,
+            "layout":22,
             "ctrl": "NavigationCtrl"
         },
         {
@@ -146,7 +155,8 @@
             "code":"cloth-hat-male",
             "url":"/cloth-hat/male",
             "isIndexPage": false,
-            "layoutUrl":"main",
+            "layoutUrl": null,
+            "layout":22,
             "ctrl": "NavigationCtrl"
         },
         {
@@ -160,7 +170,8 @@
             "code":"about",
             "url":"/about",
             "isIndexPage": false,
-            "layoutUrl":"about",
+            "layoutUrl": null,
+            "layout":22,
             "ctrl": "NavigationCtrl"
         },
         {
@@ -174,7 +185,8 @@
             "code":"article-details",
             "url":"/articles",
             "isIndexPage": false,
-            "layoutUrl":"main",
+            "layoutUrl": null,
+            "layout":22,
             "ctrl": "NavigationCtrl"
         }
     ]

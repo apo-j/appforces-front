@@ -43,10 +43,9 @@ angular.module("appForce", [
          templateUrl: 'views/500.html'
      });
 
-
      angular.forEach(afConfig.AppConfig.pages, function(page, key){
          $routeProvider.when(page['url'], {
-             templateUrl: 'views/' + page['layoutUrl'] + '.html',
+             templateUrl: 'views/' + (page['layoutUrl'] || 'main') + '.html',
              controller: page['ctrl'] || 'NavigationCtrl',
              resolve:{
                  page: ['afPage', 'afData', function(afPage, afData){

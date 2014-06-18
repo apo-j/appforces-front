@@ -70,20 +70,37 @@ angular.module('directives').directive('afSidebar',
             scope:{
                 position:'='
             },
-            controller: ['$scope', 'afPage', 'afSidebar', function($scope, afPage, afSidebar){
-                $scope.afdata = afSidebar.get({pageId: afPage.currentPage().id, position: $scope.position}).$promise;
+            controller: ['$scope', 'afPage', 'afSidebar', '$q', function($scope, afPage, afSidebar, $q){
+                var deferred = $q.defer();
+                var currentPage = afPage.currentPage();
+                if(!!currentPage && (($scope.position == 0 && (currentPage.layout & 4) > 0) ||($scope.position == 1 && (currentPage.layout & 8) > 0))){
+                    afSidebar.get({pageId: afPage.currentPage().id, position: $scope.position}, function(data){
+                            deferred.resolve(data);
+                        },
+                        function(reason){
+                            deferred.reject(reason);
+                        });
+                }else{
+                    deferred.reject(null);
+                }
+
+                $scope.newData = deferred.promise;
+                //$scope.afdata = afSidebar.get({pageId: afPage.currentPage().id, position: $scope.position}).$promise;
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    scope.afdata.then(function(data){
+                    scope.newData.then(function(data){
                         scope.afdata = data;
                         return scope.afdata;
                     }).then(function(data){
+                       scope.afdata.css += scope.position == 0 ? ' left ' : 'right';
                        $http.get(afUtils.templateUrl.sidebar(data.templateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 iElement.replaceWith(clone);
                             });
                         });
+                    },function(){
+                        iElement.remove();
                     });
 
                 }
