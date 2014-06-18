@@ -4,13 +4,13 @@
     "templateUrl":"1",
     "isLoaded":true,
     "style": "",
+    "css":"col-xs-10",
     "data": {
         "searchId": "123456",
         "criteria":[
             {"key": "category", "value":"cloth-hat"}
         ]
     },
-    "css":"col-xs-12",
     "items":[
         {
             "id":1,

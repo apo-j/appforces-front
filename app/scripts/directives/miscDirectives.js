@@ -64,26 +64,42 @@ angular.module('directives').directive('afLocalSearchLink',
 
 /************************Side bar*********************************/
 angular.module('directives').directive('afSidebar',
-    ['$http', '$templateCache', '$compile', 'afUtils', 'afComponents',  function($http, $templateCache, $compile, afUtils, afComponents){
+    ['$http', '$templateCache', '$compile', 'afUtils',  function($http, $templateCache, $compile, afUtils){
         return {
             restrict: 'AE',
             scope:{
                 position:'='
             },
-            controller: ['$scope', 'afPage', 'afSidebar', function($scope, afPage, afSidebar){
-                $scope.afdata = afSidebar.get({pageId: afPage.currentPage().id, position: $scope.position}).$promise;
+            controller: ['$scope', 'afPage', 'afSidebar', '$q', 'afEnums', function($scope, afPage, afSidebar, $q, afEnums){
+                var deferred = $q.defer();
+                var currentPage = afPage.currentPage();
+                if(!!currentPage && (($scope.position == 0 && (currentPage.layout & afEnums.layout.Left) > 0) ||($scope.position == 1 && (currentPage.layout & afEnums.layout.Right) > 0))){
+                    afSidebar.get({pageId: afPage.currentPage().id, position: $scope.position}, function(data){
+                            deferred.resolve(data);
+                        },
+                        function(reason){
+                            deferred.reject(reason);
+                        });
+                }else{
+                    deferred.reject(null);
+                }
+
+                $scope.newData = deferred.promise;
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    scope.afdata.then(function(data){
+                    scope.newData.then(function(data){
                         scope.afdata = data;
                         return scope.afdata;
                     }).then(function(data){
+                       scope.afdata.css += scope.position == 0 ? ' left ' : 'right';
                        $http.get(afUtils.templateUrl.sidebar(data.templateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 iElement.replaceWith(clone);
                             });
                         });
+                    },function(){
+                        iElement.remove();
                     });
 
                 }
@@ -98,7 +114,7 @@ angular.module('directives').directive('afPageBody',
             scope:{
                 afdata:'='
             },
-            controller: ['$scope', 'afPage', 'afEvents', 'afData','afEventRegister', function($scope, afPage, afEvents, afData, afEventRegister){
+            controller: ['$scope','afEventRegister', function($scope, afEventRegister){
                 $scope.afdata = $scope.afdata || {};
 
                 //register on page reload event
@@ -108,9 +124,9 @@ angular.module('directives').directive('afPageBody',
                 return function(scope , iElement, iAttrs) {
                     //container
                     scope.$watch('afdata', function(value){
-                        $http.get(afUtils.templateUrl.directiveComponent(afComponents['10']), {cache: $templateCache}).success(function(tplContent){
+                        $http.get(afUtils.templateUrl.page(value.templateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
-                                iElement.html(clone);
+                                iElement.replaceWith(clone);
                             });
                         });
                     });
@@ -145,4 +161,3 @@ angular.module('directives').directive('afLocalSearchContainer',
             }
         }
     }]);
-

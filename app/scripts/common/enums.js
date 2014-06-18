@@ -4,6 +4,13 @@
 var Enums = (function(enums){
     var self = enums;
 
+    self.layout = {
+        Top: 2,
+        Left: 4,
+        Right: 8,
+        Bottom: 16
+    }
+
     self.elementTypeEnums = {
         text: 1,
         image: 2

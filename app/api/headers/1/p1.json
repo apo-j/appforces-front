@@ -1,7 +1,7 @@
 {
     "status": 200,
     "id": "index",
-    "templateUrl": "header",
+    "templateUrl": "1",
     "css":"header outer",
     "style":"",
     "top": {
@@ -17,6 +17,8 @@
             "id": "1",
             "templateUrl": "navbar",
             "itemTemplateUrl":"navbar-item",
+            "css":null,
+            "style":null,
             "items": [
                 {
                     "name": "",

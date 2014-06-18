@@ -2,10 +2,10 @@
     "status": 200,
     "id":5,
     "type":6,
-    "templateUrl": "sidebar",
+    "templateUrl": "1",
     "isLoaded": true,
     "style": "",
-    "css":"",
+    "css":"col-md-2",
     "data":"",
     "items":[
         {

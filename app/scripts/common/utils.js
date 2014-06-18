@@ -42,7 +42,10 @@ var Utils = (function(utils){
             return '/partials/header/' + name + '.html';
         },
         sidebar:function(name){
-            return '/partials/sidebar/' + name + '.html';
+            return '/partials/sidebar/' + (name || '1') + '.html';
+        },
+        page:function(name){
+            return '/partials/page/' + (name || '1') + '.html';
         },
         headerTop:function(name){
             return '/partials/header/top/' + name + '.html';
@@ -61,9 +64,6 @@ var Utils = (function(utils){
         },
         component:function(type, templateUrl){
             return '/partials/components/#{type}/templates/#{url}.html'.replace(/#\{type\}/, type).replace(/#\{url\}/, templateUrl);
-        },
-        page:function(url){
-            return '/partials/pages/' + url + '.html';
         },
         workflow:function(type, templateUrl){
             if(templateUrl){
