@@ -1,0 +1,14 @@
+<div class="top_bg">
+    <div class="wrap">
+        <div ng-repeat="item in afdata.items" af-general-component afdata="item" af-optional-data="afOptionalData"></div>
+        <div class="header">
+            <div class="web_search">
+                <form>
+                    <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                    <input type="submit" value=" " />
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

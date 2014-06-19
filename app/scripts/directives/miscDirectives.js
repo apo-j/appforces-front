@@ -161,3 +161,22 @@ angular.module('directives').directive('afLocalSearchContainer',
             }
         }
     }]);
+
+angular.module('directives').directive('afScripts',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
+        return {
+            restrict: 'AE',
+            controller:['$scope', 'afConfig', function($scope, afConfig){
+                $scope.scripts = afConfig.AppConfig.scripts || [];
+            }],
+            compile: function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.scripts(), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.replaceWith(clone);
+                        });
+                    });
+                };
+            }
+        }
+    }]);

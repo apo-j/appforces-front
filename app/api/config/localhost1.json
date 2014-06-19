@@ -1,22 +1,10 @@
 {
     "status": 200,
-    "appId" : 3,
+    "appId" : 1,
     "appName" : "tt",
-    "faviconUrl" : "",
+    "faviconUrl" : "http://www.w3schools.com/favicon.ico",
     "appleTouchFaviconUrl": "",
-    "styles":[
-        "http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500",
-        "styles/jquery.mmenu.all.css",
-        "styles/style.css",
-        "styles/slider.css"
-    ],
-    "scripts":[
-        "vendor/jquery.mmenu.js",
-        "vendor/jquery.eislideshow.js",
-        "vendor/easing.js",
-        "vendor/move-top.js",
-        "js/3.js"
-    ],
+    "styleId":"styles/iluxe.css",
     "isI18nOn":false,
     "languageId": 1,
 	"isLocalSearchActivated": true,
@@ -137,6 +125,66 @@
             "code":"index",
             "url":"/",
             "isIndexPage": true,
+            "layoutUrl": null,
+            "layout":22,
+            "ctrl": "NavigationCtrl"
+        },
+        {
+            "id":"p2",
+            "type":"0",
+            "title": "cloth-hat",
+            "pageSecurity":{
+                "requireLogin": false,
+                "passwordDigest": ""
+            },
+            "code":"cloth-hat-female",
+            "url":"/cloth-hat/female",
+            "isIndexPage": false,
+            "layoutUrl": null,
+            "layout":22,
+            "ctrl": "NavigationCtrl"
+        },
+        {
+            "id":"p3",
+            "type":"0",
+            "title": "cloth-hat",
+            "pageSecurity":{
+                "requireLogin": false,
+                "passwordDigest": ""
+            },
+            "code":"cloth-hat-male",
+            "url":"/cloth-hat/male",
+            "isIndexPage": false,
+            "layoutUrl": null,
+            "layout":22,
+            "ctrl": "NavigationCtrl"
+        },
+        {
+            "id":"p3",
+            "type":"0",
+            "title": "about",
+            "pageSecurity":{
+                "requireLogin": false,
+                "passwordDigest": ""
+            },
+            "code":"about",
+            "url":"/about",
+            "isIndexPage": false,
+            "layoutUrl": null,
+            "layout":22,
+            "ctrl": "NavigationCtrl"
+        },
+        {
+            "id":"p4",
+            "type":"0",
+            "title": "details",
+            "pageSecurity":{
+                "requireLogin": false,
+                "passwordDigest": ""
+            },
+            "code":"article-details",
+            "url":"/articles",
+            "isIndexPage": false,
             "layoutUrl": null,
             "layout":22,
             "ctrl": "NavigationCtrl"

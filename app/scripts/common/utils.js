@@ -38,6 +38,9 @@ var Utils = (function(utils){
 		template:function(name){
 			return name + '.html';
 		},
+        scripts:function(){
+            return '/partials/scripts/scripts.html';
+        },
         header:function(name){
             return '/partials/header/' + name + '.html';
         },

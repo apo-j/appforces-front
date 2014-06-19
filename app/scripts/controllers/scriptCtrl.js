@@ -1,13 +1,13 @@
 /**
- * Created by xyj on 17/02/14.
+ * Created by Pluto on 6/19/2014.
  */
 'use strict';
 
 angular.module('controllers')
-    .controller('DocHeaderCtrl', ['$scope','afPage','afConfig',
+    .controller('ScriptCtrl', ['$scope','afPage','afConfig',
         function ($scope, afPage, afConfig) {
             //global settings
-            $scope.styleSheets = afConfig.AppConfig.styles;
+            $scope.scripts = afConfig.AppConfig.scripts;
 
             //set page title
             //$scope.pageTitle = afPage.pageTitle();

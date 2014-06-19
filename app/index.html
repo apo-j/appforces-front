@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="styles/bootstrap-custom.css">
         <link rel="stylesheet" href="styles/navbar.css">
 		<link href="vendor/jqueryui/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-        <link rel="stylesheet" ng-href="{{styleSheet}}">
+        <link rel="stylesheet" ng-repeat="item in styleSheets" ng-href="{{item}}">
         <!-- endbuild -->
       <link rel="stylesheet" href="styles/dev.css">
 </head>
@@ -93,6 +93,8 @@
         <script src="scripts/controllers/docHeaderCtrl.js"></script>
         <script src="scripts/controllers/navigationCtrl.js"></script>
         <script src="scripts/controllers/loginCtrl.js"></script>
+        <script src="scripts/controllers/scriptCtrl.js"></script>
         <!-- endbuild -->
+        <div af-scripts></div>
 </body>
 </html>
