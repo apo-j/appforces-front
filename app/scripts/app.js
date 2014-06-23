@@ -12,8 +12,6 @@ angular.module("appForce", [
   'services',
   'filters',
   'directives',
-  'directives.components',
-  'directives.form',
   'ui.bootstrap',
   'content-mocks',
   'http-auth-interceptor'
@@ -29,6 +27,7 @@ angular.module("appForce", [
 	afUtilsProvider.initUtils(_Utils);
   }])
   .config(['$routeProvider','afConfig', function ($routeProvider, afConfig) {
+
     //set the default 404 page
     //this would be overridden if
     //a custom 404 page has been defined
@@ -83,7 +82,23 @@ angular.module("appForce", [
         redirectTo: afConfig.DefaultPageUrl.P404
     });
   }])
-    .run(['$rootScope','$location','afPage','afEvents','afConfig','$log', function($rootScope, $location, afPage, afEvents, afConfig, $log){
+    .run(['$rootScope','$location','afPage','afEvents','afConfig','$log', 'afDocsSearch', 'afArticles', function($rootScope, $location, afPage, afEvents, afConfig, $log,afDocsSearch, afArticles){
+        //get all articles
+        if(afConfig.AppConfig.isLocalSearchActivated){
+             afArticles.get(null, function(data){
+                 afDocsSearch.init(afConfig.AppConfig.localSearchOptions, data.data);
+             });
+         };
+
+
+
+        //transfer global angular events
+        $rootScope.$on('$viewContentLoaded', function() {
+            $rootScope.$broadcast(afEvents.VIEW_CONTENT_LOADED);
+        });
+
+
+
         //Register global events Listeners
         $rootScope.$on(afEvents.REQUIRE_LOGIN, function() {
             $rootScope.prevState = $rootScope.prevState || (afPage.currentPage()? afPage.currentPage().url : '/');

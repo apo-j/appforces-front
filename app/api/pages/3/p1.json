@@ -4,8 +4,11 @@
     "templateUrl":"1",
     "isLoaded":true,
     "style": "",
-    "css":"col-xs-9",
+    "css":"col-xs-12",
     "data": {
+        "scripts":[
+            "js/3.js"
+        ],
         "searchId": "123456",
         "criteria":[
             {"key": "category", "value":"cloth-hat"}
@@ -24,28 +27,47 @@
                 {
                     "id":2,
                     "type":2,
-                    "templateUrl":"1",
+                    "templateUrl":"3",
                     "isLoaded": true,
                     "style": "",
-                    "css":"col-xs-8",
+                    "css":"col-xs-12",
                     "data":{
                         "interval": 5000,
                         "slides":[
                             {
-                                "image": "http://placekitten.com/600/300",
-                                "text": "More Cats"
+                                "image": "images/slider-image1.jpg",
+                                "description": "<h3 class=\"btn\">$145.99</h3><h2>pink shoes <br>2013 collections</h2><h3 class=\"active\">It is a long established fact that a reader<br>Lorem Ipsum is that it has a more-or-less</h3>",
+                                "thumb":"images/thumbs/1.jpg",
+                                "thumbDescription":"<span class=\"active\">pink shoes</span><p>now of $145.99</p>",
+                                "url":"/"
                             },
                             {
-                                "image": "http://placekitten.com/601/300",
-                                "text": "Extra Kittys"
+                                "image": "images/slider-image2.jpg",
+                                "description": "<h3 class=\"btn\">$145.99</h3><h2>pink shoes <br>2013 collections</h2><h3 class=\"active\">It is a long established fact that a reader<br>Lorem Ipsum is that it has a more-or-less</h3>",
+                                "thumb":"images/thumbs/2.jpg",
+                                "thumbDescription":"<span>anns field</span><p>limited edition</p>",
+                                "url":"/"
                             },
                             {
-                                "image": "http://placekitten.com/602/300",
-                                "text": "Lots of Felines"
+                                "image": "images/slider-image3.jpg",
+                                "description": "<h3 class=\"btn\">$145.99</h3><h2>pink shoes <br>2013 collections</h2><h3 class=\"active\">It is a long established fact that a reader<br>Lorem Ipsum is that it has a more-or-less</h3>",
+                                "thumb":"images/thumbs/3.jpg",
+                                "thumbDescription":"<span>prada</span><p>summer is coming</p>",
+                                "url":"/"
                             },
                             {
-                                "image": "http://placekitten.com/603/300",
-                                "text": "Surplus Cutes"
+                                "image": "images/slider-image4.jpg",
+                                "description": "<h3 class=\"btn\">$145.99</h3><h2>pink shoes <br>2013 collections</h2><h3 class=\"active\">It is a long established fact that a reader<br>Lorem Ipsum is that it has a more-or-less</h3>",
+                                "thumb":"images/thumbs/4.jpg",
+                                "thumbDescription":"<span>casa devi</span><p>all colors available</p>",
+                                "url":"/"
+                            },
+                            {
+                                "image": "images/slider-image5.jpg",
+                                "description": "<h3 class=\"btn\">$145.99</h3><h2>pink shoes <br>2013 collections</h2><h3 class=\"active\">It is a long established fact that a reader<br>Lorem Ipsum is that it has a more-or-less</h3>",
+                                "thumb":"images/thumbs/5.jpg",
+                                "thumbDescription":"<span>mellow yellow</span><p>free delivery</p>",
+                                "url":"/details"
                             }
                         ]
                     },
@@ -55,13 +77,65 @@
         },
         {
             "id":4,
-            "type":15,
+            "type":10,
             "templateUrl":"1",
-            "isLoaded": false,
-            "style": "",
-            "css":"row col-xs-12",
+            "isLoaded": true,
+            "style": "padding-bottom:20px",
+            "css":"row col-xs-12 main_bg",
             "data":"",
-            "items":[]
+            "items":[
+                {
+                    "id":4,
+                    "type":10,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"wrap",
+                    "data":null,
+                    "items":[
+                        {
+                            "id":4,
+                            "type":10,
+                            "templateUrl":"1",
+                            "isLoaded": true,
+                            "style": "",
+                            "css":"main",
+                            "data":null,
+                            "items":[
+                                {
+                                    "id":4,
+                                    "type":13,
+                                    "templateUrl":"1",
+                                    "isLoaded": false,
+                                    "style": "",
+                                    "css":"top_main",
+                                    "data":{
+                                        "description":"<h2>New arrivals</h2><a href=\"#\">show all</a><div class=\"clear\"></div>"
+                                    },
+                                    "items":[]
+                                },
+                                {
+                                    "id":999,
+                                    "type":15,
+                                    "templateUrl":"1",
+                                    "isLoaded": false,
+                                    "style": "",
+                                    "css":"grids_of_3",
+                                    "data":{
+                                        "templateUrl": 1,
+                                        "css":"grid1_of_3",
+                                        "style":"",
+                                        "criteria":{
+                                            "isNew": true
+                                        }
+                                    },
+                                    "items":[]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 

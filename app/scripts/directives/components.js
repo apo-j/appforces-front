@@ -77,16 +77,20 @@ angular.module('directives.components').directive('afContainerArticles',
             scope:{
                 afdata:"="
             },
-            controller: ['$scope','afArticles','$q', function($scope, afArticles, $q){
+            controller: ['$scope','afArticles','$q','afConfig','afCriteriaSearch', function($scope, afArticles, $q, afConfig, afCriteriaSearch){
                 var deferred = $q.defer();
 
                 if(!$scope.afdata.isLoaded){
-                    afArticles.get(null, function(data){
-                            deferred.resolve(data.data);
-                        },
-                        function(reason){
-                            deferred.reject(reason);
-                        });
+                    if(afConfig.AppConfig.isLocalSearchActivated){
+                        deferred.resolve(afCriteriaSearch.exactSearch($scope.afdata.data.criteria));
+                    }else{
+                        afArticles.get(null, function(data){
+                                deferred.resolve(data.data);
+                            },
+                            function(reason){
+                                deferred.reject(reason);
+                            });
+                    }
                 }else{
                     deferred.resolve($scope.afdata.items);
                 }
@@ -101,7 +105,7 @@ angular.module('directives.components').directive('afContainerArticles',
                         return data;
                     })
                     .then(function(data){
-                        $http.get(afUtils.templateUrl.component('container', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $http.get(afUtils.templateUrl.component('containerArticles', scope.afdata.data.templateUrl), {cache: $templateCache}).success(function(tplContent){
                              $compile(tplContent)(scope, function(clone, scope){
                                  iElement.html(clone);
                              });

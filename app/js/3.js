@@ -2,18 +2,25 @@
  * Created by Pluto on 6/19/2014.
  */
 ;$(function() {
-    $('nav#menu-left').mmenu();
-
-    $('#ei-slider').eislideshow({
-        animation			: 'center',
-        autoplay			: true,
-        slideshow_interval	: 3000,
-        titlesFactor		: 0
+    $('nav#menu-left').livequery(function(){
+        $(this).mmenu();
+        $(this).removeClass('hidden');
     });
 
-    $(".scroll").click(function(event){
-        event.preventDefault();
-        $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+    $('#ei-slider').livequery(function(){
+        $(this).eislideshow({
+            animation			: 'center',
+            autoplay			: true,
+            slideshow_interval	: 3000,
+            titlesFactor		: 0
+        });
+    });
+
+    $(".scroll").livequery(function(){
+        $(this).click(function(event){
+            event.preventDefault();
+            $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+        });
     });
 
     var defaults = {
@@ -23,6 +30,7 @@
         easingType: 'linear'
     };
 
-
-    $().UItoTop({ easingType: 'easeOutQuart' });
+    $('nav#menu-left').livequery(function(){
+        $().UItoTop({ easingType: 'easeOutQuart' });
+    });
 });

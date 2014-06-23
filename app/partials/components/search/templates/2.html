@@ -1,4 +1,5 @@
+<form>
+    <input type="text" placeholder="Search" ng-model="afdata.data.criteria[0].val"  name="{{afdata.data.criteria[0].name}}" ng-repeat="criterion in afdata.data.criteria" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"/>
+    <input type="submit" value=" " ng-click="validate()"/>
+</form>
 
-   <input type="text" placeholder="criteria" ng-model="afdata.data.criteria[0].val"  name="{{afdata.data.criteria[0].name}}" />
-
-   <button ng-click="validate()">Valider</button>

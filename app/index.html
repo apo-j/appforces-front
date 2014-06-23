@@ -18,7 +18,6 @@
         <link rel="stylesheet" href="styles/bootstrap-custom.css">
         <link rel="stylesheet" href="styles/navbar.css">
 		<link href="vendor/jqueryui/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-        <link rel="stylesheet" ng-repeat="item in styleSheets" ng-href="{{item}}">
         <!-- endbuild -->
       <link rel="stylesheet" href="styles/dev.css">
 </head>
@@ -48,6 +47,7 @@
     <script src="vendor/Namespace.js"></script>
 	<script src="vendor/lunr.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/jquery.livequery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <!-- build:js({.tmp,app}) scripts/common.js -->
     <script src="scripts/common/global.js"></script>
@@ -82,6 +82,7 @@
 		<script src="scripts/services/workerManagerService.js"></script>
 		<script src="scripts/services/lunrSearchService.js"></script>
 		<script src="scripts/services/docsSearchService.js"></script>
+        <script src="scripts/services/criteriaSearchService.js"></script>
         <script src="scripts/directives/directives.js"></script>
         <script src="scripts/directives/navDirect.js"></script>
         <script src="scripts/directives/miscDirectives.js"></script>
@@ -95,6 +96,5 @@
         <script src="scripts/controllers/loginCtrl.js"></script>
         <script src="scripts/controllers/scriptCtrl.js"></script>
         <!-- endbuild -->
-        <div af-scripts></div>
 </body>
 </html>

@@ -98,6 +98,11 @@ angular.module('services').factory('afSidebar', ['$resource','afConfig',
         return $resource('api/sidebars/:appId/:pageId/:position.json', {appId: afConfig.AppConfig.appId});
     }]);
 
+angular.module('services').factory('afBottom', ['$resource','afConfig',
+    function($resource, afConfig){
+        return $resource('api/footer/:appId/:pageId.json', {appId: afConfig.AppConfig.appId});
+    }]);
+
 angular.module('services').factory('afComponentData', ['$resource','afConfig',
     function($resource, afConfig){
         return $resource('api/components/:appId/:componentId.json', {appId: afConfig.AppConfig.appId});

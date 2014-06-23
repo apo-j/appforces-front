@@ -7,7 +7,6 @@ angular.module('controllers')
     .controller('DocHeaderCtrl', ['$scope','afPage','afConfig',
         function ($scope, afPage, afConfig) {
             //global settings
-            $scope.styleSheets = afConfig.AppConfig.styles;
 
             //set page title
             //$scope.pageTitle = afPage.pageTitle();
