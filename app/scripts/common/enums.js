@@ -11,6 +11,12 @@ var Enums = (function(enums){
         Bottom: 16
     }
 
+    self.currencyEnums = {
+        RMB: 1,
+        EURO: 2,
+        DOLLAR: 3
+    }
+
     self.elementTypeEnums = {
         text: 1,
         image: 2

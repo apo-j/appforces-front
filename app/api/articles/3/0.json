@@ -5,8 +5,11 @@
            "image1":"http://p0.jmstatic.com/jmstore/image/000/000/237_std/536fd3126ce43.jpg?1400120547",
            "image2":"http://p0.jmstatic.com/brand/logo_180/14.jpg",
            "title":"水宝宝",
-           "price":"125 $",
+           "price":"125",
+           "currency":"",
            "isNew": true,
+           "category":"",
+           "isAvailable":true,
            "description":"<p><b>聚美“防晒节” 1亿元让利 </b></p><p>水宝宝来袭 千种爆款满199减50 最后一天</p><p class=\"zhe\">全场<span>2.5</span>折起</p>"
         },
         {
@@ -14,19 +17,22 @@
            "image1":"http://p0.jmstatic.com/jmstore/image/000/000/282_std/5371e986bf5bd.jpg?1399974390",
            "image2":"http://p0.jmstatic.com/brand/logo_180/608.jpg",
            "title":"香奈儿品牌团",
-           "price":"265 $",
+           "price":"265",
            "isNew": true,
+           "category":"",
+           "isAvailable":true,
            "description":"<p><b>香奈儿品牌团</b></p><p>不可超越的经典</p><p class=\"zhe\"><span>5.5</span>折起</p>"
-
         },
         {
 
            "id":2,
            "image1":"http://p0.jmstatic.com/jmstore/image/000/000/282_std/5371e986bf5bd.jpg?1399974390",
            "image2":"http://p0.jmstatic.com/brand/logo_180/608.jpg",
-           "title":"香奈儿品牌团",
+           "title":"香奈儿品牌",
            "price":"265 $",
-           "isNew": false,
+           "isNew": true,
+           "category":"",
+           "isAvailable":true,
            "description":"<p><b>香奈儿品牌团</b></p><p>不可超越的经典</p><p class=\"zhe\"><span>5.5</span>折起</p>"
         }
     ]
