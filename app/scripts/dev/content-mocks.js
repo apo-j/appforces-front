@@ -5,7 +5,7 @@
    */
   angular.module('content-mocks',['ngMockE2E', 'services'])
   
-  .run(['$httpBackend', '$http', function($httpBackend, $http) {
+  .run(['$httpBackend', '$http', 'afConfig', '$q', 'afCriteriaSearch', 'afDocsSearch', function($httpBackend, $http, afConfig, $q, afCriteriaSearch, afDocsSearch) {
 
     var authorized = false;
 	
@@ -90,7 +90,6 @@
         }
         return [200, _data];
     });
-    
 
     $httpBackend.whenPOST('data/public').respond(function(method, url, data) {
       return [200,'I have received and processed your data [' + data + '].'];
