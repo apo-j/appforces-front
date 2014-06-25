@@ -6,6 +6,7 @@
 angular.module('services').factory('afDocsSearch', ['afLunrSearch',
     function(afLunrSearch){
         var self = this;
+        self.isInited = false;
         self.docs = [];
         var _index;
 
@@ -23,6 +24,7 @@ angular.module('services').factory('afDocsSearch', ['afLunrSearch',
 
             });
             _index = afLunrSearch(index.toJSON(), docs);
+            self.isInited = true;
         };
 
         self.search = function(q){

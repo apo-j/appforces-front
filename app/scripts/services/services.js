@@ -123,13 +123,15 @@ angular.module('services').factory('afArticles', ['$resource', '$q','$http', 'af
             $http({method: 'GET', url: url, data:criteria}).
                 success(function(data, status) {
                     if(afConfig.AppConfig.isLocalSearchActivated){
-                        afDocsSearch.init(afConfig.AppConfig.localSearchOptions, data.data);
+                        if(!afDocsSearch.isInited){
+                            afDocsSearch.init(afConfig.AppConfig.localSearchOptions, data.data);
+                        }
 
                         afCriteriaSearch.exactSearch(criteria).then(function(data){
                             deferred.resolve({data: data, status: status});
                         });
                     }else{
-                        deferred.resolve(data.data);
+                        deferred.resolve({data: data.data, status: status});
                     }
                 }).
                 error(function(data, status) {

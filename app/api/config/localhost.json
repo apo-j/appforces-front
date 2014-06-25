@@ -18,7 +18,7 @@
     ],
     "isI18nOn":false,
     "languageId": 1,
-	"isLocalSearchActivated": true,
+	"isLocalSearchActivated": false,
 	"localSearchLimit": 30,
     "localSearchOptions":[
         {
