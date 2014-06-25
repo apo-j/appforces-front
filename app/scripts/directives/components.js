@@ -81,13 +81,11 @@ angular.module('directives.components').directive('afContainerArticles',
                 var deferred = $q.defer();
 
                 if(!$scope.afdata.isLoaded){                    
-                    afArticles.get($scope.afdata.data.criteria, function(data){
-                            deferred.resolve(data.data);
-                        },
-                        function(reason){
-                            deferred.reject(reason);
-                        });
-                    
+                    afArticles.search($scope.afdata.data.criteria).then(function(data) {
+                        deferred.resolve(data.data);
+                    }, function(reason){
+                        deferred.reject(reason);
+                    });
                 }else{
                     deferred.resolve($scope.afdata.items);
                 }

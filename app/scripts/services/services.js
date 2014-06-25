@@ -108,9 +108,37 @@ angular.module('services').factory('afComponentData', ['$resource','afConfig',
         return $resource('api/components/:appId/:componentId.json', {appId: afConfig.AppConfig.appId});
     }]);
 
-angular.module('services').factory('afArticles', ['$resource','afConfig',
-    function($resource, afConfig){
-        return $resource('api/articles/:appId/:articleId.json', {appId: afConfig.AppConfig.appId, articleId: afConfig.SearchGetAllDefaultParamVal});
+angular.module('services').factory('afArticles', ['$resource', '$q','$http', 'afConfig','afDocsSearch','afCriteriaSearch',
+    function($resource, $q, $http, afConfig, afDocsSearch, afCriteriaSearch){
+        var defaultUrl = 'api/articles/:appId/:articleId.json',
+            deferred = $q.defer();
+        var url = defaultUrl.replace(':articleId', afConfig.SearchGetAllDefaultParamVal).replace(':appId', afConfig.AppConfig.appId);
+
+        var res = $resource(defaultUrl,{
+                appId: afConfig.AppConfig.appId,
+                articleId: afConfig.SearchGetAllDefaultParamVal
+            });
+
+        res.search =  function (criteria){
+            $http({method: 'GET', url: url, data:criteria}).
+                success(function(data, status) {
+                    if(afConfig.AppConfig.isLocalSearchActivated){
+                        afDocsSearch.init(afConfig.AppConfig.localSearchOptions, data.data);
+
+                        afCriteriaSearch.exactSearch(criteria).then(function(data){
+                            deferred.resolve({data: data, status: status});
+                        });
+                    }else{
+                        deferred.resolve(data.data);
+                    }
+                }).
+                error(function(data, status) {
+                    deferred.reject({data: data, status: status});
+                });
+            return deferred.promise;
+        }
+
+        return res;
     }]);
 
 

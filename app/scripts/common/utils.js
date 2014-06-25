@@ -34,6 +34,23 @@ var Utils = (function(utils){
 		return res;
     };
 
+    self.extractUrlParams = function (url){
+        var vars = {}, hash;
+        var hashes = url.slice(url.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            if(/^true$/i.test(hash[1])){
+                vars[hash[0]] = true;
+            }else if(/^false$/i.test(hash[1])){
+                vars[hash[0]] = false;
+            }else{
+                vars[hash[0]] = hash[1];
+            }
+        }
+        return vars;
+    };
+
     self.templateUrl = {
 		template:function(name){
 			return name + '.html';

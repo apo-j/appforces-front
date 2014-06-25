@@ -84,11 +84,11 @@ angular.module("appForce", [
   }])
     .run(['$rootScope','$location','afPage','afEvents','afConfig','$log', 'afDocsSearch', 'afArticles', function($rootScope, $location, afPage, afEvents, afConfig, $log,afDocsSearch, afArticles){
         //get all articles
-        if(afConfig.AppConfig.isLocalSearchActivated){
+        /*if(afConfig.AppConfig.isLocalSearchActivated){
              afArticles.get(null, function(data){
                  afDocsSearch.init(afConfig.AppConfig.localSearchOptions, data.data);
              });
-         };
+         };*/
 
 
 
