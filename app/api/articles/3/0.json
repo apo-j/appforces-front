@@ -9,6 +9,7 @@
            "currency":"",
            "isNew": true,
            "category":"",
+           "brand":"",
            "isAvailable":true,
            "description":"<p><b>聚美“防晒节” 1亿元让利 </b></p><p>水宝宝来袭 千种爆款满199减50 最后一天</p><p class=\"zhe\">全场<span>2.5</span>折起</p>"
         },
@@ -20,6 +21,7 @@
            "price":"265",
            "isNew": true,
            "category":"",
+           "brand":"",
            "isAvailable":true,
            "description":"<p><b>香奈儿品牌团</b></p><p>不可超越的经典</p><p class=\"zhe\"><span>5.5</span>折起</p>"
         },
@@ -32,6 +34,7 @@
            "price":"265 $",
            "isNew": false,
            "category":"",
+           "brand":"",
            "isAvailable":true,
            "description":"<p><b>香奈儿品牌团</b></p><p>不可超越的经典</p><p class=\"zhe\"><span>5.5</span>折起</p>"
         }
