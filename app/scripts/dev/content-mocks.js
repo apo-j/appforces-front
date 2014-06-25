@@ -5,7 +5,7 @@
    */
   angular.module('content-mocks',['ngMockE2E', 'services'])
   
-  .run(['$httpBackend', '$http', function($httpBackend, $http) {
+  .run(['$httpBackend', '$http', 'afConfig', '$q', 'afCriteriaSearch', function($httpBackend, $http, afConfig, $q, afCriteriaSearch) {
 
     var authorized = false;
 	
@@ -90,7 +90,39 @@
         }
         return [200, _data];
     });
-    
+
+          function getUrlVars(url)
+          {
+              var vars = {}, hash;
+              var hashes = url.slice(url.indexOf('?') + 1).split('&');
+              for(var i = 0; i < hashes.length; i++)
+              {
+                  hash = hashes[i].split('=');
+
+                  vars[hash[0]] = hash[1];
+              }
+              return vars;
+          }
+
+
+    $httpBackend.whenGET(/^api\/articles\//i).respond(function(method, url, data) {
+        var deferred = $q.defer();
+        if(afConfig.AppConfig.isLocalSearchActivated){
+            var criteria = getUrlVars(url);
+
+            deferred.resolve(afCriteriaSearch.exactSearch(criteria));
+        }else{
+            $http.get(url, function(data){
+                deferred.resolve(data);
+            }, function(){
+                deferred.reject('Error');
+            });
+        }
+
+        return [200,deferred.promise];
+    });
+
+
 
     $httpBackend.whenPOST('data/public').respond(function(method, url, data) {
       return [200,'I have received and processed your data [' + data + '].'];
