@@ -14,13 +14,18 @@
         "vendor/jquery.mmenu.js",
         "vendor/jquery.eislideshow.js",
         "vendor/easing.js",
-        "vendor/move-top.js",
-        "js/3.js"
+        "vendor/move-top.js"
     ],
     "isI18nOn":false,
     "languageId": 1,
 	"isLocalSearchActivated": true,
 	"localSearchLimit": 30,
+    "localSearchOptions":[
+        {
+            "property":"isNew",
+            "boost":1000
+        }
+    ],
     "pages":[
         {
             "id":"p1001",
@@ -137,6 +142,21 @@
             "code":"index",
             "url":"/",
             "isIndexPage": true,
+            "layoutUrl": null,
+            "layout":18,
+            "ctrl": "NavigationCtrl"
+        },
+        {
+            "id":"p2",
+            "type":"0",
+            "title": "cloth-hat",
+            "pageSecurity":{
+                "requireLogin": false,
+                "passwordDigest": ""
+            },
+            "code":"cloth-hat",
+            "url":"/cloth-hat",
+            "isIndexPage": false,
             "layoutUrl": null,
             "layout":22,
             "ctrl": "NavigationCtrl"

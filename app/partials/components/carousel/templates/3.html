@@ -1,0 +1,25 @@
+<!--depends on eislidershow-->
+<!-- start slider -->
+<div class="slider" ng-class="afdata.css" style="{{afdata.style}}">
+    <!---start-image-slider---->
+    <div class="image-slider">
+        <div class="wrapper">
+            <div id="ei-slider" class="ei-slider">
+                <ul class="ei-slider-large">
+                    <li ng-repeat="slide in slides">
+                        <img ng-src="{{slide.image}}" alt="image{{$index}}"/>
+                        <div class="ei-title" ng-bind-html="slide.description">
+                        </div>
+                    </li>
+                </ul>
+                <ul class="ei-slider-thumbs">
+                    <li class="ei-slider-element">Current</li>
+                    <li ng-repeat="slide in slides">
+                        <a ng-href="{{slide.url}}" ng-bind-html="slide.thumbDescription"></a>
+                        <img ng-src="{{slide.thumb}}" ng-alt="thumb{{$index}}" />
+                    </li>
+                </ul><!-- ei-slider-thumbs -->
+            </div><!-- ei-slider -->
+        </div><!-- wrapper -->
+    </div><!---End-image-slider---->
+</div>

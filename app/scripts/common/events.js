@@ -14,7 +14,9 @@ var Events = (function(events){
 	self.SEARCH_SUCCESS = 'e:search_success';
 	self.SEARCH_ERROR = 'e:search_error';
 	self.ERROR = 'e:error';
-    self.RESET_FORM = 'e:reset_form'
-	
+    self.RESET_FORM = 'e:reset_form';
+
+
+    self.VIEW_CONTENT_LOADED = 'e:view_content_loaded';
     return self;
 }(Appforces.Events || {}))

@@ -3,7 +3,40 @@
  */
 'use strict';
 
-var docs = [];
+angular.module('services').factory('afDocsSearch', ['afLunrSearch',
+    function(afLunrSearch){
+        var self = this;
+        self.docs = [];
+        var _index;
+
+        self.init = function(options, docs){
+            self.docs = docs;
+            var index = lunr(function(){
+                var _self = this;
+                _self.ref('id');
+                _self.field('title', { boost : 20 });
+                _self.field('keywords', { boost : 20 });
+
+                angular.forEach(options, function(value, key){
+                    _self.field(value.criteria, { boost : value.boost });
+                });
+
+            });
+            _index = afLunrSearch(index.toJSON(), docs);
+        };
+
+        self.search = function(q){
+            if(_index){
+                return _index.search(q);
+            }else{
+                return false;
+            }
+        };
+
+        return self;
+    }]);
+
+/*var docs = [];
 
 for(var i = 0; i < 10000; i++){
     docs.push( {
@@ -15,25 +48,26 @@ for(var i = 0; i < 10000; i++){
         templateUrl: "components/accordion/2",
         ui: "Android"
     });
-}
+}*/
 
-
-angular.module('services').factory('afDocsSearch', ['afLunrSearch',
-    function(afLunrSearch){	
+/*angular.module('services').factory('afDocsSearch', ['afLunrSearch',
+    function(afLunrSearch){
 		var index = lunr(function(){
 			this.ref('id');
 			this.field('title', {boost: 50});
 			this.field('keywords', { boost : 20 });
 		});
-		
+
 		var _index = afLunrSearch(index.toJSON(), docs);
-		
+
 		return {
 			search:function(q){
 				return _index.search(q);
 			}
 		}
-    }]);	
+    }]);*/
+
+
 	
 
 

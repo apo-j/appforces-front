@@ -1,0 +1,118 @@
+{
+    "status":200,
+    "data":[
+        {
+            "id":2,
+            "type":4,
+            "templateUrl":"1",
+            "isLoaded": true,
+            "style": "",
+            "css":"",
+            "data":"",
+            "items":[
+                {
+                    "id":2,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"",
+                    "data":{
+                        "url":"£content",
+                        "target":"",
+                        "label":"Balenciaga 巴黎世家",
+                        "criteria":[
+                            {"key": "brand", "value":"Balenciaga"}
+                        ]
+                    },
+                    "items":[]
+                },
+                {
+                    "id":3,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"",
+                    "data":{
+                        "url":"£innercloth-hat/male",
+                        "target":"",
+                        "label":"Buberry 巴宝莉",
+                        "criteria":[
+                            {"key": "brand", "value":"Buberry"}
+                        ]
+                    },
+                    "items":[]
+                },
+                {
+                    "id":3,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"",
+                    "data":{
+                        "url":"£outerhttp://www.ifeng.com",
+                        "target":"_self",
+                        "label":"Cartier 卡地亚",
+                        "criteria":[
+                            {"key": "brand", "value":"Cartier"}
+                        ]
+                    },
+                    "items":[]
+                },
+                {
+                    "id":3,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"",
+                    "data":{
+                        "url":"/",
+                        "target":"",
+                        "label":"Chanel 香奈儿",
+                        "criteria":[
+                            {"key": "brand", "value":"Chanel"}
+                        ]
+                    },
+                    "items":[]
+                },
+                {
+                    "id":3,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"",
+                    "data":{
+                        "url":"£content/coach.json",
+                        "target":"",
+                        "label":"Coach",
+                        "criteria":[
+                            {"key": "brand", "value":"Coach"}
+                        ]
+                    },
+                    "items":[]
+                },
+                {
+                    "id":3,
+                    "type":5,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"",
+                    "data":{
+                        "url":"£content/dior.json",
+                        "target":"",
+                        "label":"Dior",
+                        "criteria":[
+                            {"key": "brand", "value":"Dior"}
+                        ]
+                    },
+                    "items":[]
+                }
+            ]
+        }
+    ]
+}

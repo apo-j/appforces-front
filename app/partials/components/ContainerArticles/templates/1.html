@@ -1,1 +1,7 @@
-<div ng-repeat="item in afdata.items" af-general-component afdata="item"></div>
+<div ng-repeat="item in afdata.items"  ng-class="afdata.data.css" style="{{afdata.data.style}}">
+        <a ng-href="#/articles?articleId={{item.id}}">
+            <img ng-src="{{item.image1}}" alt=""/>
+            <h3>{{item.title}}</h3>
+            <span class="price">{{item.price}}</span>
+        </a>
+</div>

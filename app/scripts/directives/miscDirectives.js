@@ -163,20 +163,64 @@ angular.module('directives').directive('afLocalSearchContainer',
     }]);
 
 angular.module('directives').directive('afScripts',
-    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile, afUtils){
+    ['$rootScope', '$http', '$templateCache', '$compile', 'afUtils','afEvents', function($rootScope, $http, $templateCache, $compile, afUtils, afEvents){
         return {
             restrict: 'AE',
-            controller:['$scope', 'afConfig', function($scope, afConfig){
-                $scope.scripts = afConfig.AppConfig.scripts || [];
+            scope:{
+                afdata:'='
+            },
+            compile: function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    scope.$on(afEvents.VIEW_CONTENT_LOADED, function(dd) {
+                        angular.forEach(scope.afdata.data.scripts, function(value, key){
+                           /* var script = document.createElement('script');
+                            script.src = value;
+                            document.getElementsByTagName('body')[0].appendChild(script);*/
+                           angular.element('<script src="js/3.js"></script>').appendTo(iElement);
+                        });
+                    })
+                };
+            }
+        }
+    }]);
+
+/************************Side bar*********************************/
+angular.module('directives').directive('afBottom',
+    ['$http', '$templateCache', '$compile', 'afUtils',  function($http, $templateCache, $compile, afUtils){
+        return {
+            restrict: 'AE',
+            controller: ['$scope', 'afPage', '$q', 'afEnums','afBottom', function($scope, afPage, $q, afEnums, afBottom){
+                var deferred = $q.defer();
+                var currentPage = afPage.currentPage();
+                if(!!currentPage && (currentPage.layout & afEnums.layout.Bottom) > 0){
+                    afBottom.get({pageId: afPage.currentPage().id}, function(data){
+                            deferred.resolve(data);
+                        },
+                        function(reason){
+                            deferred.reject(reason);
+                        });
+                }else{
+                    deferred.reject(null);
+                }
+
+                $scope.newData = deferred.promise;
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.scripts(), {cache: $templateCache}).success(function(tplContent){
-                        $compile(tplContent)(scope, function(clone, scope){
-                            iElement.replaceWith(clone);
+                    scope.newData.then(function(data){
+                        scope.afdata = data;
+                        return scope.afdata;
+                    }).then(function(data){
+                        $http.get(afUtils.templateUrl.bottom(data.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                            $compile(tplContent)(scope, function(clone, scope){
+                                iElement.replaceWith(clone);
+                            });
                         });
+                    },function(){
+                        iElement.remove();
                     });
-                };
+
+                }
             }
         }
     }]);

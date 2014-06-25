@@ -60,7 +60,14 @@
             "isLoaded": false,
             "style": "",
             "css":"row col-xs-12",
-            "data":"",
+            "data":{
+                "templateUrl": 1,
+                "css":"",
+                "style":"",
+                "criteria":{
+                    "isNew": true
+                }
+            },
             "items":[]
         }
     ]

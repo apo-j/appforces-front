@@ -1,4 +1,4 @@
-<li class="dropdown" ng-repeat="item in items" ng-class="{'dropdown-submenu': (!isRoot && item.items.length > 0), 'current': isCurrent(item.url) }">
+<li class="dropdown" ng-repeat="item in items" ng-class="{'dropdown-submenu': (!isRoot && item.items.length > 0), 'current active': isCurrent(item.url) }">
     <a ng-href="{{getUrl(item.url)}}" style="{{item.style}}" ng-if="item.items.length === 0" ng-class="item.css"><i ng-class="item.icon"></i>&nbsp;{{item.name}}</a>
 
     <a href="#" style="{{item.style}}" ng-class="item.css" ng-if="item.items.length > 0" data-toggle="dropdown"  class="dropdown-toggle"><i ng-class="item.icon"></i>&nbsp;{{item.name}}<b ng-if="isRoot" class="caret"></b></a>

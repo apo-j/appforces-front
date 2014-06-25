@@ -47,6 +47,9 @@ var Utils = (function(utils){
         sidebar:function(name){
             return '/partials/sidebar/' + (name || '1') + '.html';
         },
+        bottom:function(name){
+            return '/partials/bottom/' + (name || '1') + '.html';
+        },
         page:function(name){
             return '/partials/page/' + (name || '1') + '.html';
         },
@@ -57,10 +60,10 @@ var Utils = (function(utils){
             return '/partials/header/menu/' + name + '.html';
         },
         headerNavbar:function(name){
-            return '/partials/header/menu/' + name + '.html';
+            return '/partials/header/navbar/' + name + '.html';
         },
         headerMenuComponents:function(name){
-            return '/partials/header/menu/components/' + name + '.html';
+            return '/partials/header/navbar/components/' + name + '.html';
         },
         directiveComponent:function(type){
             return '/partials/components/#{type}/#{type}.html'.replace(/#\{type\}/g, type);
