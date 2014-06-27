@@ -1,0 +1,83 @@
+{
+    "status": 200,
+    "type":10,
+    "templateUrl":"1",
+    "isLoaded": true,
+    "style": "",
+    "css":"col-xs-12",
+    "data": {
+        "scripts":[
+            "vendor/productviewgallery.js",
+            "js/3.js"
+        ],
+        "searchId": "123456",
+        "criteria":[]
+    },
+    "items":[
+        {
+            "id":1,
+            "type":10,
+            "templateUrl":"1",
+            "isLoaded": true,
+            "style": "",
+            "data":"",
+            "css":"main_bg row col-xs-12",
+            "items":[
+                {
+                    "id":1,
+                    "type":10,
+                    "templateUrl":"1",
+                    "isLoaded": true,
+                    "style": "",
+                    "data":"",
+                    "css":"wrap",
+                    "items":[
+                        {
+                            "id":1,
+                            "type":10,
+                            "templateUrl":"1",
+                            "isLoaded": true,
+                            "style": "",
+                            "data":"",
+                            "css":"main",
+                            "items":[
+                                {
+                                    "id":1,
+                                    "type":10,
+                                    "templateUrl":"1",
+                                    "isLoaded": true,
+                                    "style": "",
+                                    "data":"",
+                                    "css":"single",
+                                    "items":[
+                                        {
+                                            "id":3,
+                                            "type":10,
+                                            "templateUrl":"1",
+                                            "isLoaded": true,
+                                            "style": "",
+                                            "css":"left-content",
+                                            "data":"",
+                                            "items":[
+                                                {
+                                                    "id":4,
+                                                    "type":12,
+                                                    "templateUrl":"3",
+                                                    "isLoaded": true,
+                                                    "style": "",
+                                                    "css":"col-xs-6",
+                                                    "data":{},
+                                                    "items":[]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

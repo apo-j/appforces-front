@@ -1,0 +1,125 @@
+{
+    "status": 200,
+    "id":5,
+    "type":10,
+    "templateUrl": "1",
+    "isLoaded": true,
+    "style": "",
+    "css":"col-md-12 footer_bg",
+    "data":"",
+    "items":[
+        {
+            "id":5,
+            "type":10,
+            "templateUrl": "1",
+            "isLoaded": true,
+            "style": "",
+            "css":"wrap",
+            "data":"",
+            "items":[
+                {
+                    "id":5,
+                    "type":10,
+                    "templateUrl": "1",
+                    "isLoaded": true,
+                    "style": "",
+                    "css":"footer",
+                    "data":"",
+                    "items":[
+                        {
+                            "id":5,
+                            "type":10,
+                            "templateUrl": "1",
+                            "isLoaded": true,
+                            "style": "",
+                            "css":"f_nav1",
+                            "data":"",
+                            "items":[
+                                {
+                                    "id":5,
+                                    "type":4,
+                                    "templateUrl": "1",
+                                    "isLoaded": true,
+                                    "style": "",
+                                    "css":"",
+                                    "data":"",
+                                    "items":[
+                                        {
+                                            "id":2,
+                                            "type":5,
+                                            "templateUrl":"1",
+                                            "isLoaded": true,
+                                            "style": "",
+                                            "css":"",
+                                            "data":{
+                                                "url":"£inner",
+                                                "target":"",
+                                                "label":"Contact us",
+                                                "criteria":[
+                                                    {"key": "brand", "value":"Balenciaga"}
+                                                ]
+                                            },
+                                            "items":[]
+                                        },
+                                        {
+                                            "id":3,
+                                            "type":5,
+                                            "templateUrl":"1",
+                                            "isLoaded": true,
+                                            "style": "",
+                                            "css":"",
+                                            "data":{
+                                                "url":"£innercloth-hat",
+                                                "target":"",
+                                                "label":"Buberry 巴宝莉",
+                                                "criteria":[
+                                                    {"key": "brand", "value":"Buberry"}
+                                                ]
+                                            },
+                                            "items":[]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id":5,
+                            "type":10,
+                            "templateUrl": "1",
+                            "isLoaded": true,
+                            "style": "",
+                            "css":"copy",
+                            "data":"",
+                            "items":[
+                                {
+                                    "id":5,
+                                    "type":13,
+                                    "templateUrl": "1",
+                                    "isLoaded": true,
+                                    "style": "",
+                                    "css":"",
+                                    "data":{
+                                        "description":"<p class=\"link\"><span>©ILuxe Privée All rights reserved | Built by&nbsp;<a href=\"http://www.appforces.com/\">AppForces</a> | Template by&nbsp;<a href=\"http://w3layouts.com/\"> W3Layouts</a></span></p>"
+                                    },
+                                    "items":[]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id":5,
+            "type":10,
+            "templateUrl": "1",
+            "isLoaded": true,
+            "style": "",
+            "css":"col-md-6",
+            "data":"",
+            "items":[
+
+            ]
+        }
+    ]
+}

@@ -1,0 +1,197 @@
+{
+    "status": 200,
+    "id": "index",
+    "templateUrl": "1",
+    "css":"",
+    "style":"",
+    "top": {
+        "id": "1",
+        "templateUrl": "3",
+        "css":"top_bg",
+        "style":"",
+        "items":[
+            {
+                "id":1,
+                "type":10,
+                "templateUrl":"1",
+                "isLoaded": true,
+                "style": "",
+                "data":"",
+                "css":"logo",
+                "items":[
+                    {
+                        "id":1,
+                        "type":5,
+                        "templateUrl":"1",
+                        "isLoaded": true,
+                        "style": "font-size: 26px;color:#55BF9B;text-decoration:none;text-transform:uppercase",
+                        "data":{
+                            "url":"£inner",
+                            "target":"",
+                            "label":"Iluxe Privée"
+                        },
+                        "css":"",
+                        "items":[]
+                    }
+                ]
+            },
+            {
+                "id":1,
+                "type":10,
+                "templateUrl":"1",
+                "isLoaded": true,
+                "style": "",
+                "data":"",
+                "css":"log_reg",
+                "items":[
+                    {
+                        "id":1,
+                        "type":4,
+                        "templateUrl":"1",
+                        "isLoaded": true,
+                        "style": "",
+                        "data":null,
+                        "css":"",
+                        "items":[
+                            {
+                                "id":3,
+                                "type":5,
+                                "templateUrl":"1",
+                                "isLoaded": true,
+                                "style": "",
+                                "css":"",
+                                "data":{
+                                    "url":"£innerlogin",
+                                    "target":"",
+                                    "label":"LOGIN",
+                                    "criteria":[]
+                                },
+                                "items":[]
+                            },
+                            {
+                                "id":3,
+                                "type":5,
+                                "templateUrl":"1",
+                                "isLoaded": true,
+                                "style": "",
+                                "css":"",
+                                "data":{
+                                    "url":"£innerregister",
+                                    "target":"",
+                                    "label":"REGISTER",
+                                    "criteria":[]
+                                },
+                                "items":[]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id":1,
+                "type":10,
+                "templateUrl":"1",
+                "isLoaded": true,
+                "style": "",
+                "data":"",
+                "css":"web_search",
+                "items":[
+                    {
+                        "id":4,
+                        "type":7,
+                        "templateUrl":"2",
+                        "isLoaded": true,
+                        "style": "",
+                        "css":"",
+                        "data":{
+                            "searchId": "123456",
+                            "criteria":[
+                                {
+                                    "name":"criteria1",
+                                    "val": ""
+                                }
+                            ]
+                        },
+                        "items":[]
+                    }
+                ]
+            }
+        ]
+    },
+    "menu": {
+        "id": "1",
+        "templateUrl": "3",
+        "items":[
+            {
+                "id":1,
+                "type":10,
+                "templateUrl":"1",
+                "isLoaded": true,
+                "style": "",
+                "data":"",
+                "css":"",
+                "items":[
+                    {
+                        "id": "1",
+                        "templateUrl": "navbar",
+                        "itemTemplateUrl":"navbar-item",
+                        "css":null,
+                        "style":null,
+                        "items": [
+                            {
+                                "name": "Home",
+                                "url": "/",
+                                "css":"",
+                                "style":"display:inline-block;min-width:50px;text-align:center",
+                                "icon":"glyphicon glyphicon-home",
+                                "items": [
+                                ]
+                            },
+                            {
+                                "name": "服饰",
+                                "url": "/cloth-hat",
+                                "items": []
+                            },
+                            {
+                                "name": "箱包",
+                                "url": "about",
+                                "items": []
+                            },
+                            {
+                                "name": "鞋履",
+                                "url": "about",
+                                "items": []
+                            },
+                            {
+                                "name": "珠宝",
+                                "url": "about",
+                                "items": []
+                            },
+                            {
+                                "name": "化妆品",
+                                "url": "about",
+                                "items": []
+                            },
+                            {
+                                "name": "母婴",
+                                "url": "about",
+                                "items": []
+                            },
+                            {
+                                "name": "二手",
+                                "url": "about",
+                                "items": []
+                            },
+                            {
+                                "name": "优惠促销",
+                                "url": "about",
+                                "items": []
+                            }
+
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

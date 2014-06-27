@@ -7,6 +7,7 @@
     "styles":[
         "http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500",
         "styles/jquery.mmenu.all.css",
+        "styles/productviewgallery.css",
         "styles/style.css",
         "styles/slider.css"
     ],
@@ -148,6 +149,21 @@
         },
         {
             "id":"p2",
+            "type":"0",
+            "title": "details",
+            "pageSecurity":{
+                "requireLogin": false,
+                "passwordDigest": ""
+            },
+            "code":"article-details",
+            "url":"/articles",
+            "isIndexPage": false,
+            "layoutUrl": null,
+            "layout":18,
+            "ctrl": "NavigationCtrl"
+        },
+        {
+            "id":"p3",
             "type":"0",
             "title": "cloth-hat",
             "pageSecurity":{
