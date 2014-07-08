@@ -176,7 +176,7 @@ angular.module('directives').directive('afScripts',
                            /* var script = document.createElement('script');
                             script.src = value;
                             document.getElementsByTagName('body')[0].appendChild(script);*/
-                           angular.element('<script src="js/3.js"></script>').appendTo(iElement);
+                           angular.element('<script src=\"' + value + '\"></script>').appendTo(iElement);
                         });
                     })
                 };

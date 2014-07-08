@@ -8,6 +8,7 @@
     "data": {
         "scripts":[
             "vendor/productviewgallery.js",
+            "vendor/cloud-zoom.1.0.3.min.js",
             "js/3.js"
         ],
         "searchId": "123456",
