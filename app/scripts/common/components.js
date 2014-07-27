@@ -8,7 +8,7 @@ component:{
     name:''
 }
  */
-var Components = (function(components){
+(function(components){
     var component = {
         1:'datepicker',
         2:'carousel',

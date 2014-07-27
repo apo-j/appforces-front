@@ -6,6 +6,7 @@
     "appleTouchFaviconUrl": "",
     "styles":[
         "http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500",
+        "styles/jquery.fancybox.css",
         "styles/jquery.mmenu.all.css",
         "styles/productviewgallery.css",
         "styles/style.css",

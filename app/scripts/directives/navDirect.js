@@ -19,7 +19,7 @@ angular.module('directives.navDirectives').directive( 'afHeader',
                     }).then(function(data){
                         $http.get(afUtils.templateUrl.header(data.templateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
-                                $(iElement).replaceWith(clone);
+                                iElement.replaceWith(clone);
                             });
                         });
                     });
@@ -39,7 +39,7 @@ angular.module('directives').directive( 'afHeaderTop',
                 return function(scope , iElement, iAttrs) {
                     $http.get(afUtils.templateUrl.headerTop(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
-                            $(iElement).replaceWith(clone);
+                            iElement.replaceWith(clone);
                         });
                     });
                 }
@@ -58,7 +58,7 @@ angular.module('directives').directive( 'afMenu',
                 return function(scope , iElement, iAttrs) {
                     $http.get(afUtils.templateUrl.headerMenu(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
-                            $(iElement).replaceWith(clone);
+                            iElement.replaceWith(clone);
                         });
                     });
                 }
@@ -77,7 +77,7 @@ angular.module('directives').directive('afNavbar',
                 return function(scope, iElement, iAttr) {
                     $http.get(afUtils.templateUrl.headerNavbar(scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
-                            $(iElement).replaceWith(clone);
+                            iElement.replaceWith(clone);
                         });
                     });
                 };

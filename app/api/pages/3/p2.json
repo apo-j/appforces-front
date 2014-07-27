@@ -7,10 +7,10 @@
     "css":"col-xs-12",
     "data": {
         "scripts":[
-            "vendor/cloud-zoom.1.0.3.min.js",
+            "vendor/cloudzoom.js",
             "vendor/jquery.fancybox.pack.js",
             "vendor/productviewgallery.js",
-            "js/3.js"
+            "js/3.1.js"
         ],
         "searchId": "123456",
         "criteria":[]

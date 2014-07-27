@@ -21,7 +21,7 @@ angular.module("appForce", [
   .constant('afConfig', Configuration)
   .constant('afEnums', Enums)
   .constant('afEvents', Events)
-  .constant('afComponents', Components)
+  .constant('afComponents', Appforces.Components)
   .constant('afWorkflowList', Workflow)
   .config(['afUtilsProvider', '_Utils', function(afUtilsProvider, _Utils){
 	afUtilsProvider.initUtils(_Utils);
