@@ -68,7 +68,11 @@
                                                     "isLoaded": true,
                                                     "style": "",
                                                     "css":"col-xs-6",
-                                                    "data":{},
+                                                    "data":{
+                                                        "templateUrls":[
+                                                            "4"
+                                                        ]
+                                                    },
                                                     "items":[]
                                                 }
                                             ]
