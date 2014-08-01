@@ -28,7 +28,8 @@ component:{
         16:'searchResult',
         17:'workflow',
         18:'form',
-        19:'formItem'
+        19:'formItem',
+        20:'articleViewGallery'
     }
 
     $.extend( true, components, component );
