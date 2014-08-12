@@ -207,11 +207,11 @@ angular.module('directives.components').directive('afArticleBuyerConfigBloc',
                 afdata:"="
             },
             controller: ['$scope','afConfig', function($scope, afConfig){
-                $scope.data = $scope.afdata.data;
+
             }],
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.component('articleBuyerConfigBloc', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.component('articleBuyerConfigBloc', 2), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.replaceWith(clone);
                         });
@@ -247,7 +247,7 @@ angular.module('directives.components').directive('afArticleDetailsBloc',
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
                     scope.newData.then(function(data){
-                        scope.afdata.data = data;
+                        scope.afdata.data = data.data;
                         angular.forEach(scope.afdata.items, function(value, key){
                             value.data = scope.afdata.data;
                         });
