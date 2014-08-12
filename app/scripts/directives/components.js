@@ -111,6 +111,72 @@ angular.module('directives.components').directive('afContainerArticles',
         }
     }]);
 
+angular.module('directives.components').directive('afArticleViewGallery',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+        return {
+            restrict: "AE",
+            scope:{
+                afdata:"="
+            },
+            compile:function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.component('articleViewGallery', 1), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.replaceWith(clone);
+                        });
+
+                        var galleryItem = function(url){
+                            var self = this;
+
+                            self.orig = url;
+                            self.main = url;
+                            self.thumb = url;
+                            self.label = '';
+                        }
+
+
+                        var prodGallery = {
+                            prod_1: {
+                                main:new galleryItem(scope.afdata[0]),
+                                gallery:{}
+                            }
+                        };
+
+                        angular.forEach(scope.afdata, function(value, key){
+                            prodGallery['prod_1']['gallery']['item_' + key] = new galleryItem(value);
+                        });
+
+                        var gallery_elmnt = jQblvg('.product-img-box'),
+                            galleryObj = new Object(),
+                            gallery_conf = new Object();
+                        gallery_conf.moreviewitem = '<a class="cs-fancybox-thumbs" data-fancybox-group="thumb"  href=""  title="" alt=""><img src="" src_main="" title="" alt="" /></a>';
+                        gallery_conf.animspeed = 200;
+
+                        jQblvg(document).ready(function () {
+                            galleryObj[1] = new prodViewGalleryForm(prodGallery, 'prod_1', gallery_elmnt, gallery_conf, '.product-image', '.more-views', 'http:');
+                            jQblvg('.product-image .cs-fancybox-thumbs').absoluteClick();
+                            jQblvg('.cs-fancybox-thumbs').fancybox({ prevEffect: 'none',
+                                nextEffect: 'none',
+                                closeBtn: true,
+                                arrows: true,
+                                nextClick: true,
+                                helpers: {
+                                    thumbs: {
+                                        position: 'bottom'
+                                    }
+                                }
+                            });
+                            jQblvg('#wrap').css('z-index', '100');
+                            jQblvg('.more-views-container').elScroll({type: 'vertical', elqty: 4, btn_pos: 'border', scroll_speed: 400 });
+
+                        });
+
+                    });
+                }
+            }
+        }
+    }]);
+
 angular.module('directives.components').directive('afArticleBloc',
     ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
         return {
@@ -141,11 +207,11 @@ angular.module('directives.components').directive('afArticleBuyerConfigBloc',
                 afdata:"="
             },
             controller: ['$scope','afConfig', function($scope, afConfig){
-                $scope.data = $scope.afdata.data;
+
             }],
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.component('articleBuyerConfigBloc', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.component('articleBuyerConfigBloc', 2), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.replaceWith(clone);
                         });
@@ -181,7 +247,7 @@ angular.module('directives.components').directive('afArticleDetailsBloc',
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
                     scope.newData.then(function(data){
-                        scope.afdata.data = data;
+                        scope.afdata.data = data.data;
                         angular.forEach(scope.afdata.items, function(value, key){
                             value.data = scope.afdata.data;
                         });
