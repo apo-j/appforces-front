@@ -7,6 +7,8 @@ Version 1:
 6: Search: 全站搜索（调用后台搜索）
 7: articleDetailsBloc should contain layout information (for all blocs)
 
+
+
 Version 2:
 1: custom 404 page                                                                  :OK
 2: add sub users of a specific site
