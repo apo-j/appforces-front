@@ -4,13 +4,12 @@
         <h3>{{afdata.title}}</h3>
         <h5>{{afdata.price}} <span>{{afdata.priceOrig}}</span></h5>
 
-        <div class="available">
-            Quantity <input type="text" />
-            <div class="btn_form">
-                <form>
-                    <input type="submit" value="add to cart" title=""/>
-                </form>
-            </div>
+        <div class="btn_form">
+            <form class="available" ng-submit="onSubmit()">
+                Quantity : <input type="text" ng-model="formData.quantity"/><br/>
+                <input type="submit" value="add to cart" title=""/>
+
+            </form>
         </div>
     </div>
 </div>

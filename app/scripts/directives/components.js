@@ -207,11 +207,37 @@ angular.module('directives.components').directive('afArticleBuyerConfigBloc',
                 afdata:"="
             },
             controller: ['$scope','afConfig', function($scope, afConfig){
-
+                $scope.formData = {
+                    quantity:1
+                }
+                $scope.onSubmit = function(){//add to cart
+                    window.alert('To do submit data to server');
+                }
             }],
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
                     $http.get(afUtils.templateUrl.component('articleBuyerConfigBloc', 2), {cache: $templateCache}).success(function(tplContent){
+                        $compile(tplContent)(scope, function(clone, scope){
+                            iElement.replaceWith(clone);
+                        });
+                    });
+                }
+            }
+        }
+    }]);
+
+angular.module('directives.components').directive('afArticleDescription',
+    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+        return {
+            restrict: "AE",
+            scope:{
+                afdata:"="
+            },
+            controller: ['$scope', function($scope){
+            }],
+            compile:function(tElement, tAttr) {
+                return function(scope , iElement, iAttrs) {
+                    $http.get(afUtils.templateUrl.component('articleDescription', 1), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.replaceWith(clone);
                         });

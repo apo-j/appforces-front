@@ -29,7 +29,8 @@ component:{
         17:'workflow',
         18:'form',
         19:'formItem',
-        20:'articleViewGallery'
+        20:'articleViewGallery',
+        21:'articleDescription'
     }
 
     $.extend( true, components, component );
