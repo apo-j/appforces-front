@@ -6,7 +6,7 @@
 	"isLoaded": true,
 	"style": "",
 	"css":"",
-	"data":"03/12/2014",
+	"data":null,
 	"items":[
 		{
 			"id":4,
@@ -15,7 +15,7 @@
 			"isLoaded": true,
 			"style": "",
 			"css":"",
-			"data":"03/12/2014",
+			"data":null,
 			"items":[
 				{
 					"id":2,
@@ -24,7 +24,7 @@
 					"isLoaded": true,
 					"style": "",
 					"css":"",
-					"data":"03/12/2014",
+					"data":null,
 					"items":[]
 				},
 				{
@@ -34,7 +34,7 @@
 					"isLoaded": true,
 					"style": "",
 					"css":"",
-					"data":"03/12/2014",
+					"data":null,
 					"items":[]
 				}
 			]
@@ -56,7 +56,7 @@
 			"isLoaded": false,
 			"style": "",
 			"css":"",
-			"data":"03/12/2014",
+			"data":null,
 			"items":[]
 		}
 	]

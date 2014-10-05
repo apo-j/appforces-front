@@ -64,11 +64,15 @@
                                                 {
                                                     "id":4,
                                                     "type":12,
-                                                    "templateUrl":"3",
+                                                    "templateUrl":"4",
                                                     "isLoaded": true,
                                                     "style": "",
                                                     "css":"col-xs-6",
-                                                    "data":{},
+                                                    "data":{
+                                                        "templateUrls":[
+                                                            "4"
+                                                        ]
+                                                    },
                                                     "items":[]
                                                 }
                                             ]
