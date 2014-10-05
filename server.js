@@ -89,7 +89,7 @@ function apiProxy() {
     return function(req, res, next) {
         if(req.url.match(/^\/api\//)) {
             console.log('Proxying...');
-            proxy.web(req, res, {target: 'http://localhost:9000'});
+            proxy.web(req, res, {target: 'http://localhost:8080'});
             /*if(req.isAuthenticated() || req.url.match(/^\/api\/config\//)){
                 proxy.web(req, res, {target: 'http://localhost:9000'});
             }

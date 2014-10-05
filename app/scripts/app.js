@@ -31,21 +31,21 @@ angular.module("appForce", [
     //set the default 404 page
     //this would be overridden if
     //a custom 404 page has been defined
-    $routeProvider.when('/404', {
+    $routeProvider.when('/error/404', {
         templateUrl: 'views/404.html'
     });
 
      //set the default 500 page
      //this would be overridden if
      //a custom 500 page has been defined
-     $routeProvider.when('/500', {
+     $routeProvider.when('/error/500', {
          templateUrl: 'views/500.html'
      });
 
-     angular.forEach(afConfig.AppConfig.pages, function(page, key){
-         $routeProvider.when(page['url'], {
-             templateUrl: 'views/' + (page['layoutUrl'] || 'main') + '.html',
-             controller: page['ctrl'] || 'NavigationCtrl',
+     angular.forEach(afConfig.AppConfig.Pages, function(page, key){
+         $routeProvider.when(page['Url'], {
+             templateUrl: 'views/' + (page['LayoutUrl'] || 'main') + '.html',
+             controller: page['Ctrl'] || 'NavigationCtrl',
              resolve:{
                  page: ['afPage', 'afData', function(afPage, afData){
                      //TODO verify if this page needs authentication before open it

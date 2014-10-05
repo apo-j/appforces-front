@@ -7,7 +7,7 @@ angular.module('controllers')
     .controller('NavigationCtrl', ['$scope', 'afPage','page',
         function ($scope, afPage, page) {
             //Set default page data
-            afPage.addPage({key: afPage.currentPage().id, value: page});
+            afPage.addPage({key: afPage.currentPage().Id, value: page});
 			$scope.pageData = page;
 			
         }]);

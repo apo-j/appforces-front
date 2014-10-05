@@ -314,13 +314,13 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
         };
 
         self.setCurrentPage = function(){
-            var match = afUtils.Collection.find(afConfig.AppConfig.pages, function(page){
-                return $location.path().toLowerCase() ===  (page.url || '/').toLowerCase();
+            var match = afUtils.Collection.find(afConfig.AppConfig.Pages, function(page){
+                return $location.path().toLowerCase() ===  (page.Url || '/').toLowerCase();
             });
 
             if(!match){
-                match = afUtils.Collection.find(afConfig.AppConfig.workflow, function(wf){
-                    return $location.path().toLowerCase() ===  (wf.url || '/').toLowerCase();
+                match = afUtils.Collection.find(afConfig.AppConfig.Workflow, function(wf){
+                    return $location.path().toLowerCase() ===  (wf.Url || '/').toLowerCase();
                 });
             }
 
@@ -337,11 +337,11 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
         };
 
         self.page = function(){
-            return $resource('api/pages/:appId/:pageId.json');//, {get:{cache: self.cache}});
+            return $resource('api/pages/:appId/:pageId');//, {get:{cache: self.cache}});
         };
 
         self.currentPageData = function(){
-            return self.page().get({appId: afConfig.AppConfig.appId, pageId: self.currentPage().id}).$promise;
+            return self.page().get({appId: afConfig.AppConfig.AppId, pageId: self.currentPage().Id}).$promise;
         };
 
         self.pageTitle = function(){
