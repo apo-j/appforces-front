@@ -1,8 +1,8 @@
-<li class="dropdown" ng-repeat="item in items" ng-class="{'dropdown-submenu': (!isRoot && item.items.length > 0), 'current active': isCurrent(item.url) }">
-    <a ng-href="{{getUrl(item.url)}}" style="{{item.style}}" ng-if="item.items.length === 0" ng-class="item.css"><i ng-class="item.icon"></i>&nbsp;{{item.name}}</a>
+<li class="dropdown" ng-repeat="item in Items" ng-class="{'dropdown-submenu': (!isRoot && item.Items.length > 0), 'current active': isCurrent(item.url) }">
+    <a ng-href="{{getUrl(item.url)}}" style="{{item.style}}" ng-if="item.Items.length === 0" ng-class="item.css"><i ng-class="item.icon"></i>&nbsp;{{item.name}}</a>
 
-    <a href="#" style="{{item.style}}" ng-class="item.css" ng-if="item.items.length > 0" data-toggle="dropdown"  class="dropdown-toggle"><i ng-class="item.icon"></i>&nbsp;{{item.name}}<b ng-if="isRoot" class="caret"></b></a>
-    <ul af-navbar-item items="item.items" template-url="templateUrl" ng-if="item.items.length > 0" is-root="false" class="dropdown-menu"></ul>
+    <a href="#" style="{{item.style}}" ng-class="item.css" ng-if="item.Items.length > 0" data-toggle="dropdown"  class="dropdown-toggle"><i ng-class="item.icon"></i>&nbsp;{{item.name}}<b ng-if="isRoot" class="caret"></b></a>
+    <ul af-navbar-item Items="item.Items" template-url="templateUrl" ng-if="item.Items.length > 0" is-root="false" class="dropdown-menu"></ul>
 </li>
 
 

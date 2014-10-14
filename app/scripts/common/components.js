@@ -20,17 +20,19 @@ component:{
         8:'localSearch',
         9:'localSearchContainer',
         10:'container',
-        11:'articleBloc',
-        12:'articleDetailsBloc',
-        13:'htmlContent',
-        14:'articleBuyerConfigBloc',
-        15:'containerArticles',
-        16:'searchResult',
-        17:'workflow',
-        18:'form',
-        19:'formItem',
-        20:'articleViewGallery',
-        21:'articleDescription'
+        11:'navbar',
+        12:'navbarItem',
+        13:'articleBloc',
+        14:'articleDetailsBloc',
+        15:'htmlContent',
+        16:'articleBuyerConfigBloc',
+        17:'containerArticles',
+        18:'searchResult',
+        19:'workflow',
+        20:'form',
+        21:'formItem',
+        22:'articleViewGallery',
+        23:'articleDescription'
     }
 
     $.extend( true, components, component );

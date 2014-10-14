@@ -25,11 +25,11 @@ var Enums = (function(enums){
     self.pageType = {
 		pSignin: '100',
         pSignup: '101',
-		p404: '102',
-		p500: '103',
-		p401: '104',
-        pSearchResult:'105',
-		p0: 'ordinary'
+		p404: 1,
+		p500: 2,
+		p401: 3,
+        pSearchResult:4,
+		p0: 5
 	};
 
     self.workflowEnums = {

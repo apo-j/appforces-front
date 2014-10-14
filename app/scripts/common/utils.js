@@ -70,19 +70,7 @@ var Utils = (function(utils){
         page:function(name){
             return '/partials/page/' + (name || '1') + '.html';
         },
-        headerTop:function(name){
-            return '/partials/header/top/' + name + '.html';
-        },
-        headerMenu:function(name){
-            return '/partials/header/menu/' + name + '.html';
-        },
-        headerNavbar:function(name){
-            return '/partials/header/navbar/' + name + '.html';
-        },
-        headerMenuComponents:function(name){
-            return '/partials/header/navbar/components/' + name + '.html';
-        },
-        directiveComponent:function(type){
+        componentBase:function(type){
             return '/partials/components/#{type}/#{type}.html'.replace(/#\{type\}/g, type);
         },
         component:function(type, templateUrl){

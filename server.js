@@ -8,6 +8,7 @@
 
 var express = require('express');
 var httpProxy = require('http-proxy');
+var fs = require('fs');
 //var routes = require('./routes');
 //var user = require('./routes/user');
 var http = require('http');
@@ -89,7 +90,7 @@ function apiProxy() {
     return function(req, res, next) {
         if(req.url.match(/^\/api\//)) {
             console.log('Proxying...');
-            proxy.web(req, res, {target: 'http://localhost:8080'});
+            proxy.web(req, res, {target: 'http://192.168.1.84:8080'});
             /*if(req.isAuthenticated() || req.url.match(/^\/api\/config\//)){
                 proxy.web(req, res, {target: 'http://localhost:9000'});
             }
@@ -195,7 +196,18 @@ app.get('/logout', function(req, res){
     res.send(200);
 });
 
+//appcache does not work
+app.get('/offline.appcache', function(req, res){
+    fs.readFile("offline.appcache", function(error, content){
+        if(error){
+            res.end();
+        }else{
+            res.header("Content-Type", "text/cache-manifest");
+            res.end(content, "CACHE MANIFEST");
+        }
+    });
 
+});
 
 
 

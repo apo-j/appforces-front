@@ -39,7 +39,7 @@ angular.module('directives.form').directive('afForm',
             }],
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                        $http.get(afUtils.templateUrl.component('form', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $http.get(afUtils.templateUrl.component('form', scope.afdata.TemplateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 iElement.replaceWith(clone);
                             });
@@ -58,7 +58,7 @@ angular.module('directives.form').directive('afFormItem',
                 afOptionalData:"="
             },
             controller: ['$scope', function($scope){
-                if($scope.afdata.data.type != 5){//label
+                if($scope.afdata.data.Type != 5){//label
                     $scope.formData = $scope.afdata.data.value;
 
                     $scope.$watch('formData', function(v){
@@ -75,7 +75,7 @@ angular.module('directives.form').directive('afFormItem',
             }],
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    var formItemType = afEnums.FormItemTypeEnums[scope.afdata.data.type]
+                    var formItemType = afEnums.FormItemTypeEnums[scope.afdata.data.Type]
                     if(formItemType){
                         $http.get(afUtils.templateUrl.formItem(formItemType), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){

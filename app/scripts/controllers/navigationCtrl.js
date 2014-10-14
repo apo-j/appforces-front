@@ -8,6 +8,6 @@ angular.module('controllers')
         function ($scope, afPage, page) {
             //Set default page data
             afPage.addPage({key: afPage.currentPage().Id, value: page});
-			$scope.pageData = page;
+			$scope.Page = page;
 			
         }]);

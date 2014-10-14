@@ -3,7 +3,6 @@
  */
 'use strict';
 angular.module('directives', [
-    'directives.navDirectives',
     'directives.miscellaneous',
     'directives.components',
     'directives.workflow',

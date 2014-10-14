@@ -1,10 +1,10 @@
 <div ng-class="afdata.css" style="{{afdata.style}}">
-    <div carousel interval="interval">
-        <div slide ng-repeat="slide in slides" active="slide.active">
-            <img ng-src="{{slide.image}}" style="margin:auto;">
+    <div carousel interval="Interval">
+        <div slide ng-repeat="slider in Sliders" active="slider.Active">
+            <img ng-src="{{slide.Image}}" style="margin:auto;">
             <div class="carousel-caption">
-                <h4>Slide {{$index}}</h4>
-                <p>{{slide.text}}</p>
+                <h4>slide {{$index}}</h4>
+                <p>{{slider.Text}}</p>
             </div>
         </div>
     </div>

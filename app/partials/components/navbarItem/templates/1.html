@@ -1,0 +1,6 @@
+<li class="dropdown" ng-repeat="item in items" ng-class="{'dropdown-submenu': (!isRoot && item.items.length > 0), 'current active': isCurrent(item.Data.Url) }">
+    {{item.Items.length}}<a ng-href="{{getUrl(item.Data.Url)}}" style="{{item.Data.Style}}" ng-if="!item.Items || item.Items.length === 0" ng-class="item.Css"><i ng-class="item.Data.Icon"></i>&nbsp;{{item.Data.Name}}</a>
+
+    <a href="#" style="{{item.Style}}" ng-class="item.Css" ng-if="item.Items && item.Items.length > 0" data-toggle="dropdown"  class="dropdown-toggle"><i ng-class="item.Data.Icon"></i>&nbsp;{{item.Data.Name}}<b ng-if="isRoot" class="caret"></b></a>
+    <ul af-navbar-item items="item.Items" template-url="templateUrl" ng-if="item.Items && item.Items.length > 0" is-root="false" class="dropdown-menu"></ul>
+</li>

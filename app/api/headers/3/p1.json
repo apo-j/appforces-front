@@ -137,7 +137,7 @@
                         "itemTemplateUrl":"navbar-item",
                         "css":null,
                         "style":null,
-                        "items": [
+                         "items": [
                             {
                                 "name": "Home",
                                 "url": "/",

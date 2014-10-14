@@ -11,19 +11,19 @@ angular.module('directives.miscellaneous').directive('afLink',
             },
             compile: function(tElement, tAttr) {
                 return function(scope, iElement, iAttr) {
-                    iElement.text(scope.afdata.label);
+                    iElement.text(scope.afdata.Label);
                     scope.href = 'javascript:void(0)';
 
-                    if(scope.afdata.url.indexOf(afEnums.NavigationType.outer) == 0){//permit right click of mouse on the outerbound link
-                        scope.href = afUtils.getUrl(scope.afdata.url, {pattern: afEnums.NavigationType.outer, content:''});
-                    }else if(scope.afdata.url.indexOf(afEnums.NavigationType.inner) == 0){//permit right click of mouse on the innerbound link
-                        scope.href = afUtils.getUrl(scope.afdata.url, {pattern: afEnums.NavigationType.inner, content:''});
-                    }else if(scope.afdata.url.indexOf(afEnums.NavigationType.content) == 0){
+                    if(scope.afdata.Url.indexOf(afEnums.NavigationType.outer) == 0){//permit right click of mouse on the outerbound link
+                        scope.href = afUtils.getUrl(scope.afdata.Url, {pattern: afEnums.NavigationType.outer, content:''});
+                    }else if(scope.afdata.Url.indexOf(afEnums.NavigationType.inner) == 0){//permit right click of mouse on the innerbound link
+                        scope.href = afUtils.getUrl(scope.afdata.Url, {pattern: afEnums.NavigationType.inner, content:''});
+                    }else if(scope.afdata.Url.indexOf(afEnums.NavigationType.content) == 0){
                         scope.criteria = angular.copy(scope.afdata.criteria);
 
-                        var current = afPage.getPage(afPage.currentPage().id);
+                        var current = afPage.getPage(afPage.currentPage().Id);
                         if(current){
-                            angular.forEach(current.data.criteria, function(c){
+                            angular.forEach(current.Data.Criteria, function(c){
                                 scope.criteria.push(c);
                             })
                         }
@@ -33,10 +33,10 @@ angular.module('directives.miscellaneous').directive('afLink',
                     iElement.attr('href', scope.href);
 
                     iElement.on('click', function(event){
-                        if(scope.afdata.url.indexOf(afEnums.NavigationType.content) == 0){
+                        if(scope.afdata.Url.indexOf(afEnums.NavigationType.content) == 0){
                             $rootScope.$broadcast(afEvents.RELOAD_PAGE_BODY, {url:afConfig.DefaultSearchUrl, params:scope.criteria});
                         }else{
-                            afNavigation.navigateTo({href: scope.afdata.url, target: scope.afdata.target});
+                            afNavigation.navigateTo({href: scope.afdata.Url, target: scope.afdata.Target});
                         }
 
                         return false;
@@ -68,18 +68,14 @@ angular.module('directives').directive('afSidebar',
         return {
             restrict: 'AE',
             scope:{
-                position:'='
+                position:'=',
+                afdata:'='
             },
             controller: ['$scope', 'afPage', 'afSidebar', '$q', 'afEnums', function($scope, afPage, afSidebar, $q, afEnums){
                 var deferred = $q.defer();
-                var currentPage = afPage.currentPage();
-                if(!!currentPage && (($scope.position == 0 && (currentPage.layout & afEnums.layout.Left) > 0) ||($scope.position == 1 && (currentPage.layout & afEnums.layout.Right) > 0))){
-                    afSidebar.get({pageId: afPage.currentPage().id, position: $scope.position}, function(data){
-                            deferred.resolve(data);
-                        },
-                        function(reason){
-                            deferred.reject(reason);
-                        });
+
+                if(!!$scope.afdata && $scope.afdata.length > 0){
+                    deferred.resolve($scope.afdata);
                 }else{
                     deferred.reject(null);
                 }
@@ -93,7 +89,7 @@ angular.module('directives').directive('afSidebar',
                         return scope.afdata;
                     }).then(function(data){
                        scope.afdata.css += scope.position == 0 ? ' left ' : 'right';
-                       $http.get(afUtils.templateUrl.sidebar(data.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                       $http.get(afUtils.templateUrl.sidebar(data.TemplateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 iElement.replaceWith(clone);
                             });
@@ -115,8 +111,8 @@ angular.module('directives').directive('afPageBody',
                 afdata:'='
             },
             controller: ['$scope','afEventRegister', function($scope, afEventRegister){
-                $scope.afdata = $scope.afdata || {};
-
+                $scope.afdata.Items = $scope.afdata.Center;
+                $scope.afdata.Center = null;
                 //register on page reload event
                 afEventRegister.registerOnPageReload($scope);
             }],
@@ -124,7 +120,7 @@ angular.module('directives').directive('afPageBody',
                 return function(scope , iElement, iAttrs) {
                     //container
                     scope.$watch('afdata', function(value){
-                        $http.get(afUtils.templateUrl.page(value.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $http.get(afUtils.templateUrl.page(value.TemplateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 iElement.replaceWith(clone);
                             });
@@ -150,7 +146,7 @@ angular.module('directives').directive('afLocalSearchContainer',
                 return function(scope , iElement, iAttrs) {
                     scope.$watch('results', function(value){
                         if(angular.isArray(value)){
-                            $http.get(afUtils.templateUrl.component('localSearchContainer', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                            $http.get(afUtils.templateUrl.component('localSearchContainer', scope.afdata.TemplateUrl), {cache: $templateCache}).success(function(tplContent){
                                 $compile(tplContent)(scope, function(clone, scope){
                                     iElement.html(clone);
                                 });
@@ -211,7 +207,7 @@ angular.module('directives').directive('afBottom',
                         scope.afdata = data;
                         return scope.afdata;
                     }).then(function(data){
-                        $http.get(afUtils.templateUrl.bottom(data.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $http.get(afUtils.templateUrl.bottom(data.TemplateUrl), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
                                 iElement.replaceWith(clone);
                             });

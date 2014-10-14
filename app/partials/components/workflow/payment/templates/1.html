@@ -3,7 +3,7 @@
 </ul>
 
 <div class="work-flow" ng-repeat="item in afdata.steps" id="payment-flow-step-{{$index}}" ng-if="$index === currentStep">
-    <div ng-repeat="item in item.items" af-general-component afdata="item"></div>
+    <div ng-repeat="item in item.Items" af-general-component afdata="item"></div>
 </div>
 <button ng-click="prevStep()" ng-if="currentStep > 0">Prev</button>
 <button ng-click="nextStep()" ng-if="currentStep < totalSteps - 1">Next</button>

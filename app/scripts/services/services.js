@@ -6,7 +6,7 @@ angular.module('services', ['ngResource']);
 
 angular.module('services').factory('afHeader', ['$resource','afConfig',
     function($resource, afConfig){
-        return $resource('api/headers/:appId/:pageId.json', {appId: afConfig.AppConfig.appId});
+        return $resource('api/headers/:appId/:pageId', {appId: afConfig.AppConfig.AppId});
     }]);
 	
 angular.module('services').factory('afVars', [
@@ -105,7 +105,7 @@ angular.module('services').factory('afBottom', ['$resource','afConfig',
 
 angular.module('services').factory('afComponentData', ['$resource','afConfig',
     function($resource, afConfig){
-        return $resource('api/components/:appId/:componentId.json', {appId: afConfig.AppConfig.appId});
+        return $resource('api/components/:appId/:componentId.json', {appId: afConfig.AppConfig.AppId});
     }]);
 
 angular.module('services').factory('afArticles', ['$resource', '$q','$http', 'afConfig','afDocsSearch','afCriteriaSearch',
@@ -245,7 +245,7 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
         });
         self.pageIndex = function(){
             if(!_indexPage){
-                _indexPage = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
+                _indexPage = afUtils.Collection.find(afConfig.AppConfig.Pages, function(item){
                     return item.isIndexPage || false;
                 });
             }
@@ -255,8 +255,8 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 
         self.pageSignin = function(){
             if(!_signinPage){
-                _signinPage = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
-                    return item.type === afEnums.pageType['pSignin'];
+                _signinPage = afUtils.Collection.find(afConfig.AppConfig.Pages, function(item){
+                    return item.Type === afEnums.pageType['pSignin'];
                 });
             }
 
@@ -265,8 +265,8 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 		
 		self.pageSignup = function(){
             if(!_signupPage){
-                _signupPage = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
-                    return item.type === afEnums.pageType['pSignup'];
+                _signupPage = afUtils.Collection.find(afConfig.AppConfig.Pages, function(item){
+                    return item.Type === afEnums.pageType['pSignup'];
                 });
             }
 
@@ -275,8 +275,8 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 		
 		self.page404 = function(){
             if(!_404Page){
-                _404Page = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
-                    return item.type === afEnums.pageType['p404'];
+                _404Page = afUtils.Collection.find(afConfig.AppConfig.Pages, function(item){
+                    return item.Type === afEnums.pageType['p404'];
                 });
             }
 
@@ -285,8 +285,8 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 		
 		self.page401 = function(){
             if(!_401Page){
-                _401Page = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
-                    return item.type === afEnums.pageType['p401'];
+                _401Page = afUtils.Collection.find(afConfig.AppConfig.Pages, function(item){
+                    return item.Type === afEnums.pageType['p401'];
                 });
             }
 
@@ -295,8 +295,8 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 		
 		self.page500 = function(){
             if(!_500Page){
-                _500Page = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
-                    return item.type === afEnums.pageType['p500'];
+                _500Page = afUtils.Collection.find(afConfig.AppConfig.Pages, function(item){
+                    return item.Type === afEnums.pageType['p500'];
                 });
             }
 
@@ -305,8 +305,8 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 
         self.pageSearchResult = function(){
             if(!_searchResultPage){
-                _searchResultPage = afUtils.Collection.find(afConfig.AppConfig.pages, function(item){
-                    return item.type === afEnums.pageType['pSearchResult'];
+                _searchResultPage = afUtils.Collection.find(afConfig.AppConfig.Pages, function(item){
+                    return item.Type === afEnums.pageType['pSearchResult'];
                 });
             }
 

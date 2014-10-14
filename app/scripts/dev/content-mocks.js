@@ -52,9 +52,9 @@
     $httpBackend.whenPOST('api/search').respond(function(method, url, data) {
        var _data = {
             "status": 200,
-            "templateUrl":"1",
-            "searchId": "123456",
-            "items":[
+            "TemplateUrl":"1",
+            "SearchId": "123456",
+            "Items":[
             {
                 "id":4,
                 "type":10,
@@ -62,7 +62,7 @@
                 "isLoaded": true,
                 "style": "",
                 "css":"col-xs-12",
-                "items":[
+                "Items":[
                     {
                         "id":4,
                         "type":1,
@@ -71,7 +71,7 @@
                         "style": "",
                         "css":"col-xs-4",
                         "data":"09/12/2014",
-                        "items":[]
+                        "Items":[]
                     },
                     {
                         "id":4,
@@ -81,7 +81,7 @@
                         "style": "",
                         "css":"col-xs-3",
                         "data":"",
-                        "items":[]
+                        "Items":[]
                     }
                 ]
             }

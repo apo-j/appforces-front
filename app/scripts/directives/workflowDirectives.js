@@ -14,7 +14,7 @@ angular.module('directives.workflow').directive('afWorkflow',
             },
             compile:function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
-                    var workflow = afWorkflowList[scope.afdata.data.type];
+                    var workflow = afWorkflowList[scope.afdata.data.Type];
                     if(workflow){
                         $http.get(afUtils.templateUrl.workflow(workflow.code), {cache: $templateCache}).success(function(tplContent){
                             $compile(tplContent)(scope, function(clone, scope){
@@ -79,7 +79,7 @@ angular.module('directives.components').directive('afPaymentFlow',
             compile:function(tElement, tAttr) {
                 tElement.addClass('afworkflow');
                 return function(scope , iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.workflow('payment', scope.afdata.templateUrl), {cache: $templateCache}).success(function(tplContent){
+                    $http.get(afUtils.templateUrl.workflow('payment', scope.afdata.TemplateUrl), {cache: $templateCache}).success(function(tplContent){
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.html(clone);
                         });
