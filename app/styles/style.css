@@ -2266,3 +2266,7 @@ span.color7{
 .header_btm {
     padding: 0;
 }
+
+.ei-slider-thumbs li a:hover{
+    text-decoration: none;
+}

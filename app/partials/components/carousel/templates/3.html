@@ -14,7 +14,7 @@
                 </ul>
                 <ul class="ei-slider-thumbs">
                     <li class="ei-slider-element">Current</li>
-                    <li ng-repeat="slide in slides">
+                    <li ng-repeat="slider in Sliders">
                         <a ng-href="{{slider.Url}}" ng-bind-html="slider.ThumbDescription"></a>
                         <img ng-src="{{slider.Thumb}}" ng-alt="thumb{{$index}}" />
                     </li>
@@ -23,3 +23,13 @@
         </div><!-- wrapper -->
     </div><!---End-image-slider---->
 </div>
+<script type="text/javascript">
+    $('#ei-slider').on('click', function(){
+        $('#ei-slider').eislideshow({
+            animation:'center',
+            autoplay:true,
+            slideshow_interval:3000,
+            titlesFactor:0
+        });
+    })
+</script>

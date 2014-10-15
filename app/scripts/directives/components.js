@@ -293,7 +293,7 @@ angular.module('directives.components').directive('afArticleDetailsBloc',
     }]);
 
 angular.module('directives.components').directive('afCarousel',
-    ['$http', '$templateCache', '$compile', 'afUtils', function($http, $templateCache, $compile,afUtils){
+    ['$http', '$templateCache', '$compile', 'afUtils','$timeout', function($http, $templateCache, $compile,afUtils, $timeout){
         return {
             restrict: "AE",
             scope:{
@@ -309,7 +309,12 @@ angular.module('directives.components').directive('afCarousel',
                         $compile(tplContent)(scope, function(clone, scope){
                             iElement.replaceWith(clone);
                         });
+
+                        $timeout(function(){
+                            $('#ei-slider').trigger('click')
+                        }, 0);
                     });
+
                 }
             }
         }
