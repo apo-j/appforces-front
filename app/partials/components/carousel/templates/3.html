@@ -24,12 +24,12 @@
     </div><!---End-image-slider---->
 </div>
 <script type="text/javascript">
-    $('#ei-slider').on('click', function(){
-        $('#ei-slider').eislideshow({
+	afSubscribe("afCarousel.ready", function(){
+		$('#ei-slider').eislideshow({
             animation:'center',
             autoplay:true,
-            slideshow_interval:3000,
+            slideshow_interval: Interval,
             titlesFactor:0
         });
-    })
+	})
 </script>

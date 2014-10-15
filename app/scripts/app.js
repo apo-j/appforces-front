@@ -82,7 +82,12 @@ angular.module("appForce", [
         redirectTo: afConfig.DefaultPageUrl.P404
     });
   }])
-    .run(['$rootScope','$location','afPage','afEvents','afConfig','$log', 'afDocsSearch', 'afArticles', function($rootScope, $location, afPage, afEvents, afConfig, $log,afDocsSearch, afArticles){
+    .run(['$rootScope','$location','afUtils','afPage','afEvents','afConfig','$log', 'afDocsSearch', 'afArticles', function($rootScope, $location, afPage, afEvents, afConfig, $log,afDocsSearch, afArticles){
+		//register common functions for all $scope
+		$rootScope.afPublish = afUtils.publish;
+		$rootScope.afSubscribe = afUtils.subscribe;
+		$rootScope.afUnsubscribe = afUtils.unsubscribe;
+		
         //get all articles
         /*if(afConfig.AppConfig.isLocalSearchActivated){
              afArticles.get(null, function(data){

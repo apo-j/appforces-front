@@ -88,7 +88,10 @@ var Utils = (function(utils){
             return '/partials/components/formItem/templates/#{type}.html'.replace(/#\{type\}/g, type);
         }
     }
-
+	
+	self.publish = amplify.publish;
+	self.subscribe = amplify.subscribe;
+	self.unsubscribe = amplify.unsubscribe;
 
     return self;
 }(Appforces.Utils || {}))
