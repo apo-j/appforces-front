@@ -89,9 +89,9 @@ var Utils = (function(utils){
         }
     }
 	
-	self.publish = amplify.publish;
-	self.subscribe = amplify.subscribe;
-	self.unsubscribe = amplify.unsubscribe;
+	self.afPublish = amplify.publish;
+	self.afSubscribe = amplify.subscribe;
+	self.afUnsubscribe = amplify.unsubscribe;
 
     return self;
 }(Appforces.Utils || {}))

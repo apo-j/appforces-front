@@ -311,7 +311,7 @@ angular.module('directives.components').directive('afCarousel',
                         });
 
                         $timeout(function(){
-                            scope.afPublish("afCarousel.ready");
+                            afUtils.afPublish("afcarousel.ready", scope.afdata);
                         }, 0);
                     });
 

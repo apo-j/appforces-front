@@ -1,10 +1,10 @@
 <!--depends on eislidershow-->
 <!-- start slider -->
-<div class="slider" ng-class="afdata.Css" style="{{afdata.Style}}">
+<div class="slider" ng-class="afdata.Css" style="{{afdata.Style}}" id="component-{{afdata.Type}}-{{afdata.Id}}">
     <!---start-image-slider---->
     <div class="image-slider">
         <div class="wrapper">
-            <div id="ei-slider" class="ei-slider">
+            <div class="ei-slider" >
                 <ul class="ei-slider-large">
                     <li ng-repeat="slider in Sliders">
                         <img ng-src="{{slider.Image}}" alt="image{{$index}}"/>
@@ -24,12 +24,18 @@
     </div><!---End-image-slider---->
 </div>
 <script type="text/javascript">
-	afSubscribe("afCarousel.ready", function(){
-		$('#ei-slider').eislideshow({
-            animation:'center',
-            autoplay:true,
-            slideshow_interval: Interval,
-            titlesFactor:0
+    $(function(){
+        //or var $injector = angular.element(document).injector();
+        var $injector = $(document).injector();
+        $injector.invoke(function(afUtils){
+            afUtils.afSubscribe('afcarousel.ready', function(data){
+                $("#component-" + data.Type + "-" + data.Id).find('.ei-slider').eislideshow({
+                    animation:'center',
+                    autoplay:true,
+                    slideshow_interval: data.Data.Interval || 500,
+                    titlesFactor:0
+                });
+            })
         });
-	})
+    })
 </script>
