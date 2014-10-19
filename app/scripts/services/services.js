@@ -110,9 +110,9 @@ angular.module('services').factory('afComponentData', ['$resource','afConfig',
 
 angular.module('services').factory('afArticles', ['$resource', '$q','$http', 'afConfig','afDocsSearch','afCriteriaSearch',
     function($resource, $q, $http, afConfig, afDocsSearch, afCriteriaSearch){
-        var defaultUrl = 'api/articles/:appId/:articleId.json',
+        var defaultUrl = 'api/articles/:appId/:articleId',
             deferred = $q.defer();
-        var url = defaultUrl.replace(':articleId', afConfig.SearchGetAllDefaultParamVal).replace(':appId', afConfig.AppConfig.appId);
+        var url = defaultUrl.replace(':articleId', afConfig.SearchGetAllDefaultParamVal).replace(':appId', afConfig.AppConfig.AppId);
 
         var res = $resource(defaultUrl,{
                 appId: afConfig.AppConfig.appId,
@@ -120,11 +120,11 @@ angular.module('services').factory('afArticles', ['$resource', '$q','$http', 'af
             });
 
         res.search =  function (criteria){
-            $http({method: 'GET', url: url, data:criteria}).
+            $http({method: 'POST', url: 'api/data/', data:criteria}).
                 success(function(data, status) {
-                    if(afConfig.AppConfig.isLocalSearchActivated){
+                    if(afConfig.AppConfig.IsLocalSearchActivated){
                         if(!afDocsSearch.isInited){
-                            afDocsSearch.init(afConfig.AppConfig.localSearchOptions, data.data);
+                            afDocsSearch.init(afConfig.AppConfig.LocalSearchOptions, data.data);
                         }
 
                         afCriteriaSearch.exactSearch(criteria).then(function(data){

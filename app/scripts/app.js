@@ -13,7 +13,7 @@ angular.module("appForce", [
   'filters',
   'directives',
   'ui.bootstrap',
-  'content-mocks',
+  //'content-mocks',
   'http-auth-interceptor'
 ])
   .constant('_Utils', Utils)

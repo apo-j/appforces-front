@@ -6,6 +6,10 @@ Version 1:
 5: 404 error                                                                        :OK
 6: Search: 全站搜索（调用后台搜索）
 7: articleDetailsBloc should contain layout information (for all blocs)
+8: Xss attack :
+        no iframe & object tags,
+        white list of html tags,
+        no inline script on html element（js event）: prevent all js eventhandler on tag attribute & extract all attribute value then detect them with jshint
 
 
 

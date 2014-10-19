@@ -185,21 +185,33 @@ angular.module('directives').directive('afBottom',
     ['$http', '$templateCache', '$compile', 'afUtils',  function($http, $templateCache, $compile, afUtils){
         return {
             restrict: 'AE',
+            scope:{
+                afdata:"="
+            },
             controller: ['$scope', 'afPage', '$q', 'afEnums','afBottom', function($scope, afPage, $q, afEnums, afBottom){
                 var deferred = $q.defer();
-                var currentPage = afPage.currentPage();
-                if(!!currentPage && (currentPage.layout & afEnums.layout.Bottom) > 0){
-                    afBottom.get({pageId: afPage.currentPage().id}, function(data){
-                            deferred.resolve(data);
-                        },
-                        function(reason){
-                            deferred.reject(reason);
-                        });
+
+                if(!!$scope.afdata && $scope.afdata.length > 0){
+                    deferred.resolve($scope.afdata[0]);
                 }else{
                     deferred.reject(null);
                 }
 
                 $scope.newData = deferred.promise;
+//                var deferred = $q.defer();
+//                var currentPage = afPage.currentPage();
+//                if(!!currentPage && (currentPage.layout & afEnums.layout.Bottom) > 0){
+//                    afBottom.get({pageId: afPage.currentPage().id}, function(data){
+//                            deferred.resolve(data);
+//                        },
+//                        function(reason){
+//                            deferred.reject(reason);
+//                        });
+//                }else{
+//                    deferred.reject(null);
+//                }
+//
+//                $scope.newData = deferred.promise;
             }],
             compile: function(tElement, tAttr) {
                 return function(scope , iElement, iAttrs) {
