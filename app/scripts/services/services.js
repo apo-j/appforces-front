@@ -120,7 +120,7 @@ angular.module('services').factory('afArticles', ['$resource', '$q','$http', 'af
             });
 
         res.search =  function (criteria){
-            $http({method: 'POST', url: 'api/data/', data:criteria}).
+            $http({method: 'POST', url: 'api/search/1/Article', data:criteria}).
                 success(function(data, status) {
                     if(afConfig.AppConfig.IsLocalSearchActivated){
                         if(!afDocsSearch.isInited){

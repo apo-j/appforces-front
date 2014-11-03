@@ -81,13 +81,13 @@ angular.module('directives.components').directive('afContainerArticles',
                 var deferred = $q.defer();
 
                 if(!$scope.afdata.isLoaded){
-                    var criteria = {};
-                    angular.forEach($scope.afdata.Data.Criteria, function(value, key){
-                        if(!criteria.hasOwnProperty(value.Key)){
-                            criteria[value.Key] = value.Value;
-                        }
-                    })
-                    afArticles.search(criteria).then(function(data) {
+//                    var criteria = {};
+//                    angular.forEach($scope.afdata.Data.Criteria, function(value, key){
+//                        if(!criteria.hasOwnProperty(value.Key)){
+//                            criteria[value.Key] = value.Value;
+//                        }
+//                    })
+                    afArticles.search($scope.afdata.Data).then(function(data) {
                         deferred.resolve(data.data);
                     }, function(reason){
                         deferred.reject(reason);
