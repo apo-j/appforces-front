@@ -106,7 +106,7 @@ angular.module('directives.components').directive('afContainerArticles',
                         return data;
                     })
                     .then(function(data){
-                        $http.get(afUtils.templateUrl.component('containerArticles', scope.afdata.data.TemplateUrl), {cache: $templateCache}).success(function(tplContent){
+                        $http.get(afUtils.templateUrl.component('containerArticles', scope.afdata.TemplateUrl), {cache: $templateCache}).success(function(tplContent){
                              $compile(tplContent)(scope, function(clone, scope){
                                  iElement.html(clone);
                              });
@@ -357,18 +357,18 @@ angular.module('directives.components').directive('afSearch',
                     var self = {};
                     self.resultPage = afPage.pageSearchResult();
 					self.currentSearch = afVars.get('currentSearch');
-					
+
 					if(self.currentSearch && self.currentSearch['searchId'] ===  scope.afdata.Data.Id){
 						scope.afdata.Data = angular.copy(self.currentSearch);
 						$rootScope.$broadcast(afEvents.SEARCH, {url: afConfig.DefaultSearchUrl, data:scope.afdata.Data});
 					}
 
                     scope.originCriteria = angular.copy(scope.afdata.Data.Criteria);
-					
+
                     scope.reset = function(){
                         scope.afdata.Data.Criteria = angular.copy(scope.originCriteria);
                     };
-					
+
                     scope.validate = function(){
 						afVars.set('currentSearch', angular.copy(scope.afdata.Data));
                         if(self.resultPage){
@@ -379,7 +379,7 @@ angular.module('directives.components').directive('afSearch',
                             }
                         }
                     };
-						
+
 				   $http.get(afUtils.templateUrl.component('search', scope.afdata.TemplateUrl), {cache: $templateCache}).success(function(tplContent){
 						$compile(tplContent)(scope, function(clone, scope){
 							iElement.html(clone);
@@ -477,7 +477,7 @@ angular.module('directives.components').directive('afDatepickerTemplate',
 							}
 							return date;
 						});
-						
+
 						var updateModel = function () {
 							scope.$apply(function () {
 								var date = iElement.datepicker("getDate");
@@ -485,7 +485,7 @@ angular.module('directives.components').directive('afDatepickerTemplate',
 								ngModelCtrl.$setViewValue(date);
 							});
 						};
-						
+
 						var onSelectHandler = function(userHandler) {
 							if ( userHandler ) {
 								return function(value, picker) {
@@ -496,7 +496,7 @@ angular.module('directives.components').directive('afDatepickerTemplate',
 								return updateModel;
 							}
 						};
-						
+
 						var setUpDatePicker = function () {
 							var options = scope.$eval(iAttrs.afDatepickerTemplate) || {};
 							options.onSelect = onSelectHandler(options.onSelect);
@@ -505,11 +505,11 @@ angular.module('directives.components').directive('afDatepickerTemplate',
 							iElement.datepicker(options);
 							ngModelCtrl.$render();
 						};
-						
+
 						ngModelCtrl.$render = function () {
 							iElement.datepicker("setDate", ngModelCtrl.$viewValue);
 						};
-						
+
 						scope.$watch(iAttrs.afDatepickerTemplate, setUpDatePicker, true);
                     }
                 }

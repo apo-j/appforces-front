@@ -1,7 +1,7 @@
-<div ng-repeat="item in afdata.Items"  ng-class="afdata.data.css" style="{{afdata.data.style}}">
-        <a ng-href="#/articles?articleId={{item.id}}">
-            <img ng-src="{{item.images[0]}}" alt=""/>
-            <h3>{{item.title}}</h3>
-            <span class="price">{{item.price}}</span>
+<div ng-repeat="item in afdata.Items" class="grid1_of_3"  ng-class="afdata.css" style="text-align:center;{{afdata.style}}">
+        <a ng-href="#/articles?articleId={{item.ID}}">
+            <img ng-src="{{item.Images[0]}}" alt=""/>
+            <h3>{{item.Title}}</h3>
+            <span class="price">{{item.Price}}</span>
         </a>
 </div>

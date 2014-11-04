@@ -8,11 +8,11 @@ angular.module('services').factory('afHeader', ['$resource','afConfig',
     function($resource, afConfig){
         return $resource('api/headers/:appId/:pageId', {appId: afConfig.AppConfig.AppId});
     }]);
-	
+
 angular.module('services').factory('afVars', [
     function(){
 		var _vars = {};
-		
+
         return {
 			set:function(property, value){
 				if(property){
@@ -33,8 +33,8 @@ angular.module('services').factory('afVars', [
 				_vars = {};
 			}
 		};
-    }]);	
-	
+    }]);
+
 angular.module('services').factory('afData', ['$resource','afConfig','$http',
     function($resource, afConfig, $http){
         return {
@@ -56,8 +56,8 @@ angular.module('services').factory('afData', ['$resource','afConfig','$http',
 				}
 			}
 		}
-    }]);	
-	
+    }]);
+
 angular.module('services').factory('afEventRegister', ['$rootScope', 'afConfig','afData','afEvents','afDocsSearch',
     function($rootScope, afConfig, afData, afEvents, afDocsSearch){
         return {
@@ -87,11 +87,11 @@ angular.module('services').factory('afEventRegister', ['$rootScope', 'afConfig',
                     scope.results.then(function(data){
                         scope.results = data;
 					});
-						
+
 				});
 			}
 		}
-    }]);	
+    }]);
 
 angular.module('services').factory('afSidebar', ['$resource','afConfig',
     function($resource, afConfig){
@@ -124,14 +124,14 @@ angular.module('services').factory('afArticles', ['$resource', '$q','$http', 'af
                 success(function(data, status) {
                     if(afConfig.AppConfig.IsLocalSearchActivated){
                         if(!afDocsSearch.isInited){
-                            afDocsSearch.init(afConfig.AppConfig.LocalSearchOptions, data.data);
+                            afDocsSearch.init(afConfig.AppConfig.LocalSearchOptions, data);
                         }
 
                         afCriteriaSearch.exactSearch(criteria).then(function(data){
                             deferred.resolve({data: data, status: status});
                         });
                     }else{
-                        deferred.resolve({data: data.data, status: status});
+                        deferred.resolve({data: data, status: status});
                     }
                 }).
                 error(function(data, status) {
@@ -146,7 +146,7 @@ angular.module('services').factory('afArticles', ['$resource', '$q','$http', 'af
 
 angular.module('services').factory('afNavigation', ['$resource','afEnums', 'afUtils', '$location', '$window', '$rootScope','afEvents',
     function($resource, afEnums, afUtils, $location, $window, $rootScope, afEvents){
-        
+
 		return {
 			navigateTo:function(src){
 				var _defaultSrcOptions = {
@@ -155,9 +155,9 @@ angular.module('services').factory('afNavigation', ['$resource','afEnums', 'afUt
 				}
 
 				angular.extend(_defaultSrcOptions, src);
-				
+
 				if(_defaultSrcOptions.href.indexOf(afEnums.NavigationType.outer) == 0){
-					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.outer, ''); 
+					_defaultSrcOptions.href = _defaultSrcOptions.href.replace(afEnums.NavigationType.outer, '');
 
                     if(_defaultSrcOptions.target == '_self'){
                         $window.location = _defaultSrcOptions.href;
@@ -183,7 +183,7 @@ angular.module('services').factory('afNavigation', ['$resource','afEnums', 'afUt
 			}
 		};
     }]);
-	
+
 angular.module('services').provider('afUtils',
     function(){
         var self = this;
@@ -192,21 +192,21 @@ angular.module('services').provider('afUtils',
         self.initUtils = function(utils){
             self._utils = utils || {};
         },
-		
+
         self.$get = ['afConfig', 'afEnums', function(afConfig, afEnums) {
 				self._utils.getUrl = function (raw, replace) {
 					var res = raw;
 					if(raw && replace){
 						res = res.replace(replace.pattern, replace.content);
 					}
-					
+
 					if(afConfig.LocationMode === 'hashbang' && replace.pattern === afEnums.NavigationType.inner){
 						res = '#/' + res;
 					}
-					
+
 					return res;
 				};
-				
+
                 return self._utils;
             }]
 
@@ -262,7 +262,7 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 
             return _signinPage;
         };
-		
+
 		self.pageSignup = function(){
             if(!_signupPage){
                 _signupPage = afUtils.Collection.find(afConfig.AppConfig.Pages, function(item){
@@ -272,7 +272,7 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 
             return _signupPage;
         };
-		
+
 		self.page404 = function(){
             if(!_404Page){
                 _404Page = afUtils.Collection.find(afConfig.AppConfig.Pages, function(item){
@@ -282,7 +282,7 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 
             return _404Page;
         };
-		
+
 		self.page401 = function(){
             if(!_401Page){
                 _401Page = afUtils.Collection.find(afConfig.AppConfig.Pages, function(item){
@@ -292,7 +292,7 @@ angular.module('services').factory('afPage',['afConfig','$resource','$cacheFacto
 
             return _401Page;
         };
-		
+
 		self.page500 = function(){
             if(!_500Page){
                 _500Page = afUtils.Collection.find(afConfig.AppConfig.Pages, function(item){

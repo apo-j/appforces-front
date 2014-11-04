@@ -88,7 +88,7 @@ var app = express();
 var proxy = httpProxy.createProxyServer({});
 
 
-function apiProxy() {
+  function apiProxy() {
     return function(req, res, next) {
         if(req.url.match(/^\/api\//)) {
             console.log('Proxying...');
@@ -118,6 +118,7 @@ app.configure(function() {
     //app.set('views', 'app/views');
     //app.set('view engine', 'jade');
     app.use(express.logger('dev'));
+    app.use(apiProxy());
     app.use(express.cookieParser());
     //app.use(express.bodyParser());//not supported by connect 3.0
     app.use(express.json());
@@ -135,7 +136,7 @@ app.configure(function() {
     //app.use(express.urlencoded());
     //app.use(express.multipart()); //for file upload
     //app.use(express.methodOverride());
-    app.use(apiProxy());
+
     app.use(app.router);
     app.use(express.static('app'));
 });
