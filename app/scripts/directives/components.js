@@ -211,7 +211,6 @@ angular.module('directives.components').directive('afViewGallery',
             gallery_conf.moreviewitem = '<a class="cs-fancybox-thumbs" data-fancybox-group="thumb"  href=""  title="" alt=""><img src="" src_main="" title="" alt="" /></a>';
             gallery_conf.animspeed = 200;
 
-            jQblvg(document).ready(function () {
               galleryObj[1] = new prodViewGalleryForm(prodGallery, 'prod_1', gallery_elmnt, gallery_conf, '.product-image', '.more-views', 'http:');
               jQblvg('.product-image .cs-fancybox-thumbs').absoluteClick();
               jQblvg('.cs-fancybox-thumbs').fancybox({
@@ -233,9 +232,6 @@ angular.module('directives.components').directive('afViewGallery',
                 btn_pos: 'border',
                 scroll_speed: 400
               });
-
-            });
-
           });
         }
       }
