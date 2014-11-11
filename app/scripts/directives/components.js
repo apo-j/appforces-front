@@ -197,11 +197,11 @@ angular.module('directives.components').directive('afViewGallery',
             var prodGallery = {
               prod_1: {
                 main: new galleryItem(scope.afdata.Data.MediaList[0].MediaUrl),
-                gallery: scope.afdata.Data.MediaList
+                gallery: {}
               }
             };
 
-            angular.forEach(scope.afdata, function (value, key) {
+            angular.forEach(scope.afdata.Data.MediaList, function (value, key) {
               prodGallery['prod_1']['gallery']['item_' + key] = new galleryItem(value);
             });
 
@@ -231,6 +231,16 @@ angular.module('directives.components').directive('afViewGallery',
               elqty: 4,
               btn_pos: 'border',
               scroll_speed: 400
+            });
+
+            CloudZoom.quickStart();
+
+            // Initialize the slider.
+            $(function(){
+              $('#slider1').Thumbelina({
+                $bwdBut:$('#slider1 .left'),
+                $fwdBut:$('#slider1 .right')
+              });
             });
           });
         }
