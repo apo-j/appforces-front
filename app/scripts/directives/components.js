@@ -197,7 +197,7 @@ angular.module('directives.components').directive('afViewGallery',
             var prodGallery = {
               prod_1: {
                 main: new galleryItem(scope.afdata.Data.MediaList[0].MediaUrl),
-                gallery: {}
+                gallery: scope.afdata.Data.MediaList
               }
             };
 
@@ -293,11 +293,11 @@ angular.module('directives.components').directive('afArticleDetails',
       compile: function (tElement, tAttr) {
         return function (scope, iElement, iAttrs) {
           scope.newData.then(function (data) {
-            scope.afdata.Data = data[0];
+            scope.afdata.data = data;
             angular.forEach(scope.afdata.Items, function (value, key) {
-              value.Data = scope.afdata.Data;
+              value.data = scope.afdata.data;
             });
-            return scope.afdata.Data;
+            return scope.afdata.data;
           }).then(function (data) {
             //use the same template of container
             $http.get(afUtils.templateUrl.component('articleDetails', scope.afdata.TemplateUrl), {cache: $templateCache}).success(function (tplContent) {
