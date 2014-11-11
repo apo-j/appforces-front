@@ -197,12 +197,12 @@ angular.module('directives.components').directive('afViewGallery',
             var prodGallery = {
               prod_1: {
                 main: new galleryItem(scope.afdata.Data.MediaList[0].MediaUrl),
-                gallery: scope.afdata.Data.MediaList
+                gallery: {}
               }
             };
 
-            angular.forEach(scope.afdata, function (value, key) {
-              prodGallery['prod_1']['gallery']['item_' + key] = new galleryItem(value);
+            angular.forEach(scope.afdata.Data.MediaList, function (value, key) {
+              prodGallery['prod_1']['gallery']['item_' + key] = new galleryItem(value.MediaUrl);
             });
 
             var gallery_elmnt = jQblvg('.product-img-box'),
@@ -293,11 +293,11 @@ angular.module('directives.components').directive('afArticleDetails',
       compile: function (tElement, tAttr) {
         return function (scope, iElement, iAttrs) {
           scope.newData.then(function (data) {
-            scope.afdata.data = data;
+            scope.afdata.Data = data[0];
             angular.forEach(scope.afdata.Items, function (value, key) {
-              value.data = scope.afdata.data;
+              value.Data = scope.afdata.Data;
             });
-            return scope.afdata.data;
+            return scope.afdata.Data;
           }).then(function (data) {
             //use the same template of container
             $http.get(afUtils.templateUrl.component('articleDetails', scope.afdata.TemplateUrl), {cache: $templateCache}).success(function (tplContent) {
