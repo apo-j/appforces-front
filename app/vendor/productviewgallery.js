@@ -15,7 +15,7 @@
  * @copyright  Copyright (c) 2010 - 2013 BelVG LLC. (http://www.belvg.com)
  * @license    http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
  */
-var jQblvg  = $//jQuery.noConflict();
+var jQblvg  = jQuery//jQuery.noConflict();
 ;function prodViewGalleryForm(data, id, element, galleryConf, elImage, elThumbs, playerUrl) {
     var here = this;
     this.prodId = id;
@@ -26,7 +26,7 @@ var jQblvg  = $//jQuery.noConflict();
     this.formConf = galleryConf;
     this.element = element;
     this.player = playerUrl;
-    
+
     this.getImages = function(data) {
         for (var i in data) {
             if (i == this.prodId) {
@@ -48,7 +48,7 @@ var jQblvg  = $//jQuery.noConflict();
             }
         }
     }
-    
+
     this.getVideo = function() {
         for (var i in data) {
             if (i == this.prodId) {
@@ -56,7 +56,7 @@ var jQblvg  = $//jQuery.noConflict();
             }
         }
     }
-    
+
     this.setImages = function() {
         this.element.find('#wrap').css('z-index', 0);
         tmp_el = this.element.find('.product-image');
@@ -99,13 +99,13 @@ var jQblvg  = $//jQuery.noConflict();
             }
         }
     }
-    
+
     this.setVideo = function() {
         if (this.video != false) {
             tmp = '<div id="vid_block_'+here.prodId+'" style="position:absolute; z-index:120; opacity:0"><div id="vid_obj_'+here.prodId+'"></div></div>';
             here.element.find(here.elImage).append(tmp);
             here.element.find(here.elImage).children().css('position','absolute');
-            
+
             this.element.find(this.elImage).append('<div class="img_play_btn"></div>');
             tmp_el = this.element.find(this.elImage);
             btn_x = parseInt(tmp_el.width()) - parseInt(this.element.find('.img_play_btn').width());
@@ -114,7 +114,7 @@ var jQblvg  = $//jQuery.noConflict();
                 here.element.find(here.elImage).find('img').animate({opacity:0}, 100);
                 jwplayer('vid_obj_'+here.prodId).setup({
                     flashplayer: here.player,
-                    file: here.video.file, 
+                    file: here.video.file,
                     height: here.element.find(here.elImage).height(),
                     width: here.element.find(here.elImage).width(),
                     provider: here.video.type,
@@ -139,7 +139,7 @@ var jQblvg  = $//jQuery.noConflict();
                                 here.playerStop();
                             });
                             return false;
-                        },                        
+                        },
                         onComplete: function(){
                             here.playerStop();
                             here.element.find(here.elImage).find('#vid_block_'+here.prodId).animate({opacity:0}, parseInt(here.formConf.animspeed));
@@ -159,11 +159,11 @@ var jQblvg  = $//jQuery.noConflict();
             });
         }
     }
-    
-    
+
+
     this.initSwitch = function() {
         this.element.find('.more-views li').find('a').click( function() {
-            if (here.video != false) {    
+            if (here.video != false) {
                 here.element.find(here.elImage).find('#vid_block_'+here.prodId).animate({opacity:0}, parseInt(here.formConf.animspeed), function() {
                     here.playerStop();
                 });
@@ -186,9 +186,9 @@ var jQblvg  = $//jQuery.noConflict();
             }
             return false;
         });
-        
+
     }
-    
+
     this.refreshCloudZoom = function() {
         tmp = jQblvg('.mousetrap');
         if (tmp) {
@@ -198,27 +198,27 @@ var jQblvg  = $//jQuery.noConflict();
             jQblvg('.cloud-zoom').CloudZoom();
         }
     }
-    
+
     this.playerStop = function() {
         here.element.find(here.elImage).find('img').animate({opacity:1}, parseInt(here.formConf.animspeed));
         if (jwplayer('vid_obj_'+here.prodId).getState()) {
             jwplayer('vid_obj_'+here.prodId).remove();
         }
     }
-    
+
     this.getImages(data);
     this.getVideo(data);
     this.setImages();
     this.setVideo();
     this.initSwitch();
-    
+
 };
 
 /*------------------------------------------------------------------------------------------------------------------*/
 
 (function($){
     $.fn.absoluteClick = function() {
-       var elnt = $(this);   
+       var elnt = $(this);
        $('body').click( function(pos) {
            a = parseInt(elnt.offset().left);
            x = parseInt(elnt.offset().left + elnt.width());
@@ -235,7 +235,7 @@ var jQblvg  = $//jQuery.noConflict();
 /* (c) 2010-2012 by messer */
 ( function(jQblvg) {
     jQblvg.fn.elScroll = function(options) {
-        
+
         var options = jQblvg.extend({
             type: 'horizontal',
             elqty: 4,
@@ -248,14 +248,14 @@ var jQblvg  = $//jQuery.noConflict();
             btn_pos: 'inner',
             scroll_speed: 1000
         }, options);
-        
+
         var container = jQblvg(this);
         var rail = container.find(options.rail_el);
         var current_pos = 0;
         var elmax = 0;
         var step = 0;
         var wait = false;
-        
+
         var init = function() {
             container.parent().css('position','relative');
             elmax = rail.find(options.element).length;
@@ -280,12 +280,12 @@ var jQblvg  = $//jQuery.noConflict();
                 rail.css('height', rail.children().first().outerHeight(true));
                 //container.attr('style','height:'+container.height()+'px;width:'+parseInt(step)*parseInt(options.elqty)+'px;overflow:hidden;position:relative;');
                 container.attr('style','height:'+rail.children().first().outerHeight(true)+'px;width:'+parseInt(step)*parseInt(options.elqty)+'px;overflow:hidden;position:relative;');
-            } else {            
+            } else {
                 //rail.css('width', parseInt(rail.find(options.element))+2*parseInt(options.el_padding)+2*parseInt(options.el_margin
                 rail.css('width', rail.children().first().outerWidth(true));
                 container.attr('style','width:'+rail.children().first().outerWidth(true)+'px;height:'+parseInt(step)*parseInt(options.elqty)+'px;overflow:hidden;position:relative;');
             }
-            
+
             if (options.type == 'horizontal') {
                 container.find('#cs_left').remove();
                 container.find('#cs_right').remove();
@@ -299,7 +299,7 @@ var jQblvg  = $//jQuery.noConflict();
             setButtonsPos();
             checkButtons();
             rail.find(options.element).show();
-            
+
             if (options.type == 'horizontal') {
                 tmp = options.left;
             } else {
@@ -323,7 +323,7 @@ var jQblvg  = $//jQuery.noConflict();
                 }
                 checkButtons();
                 return false;
-            });         
+            });
         };
 
         var setButtonsPos = function() {
@@ -339,8 +339,8 @@ var jQblvg  = $//jQuery.noConflict();
                     btn_left_prev = parseInt( container.position().left );
                     btn_left_next = parseInt( container.position().left + container.width() - jQblvg('#cs_right').width() );
                 }
-                
-                container.parent().find('#cs_left').css('top', btn_top+'px').css('left', btn_left_prev+'px');   
+
+                container.parent().find('#cs_left').css('top', btn_top+'px').css('left', btn_left_prev+'px');
                 container.parent().find('#cs_right').css('top', btn_top+'px').css('left', btn_left_next+'px');
             } else {
                 btn_left = parseInt( container.position().left + (container.width() / 2) - (jQblvg('#cs_up').width() / 2) );
@@ -354,12 +354,12 @@ var jQblvg  = $//jQuery.noConflict();
                     btn_top_up = parseInt( container.position().top );
                     btn_top_down = parseInt( container.position().top + container.height() - jQblvg('#cs_down').height() );
                 }
-                
-                container.parent().find('#cs_up').css('left', btn_left+'px').css('top', btn_top_up+'px');   
+
+                container.parent().find('#cs_up').css('left', btn_left+'px').css('top', btn_top_up+'px');
                 container.parent().find('#cs_down').css('left', btn_left+'px').css('top', btn_top_down+'px');
             }
         };
-        
+
         var scrollDown = function() {
             wait = true;
             if (options.type == 'horizontal') {
@@ -373,7 +373,7 @@ var jQblvg  = $//jQuery.noConflict();
             current_pos--;
             wait = true;
             if (options.type == 'horizontal') {
-                rail.animate( { "margin-left": (parseInt(rail.css('margin-left'))+parseInt(step))+"px" }, options.scroll_speed, function() { wait = false; });            
+                rail.animate( { "margin-left": (parseInt(rail.css('margin-left'))+parseInt(step))+"px" }, options.scroll_speed, function() { wait = false; });
             } else {
                 rail.animate( { "margin-top": (parseInt(rail.css('margin-top'))+parseInt(step))+"px" }, options.scroll_speed, function() { wait = false; });
             }
@@ -393,9 +393,9 @@ var jQblvg  = $//jQuery.noConflict();
                 jQblvg(options.down).fadeIn(options.scroll_speed);
                 jQblvg(options.right).fadeIn(options.scroll_speed);
             };
-        
+
         };
-        
+
         init();
         delete data;
     }
