@@ -196,8 +196,8 @@ angular.module('directives.components').directive('afViewGallery',
 
             var prodGallery = {
               prod_1: {
-                main: new galleryItem(scope.afdata[0]),
-                gallery: {}
+                main: new galleryItem(scope.afdata.Data.MediaList[0].MediaUrl),
+                gallery: scope.afdata.Data.MediaList
               }
             };
 
