@@ -105,10 +105,10 @@ angular.module('directives.components').directive('afContainerArticles',
             scope.afdata.Items = data;
             if (data && data.length > 0 && data[0].hasOwnProperty("MediaList")) {
               for (var i = 0; i < scope.afdata.Items.length; i++) {
-                scope.afdata.Items[i].Images = Utils.Collection.filter(scope.afdata.Items[i].MediaList, function(media){
+                scope.afdata.Items[i].Images = Utils.Collection.filter(scope.afdata.Items[i].MediaList, function (media) {
                   return media.MediaTypeID === 1//photo
                 });
-                scope.afdata.Items[i].Videos = Utils.Collection.filter(scope.afdata.Items[i].MediaList, function(media){
+                scope.afdata.Items[i].Videos = Utils.Collection.filter(scope.afdata.Items[i].MediaList, function (media) {
                   return media.MediaTypeID === 2//video
                 })
               }
@@ -128,47 +128,47 @@ angular.module('directives.components').directive('afContainerArticles',
   }]);
 
 angular.module('directives.components').directive('afArticleDescription',
-    ['$http', '$templateCache', '$compile', 'afUtils', function ($http, $templateCache, $compile, afUtils) {
-        return {
-            restrict: "AE",
-            scope: {
-                afdata: "="
-            },
-            controller: ['$scope', function ($scope) {
-            }],
-            compile: function (tElement, tAttr) {
-                return function (scope, iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.component('articleDescription', 1), {cache: $templateCache}).success(function (tplContent) {
-                        $compile(tplContent)(scope, function (clone, scope) {
-                            iElement.replaceWith(clone);
-                        });
-                    });
-                }
-            }
+  ['$http', '$templateCache', '$compile', 'afUtils', function ($http, $templateCache, $compile, afUtils) {
+    return {
+      restrict: "AE",
+      scope: {
+        afdata: "="
+      },
+      controller: ['$scope', function ($scope) {
+      }],
+      compile: function (tElement, tAttr) {
+        return function (scope, iElement, iAttrs) {
+          $http.get(afUtils.templateUrl.component('articleDescription', 1), {cache: $templateCache}).success(function (tplContent) {
+            $compile(tplContent)(scope, function (clone, scope) {
+              iElement.replaceWith(clone);
+            });
+          });
         }
-    }]);
+      }
+    }
+  }]);
 
 angular.module('directives.components').directive('afArticleBloc',
-    ['$http', '$templateCache', '$compile', 'afUtils', function ($http, $templateCache, $compile, afUtils) {
-        return {
-            restrict: "AE",
-            scope: {
-                afdata: "="
-            },
-            controller: ['$scope', 'afConfig', function ($scope, afConfig) {
-                $scope.data = $scope.afdata.data;
-            }],
-            compile: function (tElement, tAttr) {
-                return function (scope, iElement, iAttrs) {
-                    $http.get(afUtils.templateUrl.component('articleBloc', scope.afdata.TemplateUrl), {cache: $templateCache}).success(function (tplContent) {
-                        $compile(tplContent)(scope, function (clone, scope) {
-                            iElement.replaceWith(clone);
-                        });
-                    });
-                }
-            }
+  ['$http', '$templateCache', '$compile', 'afUtils', function ($http, $templateCache, $compile, afUtils) {
+    return {
+      restrict: "AE",
+      scope: {
+        afdata: "="
+      },
+      controller: ['$scope', 'afConfig', function ($scope, afConfig) {
+        $scope.data = $scope.afdata.data;
+      }],
+      compile: function (tElement, tAttr) {
+        return function (scope, iElement, iAttrs) {
+          $http.get(afUtils.templateUrl.component('articleBloc', scope.afdata.TemplateUrl), {cache: $templateCache}).success(function (tplContent) {
+            $compile(tplContent)(scope, function (clone, scope) {
+              iElement.replaceWith(clone);
+            });
+          });
         }
-    }]);
+      }
+    }
+  }]);
 
 angular.module('directives.components').directive('afViewGallery',
   ['$http', '$templateCache', '$compile', 'afUtils', function ($http, $templateCache, $compile, afUtils) {
@@ -211,27 +211,27 @@ angular.module('directives.components').directive('afViewGallery',
             gallery_conf.moreviewitem = '<a class="cs-fancybox-thumbs" data-fancybox-group="thumb"  href=""  title="" alt=""><img src="" src_main="" title="" alt="" /></a>';
             gallery_conf.animspeed = 200;
 
-              galleryObj[1] = new prodViewGalleryForm(prodGallery, 'prod_1', gallery_elmnt, gallery_conf, '.product-image', '.more-views', 'http:');
-              jQblvg('.product-image .cs-fancybox-thumbs').absoluteClick();
-              jQblvg('.cs-fancybox-thumbs').fancybox({
-                prevEffect: 'none',
-                nextEffect: 'none',
-                closeBtn: true,
-                arrows: true,
-                nextClick: true,
-                helpers: {
-                  thumbs: {
-                    position: 'bottom'
-                  }
+            galleryObj[1] = new prodViewGalleryForm(prodGallery, 'prod_1', gallery_elmnt, gallery_conf, '.product-image', '.more-views', 'http:');
+            jQblvg('.product-image .cs-fancybox-thumbs').absoluteClick();
+            jQblvg('.cs-fancybox-thumbs').fancybox({
+              prevEffect: 'none',
+              nextEffect: 'none',
+              closeBtn: true,
+              arrows: true,
+              nextClick: true,
+              helpers: {
+                thumbs: {
+                  position: 'bottom'
                 }
-              });
-              jQblvg('#wrap').css('z-index', '100');
-              jQblvg('.more-views-container').elScroll({
-                type: 'vertical',
-                elqty: 4,
-                btn_pos: 'border',
-                scroll_speed: 400
-              });
+              }
+            });
+            jQblvg('#wrap').css('z-index', '100');
+            jQblvg('.more-views-container').elScroll({
+              type: 'vertical',
+              elqty: 4,
+              btn_pos: 'border',
+              scroll_speed: 400
+            });
           });
         }
       }
