@@ -24,15 +24,14 @@ component:{
         12:'navbarItem',
         13:'htmlContent',
         14:'containerArticles',
-        15:'articleBloc',
-        16:'articleDetailsBloc',
-        17:'articleBuyerConfigBloc',
+        15:'viewGallery',
+        16:'articleDetails',
+        17:'articleConfig',
         18:'searchResult',
         19:'workflow',
         20:'form',
         21:'formItem',
-        22:'articleViewGallery',
-        23:'articleDescription'
+        22:'articleDescription'
     }
 
     $.extend( true, components, component );

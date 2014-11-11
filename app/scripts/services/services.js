@@ -110,17 +110,16 @@ angular.module('services').factory('afComponentData', ['$resource','afConfig',
 
 angular.module('services').factory('afArticles', ['$resource', '$q','$http', 'afConfig','afDocsSearch','afCriteriaSearch',
     function($resource, $q, $http, afConfig, afDocsSearch, afCriteriaSearch){
-        var defaultUrl = 'api/articles/:appId/:articleId',
+        var defaultUrl = 'api/data/:appId/Article/:articleId',
             deferred = $q.defer();
-        var url = defaultUrl.replace(':articleId', afConfig.SearchGetAllDefaultParamVal).replace(':appId', afConfig.AppConfig.AppId);
+        var url = defaultUrl.replace(':appId', afConfig.AppConfig.AppId);
 
-        var res = $resource(defaultUrl,{
-                appId: afConfig.AppConfig.appId,
+        var res = $resource(url,{
                 articleId: afConfig.SearchGetAllDefaultParamVal
             });
 
         res.search =  function (criteria){
-            $http({method: 'POST', url: 'api/search/1/Article', data:criteria}).
+            $http({method: 'POST', url: url.replace('/:articleId', ''), data:criteria}).
                 success(function(data, status) {
                     if(afConfig.AppConfig.IsLocalSearchActivated){
                         if(!afDocsSearch.isInited){

@@ -15,7 +15,7 @@
  * @copyright  Copyright (c) 2010 - 2013 BelVG LLC. (http://www.belvg.com)
  * @license    http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
  */
-var jQblvg  = jQuery.noConflict();
+var jQblvg  = $//jQuery.noConflict();
 ;function prodViewGalleryForm(data, id, element, galleryConf, elImage, elThumbs, playerUrl) {
     var here = this;
     this.prodId = id;
