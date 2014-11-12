@@ -197,7 +197,7 @@ angular.module('directives.components').directive('afViewGallery',
             var prodGallery = {
               prod_1: {
                 main: new galleryItem(scope.afdata.Data.MediaList[0].MediaUrl),
-                gallery: {}
+                gallery: scope.afdata.Data.MediaList
               }
             };
 
@@ -232,6 +232,9 @@ angular.module('directives.components').directive('afViewGallery',
               btn_pos: 'border',
               scroll_speed: 400
             });
+
+            CloudZoom.quickStart();
+
           });
         }
       }
