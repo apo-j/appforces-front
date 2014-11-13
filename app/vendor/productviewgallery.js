@@ -49,14 +49,6 @@ var jQblvg  = jQuery//jQuery.noConflict();
         }
     }
 
-    this.getVideo = function() {
-        for (var i in data) {
-            if (i == this.prodId) {
-                this.video = data[this.prodId]['video'];
-            }
-        }
-    }
-
     this.setImages = function() {
         this.element.find('#wrap').css('z-index', 0);
         tmp_el = this.element.find('.product-image');
@@ -100,67 +92,6 @@ var jQblvg  = jQuery//jQuery.noConflict();
         }
     }
 
-    this.setVideo = function() {
-        if (this.video != false) {
-            tmp = '<div id="vid_block_'+here.prodId+'" style="position:absolute; z-index:120; opacity:0"><div id="vid_obj_'+here.prodId+'"></div></div>';
-            here.element.find(here.elImage).append(tmp);
-            here.element.find(here.elImage).children().css('position','absolute');
-
-            this.element.find(this.elImage).append('<div class="img_play_btn"></div>');
-            tmp_el = this.element.find(this.elImage);
-            btn_x = parseInt(tmp_el.width()) - parseInt(this.element.find('.img_play_btn').width());
-            btn_y = parseInt(tmp_el.height()) - parseInt(this.element.find('.img_play_btn').height());
-            this.element.find(this.elImage).find('.img_play_btn').css('top', btn_y+'px').css('left', btn_x+'px').click( function(){
-                here.element.find(here.elImage).find('img').animate({opacity:0}, 100);
-                jwplayer('vid_obj_'+here.prodId).setup({
-                    flashplayer: here.player,
-                    file: here.video.file,
-                    height: here.element.find(here.elImage).height(),
-                    width: here.element.find(here.elImage).width(),
-                    provider: here.video.type,
-                    autostart: true,
-                    stretching: 'uniform',
-                    controlbar: 'none',
-                    events: {
-                        //onReady: function(){
-                            //here.element.find(here.elImage).find('#vid_block_'+here.prodId).animate({opacity:1}, parseInt(here.formConf.fadetime));
-                        //    alert('Ready');
-                        //},
-                        //onBuffer: function(){
-                            //here.element.find(here.elImage).find('#vid_block_'+here.prodId).animate({opacity:1}, parseInt(here.formConf.fadetime));
-                        //    alert('Buffer');
-                        //},
-                        onPlay: function() {
-                            here.element.find(here.elImage).find('#vid_block_'+here.prodId).animate({opacity:1}, parseInt(parseInt(here.formConf.animspeed)));
-                        },
-                        onPause: function() {
-                            jwplayer('vid_obj_'+here.prodId).play();
-                            here.element.find(here.elImage).find('#vid_block_'+here.prodId).animate({opacity:0}, parseInt(here.formConf.animspeed), function() {
-                                here.playerStop();
-                            });
-                            return false;
-                        },
-                        onComplete: function(){
-                            here.playerStop();
-                            here.element.find(here.elImage).find('#vid_block_'+here.prodId).animate({opacity:0}, parseInt(here.formConf.animspeed));
-                        }
-                    }
-                });
-                here.element.find(here.elImage).find('#vid_block_'+here.prodId).animate({opacity:0.01}, 10);
-                //here.element.find(here.elImage).find('#vid_block_'+here.prodId).animate({opacity:1}, parseInt(parseInt(here.formConf.animspeed)));
-                here.element.find(here.elImage).find('#vid_block_'+here.prodId).click( function() {
-                    jwplayer('vid_obj_'+here.prodId).play();
-                    here.element.find(here.elImage).find('#vid_block_'+here.prodId).animate({opacity:0}, parseInt(here.formConf.animspeed), function() {
-                        here.playerStop();
-                    });
-                    return false;
-                });
-                return false;
-            });
-        }
-    }
-
-
     this.initSwitch = function() {
         this.element.find('.more-views li').find('a').click( function() {
             if (here.video != false) {
@@ -174,7 +105,8 @@ var jQblvg  = jQuery//jQuery.noConflict();
                 jQblvg(this).removeClass('cs-fancybox-thumbs');
                 tmp_el.find('img').bind('load', function() {
                     jQblvg(this).parent().parent().last().fadeIn(parseInt(here.formConf.animspeed));
-                    here.refreshCloudZoom();
+                    here.instance.destroy();
+                    here.instance = new CloudZoom(jQblvg('img.cloudzoom'), options);
                 });
                 tmp_el.find('img').parent().parent().last().hide();
                 tmp_el.find('img').attr('src', jQblvg(this).find('img').attr('src_main'));
@@ -199,38 +131,19 @@ var jQblvg  = jQuery//jQuery.noConflict();
         }
     }
 
-    this.playerStop = function() {
-        here.element.find(here.elImage).find('img').animate({opacity:1}, parseInt(here.formConf.animspeed));
-        if (jwplayer('vid_obj_'+here.prodId).getState()) {
-            jwplayer('vid_obj_'+here.prodId).remove();
-        }
-    }
-
     this.getImages(data);
-    this.getVideo(data);
     this.setImages();
-    this.setVideo();
     this.initSwitch();
-
+    var options = {
+        zoomSizeMode:'image',
+        autoInside:550,
+        tintColor:'red'
+    }
+    here.instance = new CloudZoom(jQblvg('img.cloudzoom'), options);
 };
 
 /*------------------------------------------------------------------------------------------------------------------*/
 
-(function($){
-    $.fn.absoluteClick = function() {
-       var elnt = $(this);
-       $('body').click( function(pos) {
-           a = parseInt(elnt.offset().left);
-           x = parseInt(elnt.offset().left + elnt.width());
-           b = parseInt(elnt.offset().top);
-           y = parseInt(elnt.offset().top + elnt.height());
-           m = parseInt(pos.pageX);
-           n = parseInt(pos.pageY);
-           //alert(a+' '+x+' '+b+' '+y+' '+m+' '+n);
-           if (n>b && n<y && m>a && m<x) elnt.trigger('click');
-       });
-    }
-})(jQblvg);
 
 /* (c) 2010-2012 by messer */
 ( function(jQblvg) {

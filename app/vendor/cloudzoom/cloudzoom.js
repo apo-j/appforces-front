@@ -693,17 +693,6 @@
     a.L = parseInt(d.css("borderTopWidth"), 10);
     isNaN(a.L) && (a.L = 0);
     a.ra(a.b);
-    if (u || A || z) {
-      b = e("<div></div>");
-      var f, c = "{}";
-      A ? f = "Cloud Zoom (trial) starpluginsP/`nr" : z && (f = "Cloud Zoom by starplugins.com", c = '"background-color":"#000","border":"none","opacity":0.3}');
-      u && (f = "Unlicensed Cloud Zoom");
-      b["text"](f);
-      f = '{"position":"absolute","left":"10px","bottom":"40px","z-index":"100000","visibility":"visible","display":"block","color":"#fff","text-shadow":"none","font-family":"sans-serif","font-size":"10px","font-weight":"bold","padding":"2px","border":"1px solid #400","background-color":"#d00"}';
-      b["css"](e["parseJSON"](f));
-      b["css"](e["parseJSON"](c));
-      b["appendTo"](n)
-    }
   };
   d.prototype.r = function(a, b) {
     var c, d;

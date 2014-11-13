@@ -1886,9 +1886,6 @@ span.color7{
 	ul.news li .desc {
 		width: 78.33333%;
 	}
-	.product-image {
-		width: 77.33333% !important;
-	}
 }
 @media only screen and (max-width: 1280px) {
 	.wrap{

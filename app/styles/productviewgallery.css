@@ -821,14 +821,12 @@
 }
 .product-img-box .product-image {
     background: url('../images/loading.gif') center no-repeat;
-} 
+}
+
 /***** Media Quries *****/
 @media only screen and (max-width: 1366px) {
 	.wrap{
 		width:95%;
-	}
-	.product-image {
-		width: 77.33333% !important;
 	}
 	.cloud-zoom-big {
 		width: 650px !important;
@@ -881,4 +879,13 @@
 	.wrap{
 		width:95%;
 	}
+}
+
+.product-image{
+    width:55% !important;
+    min-width: 256px !important;
+    max-width: 480px !important;
+}
+img.cloudzoom{
+    width:100% !important;
 }
